@@ -88,4 +88,12 @@ public abstract class MixinJoinMultiplayerScreen extends Screen {
         original.call(instance, entry);
     }
 
+    @org.spongepowered.asm.mixin.Shadow
+    private ServerData editingServer;
+
+    @Inject(method = "editServerCallback", at = @At(value = "INVOKE", target = "Lnet/minecraft/client/multiplayer/ServerList;save()V"))
+    private void storeForcedVersion(boolean result, CallbackInfo ci, @Local ServerData current) {
+        ((IServerData) current).viaFabricPlus$forceVersion(((IServerData) this.editingServer).viaFabricPlus$forcedVersion());
+    }
+
 }
