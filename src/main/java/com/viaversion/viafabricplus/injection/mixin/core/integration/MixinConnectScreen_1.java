@@ -32,7 +32,7 @@ import com.viaversion.viafabricplus.settings.impl.AuthenticationSettings;
 import com.viaversion.viaversion.api.protocol.version.ProtocolVersion;
 import de.florianreuth.classic4j.model.classicube.account.CCAccount;
 import io.netty.channel.ChannelFuture;
-import java.net.ConnectException;
+import java.io.IOException;
 import java.net.InetSocketAddress;
 import java.util.Optional;
 import net.minecraft.client.gui.screens.ConnectScreen;
@@ -87,7 +87,7 @@ public abstract class MixinConnectScreen_1 {
                 this.this$0.updateStatus(Component.translatable("base.viafabricplus.detecting_server_version"));
                 try {
                     targetVersion = ProtocolVersionDetector.get(this.val$hostAndPort, address, ProtocolTranslator.NATIVE_VERSION);
-                } catch (final ConnectException ignored) {
+                } catch (final IOException ignored) {
                     // Don't let this one through as not relevant
                 }
             }
