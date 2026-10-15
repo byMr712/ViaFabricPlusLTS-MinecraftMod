@@ -45,4 +45,6 @@ public class ButtonSetting extends AbstractSetting<Runnable> {
     public void read(JsonObject object) {
     }
 
+    VersionedBooleanSetting allowItemUsageWhileMining();
+
 }
