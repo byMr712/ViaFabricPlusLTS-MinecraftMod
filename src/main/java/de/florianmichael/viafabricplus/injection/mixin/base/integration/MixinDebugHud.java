@@ -82,7 +82,7 @@ public abstract class MixinDebugHud {
         // 1.1
         final SeedStorage seedStorage = userConnection.get(SeedStorage.class);
         if (seedStorage != null && userConnection.getProtocolInfo().serverProtocolVersion().newerThanOrEqualTo(LegacyProtocolVersion.a1_2_0toa1_2_1_1)) {
-            information.add("World Seed: " + seedStorage.seed);
+            information.add("World Seed: " + seedStorage.getSeed());
         }
 
         // c0.30 cpe
