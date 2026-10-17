@@ -17,19 +17,28 @@
  * along with this program.  If not, see <http://www.gnu.org/licenses/>.
  */
 
-package de.florianmichael.viafabricplus.injection.mixin.fixes.viaversion;
+package de.florianmichael.viafabricplus.protocoltranslator.util;
 
-import com.viaversion.viaversion.protocols.v1_8to1_9.provider.CommandBlockProvider;
-import org.spongepowered.asm.mixin.Mixin;
-import org.spongepowered.asm.mixin.injection.Constant;
-import org.spongepowered.asm.mixin.injection.ModifyConstant;
+import java.util.Map;
 
-@Mixin(value = CommandBlockProvider.class, remap = false)
-public abstract class MixinCommandBlockProvider {
+public class LanguageUtil {
 
-    @ModifyConstant(method = "sendPermission", constant = @Constant(intValue = 26))
-    private int modifyPermissionLevel(int constant) {
-        return 28; // OP level 4
+    private static final int NON_ASCII_THRESHOLD = 256;
+
+    public static boolean isUnicodeFont1_12_2(final Map<String, String> translations) {
+        int nonAsciiCharacters = 0;
+        int totalCharacters = 0;
+
+        for (String value : translations.values()) {
+            totalCharacters += value.length();
+            for (int i = 0; i < value.length(); ++i) {
+                if (value.charAt(i) >= NON_ASCII_THRESHOLD) {
+                    nonAsciiCharacters++;
+                }
+            }
+        }
+
+        return (float) nonAsciiCharacters / totalCharacters > 0.1;
     }
 
 }

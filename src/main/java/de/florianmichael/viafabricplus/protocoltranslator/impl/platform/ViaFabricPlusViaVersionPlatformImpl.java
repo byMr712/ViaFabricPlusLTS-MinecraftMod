@@ -22,23 +22,25 @@ package de.florianmichael.viafabricplus.protocoltranslator.impl.platform;
 import com.viaversion.viaversion.configuration.AbstractViaConfig;
 import com.viaversion.viaversion.libs.gson.JsonArray;
 import com.viaversion.viaversion.libs.gson.JsonObject;
+import de.florianmichael.viafabricplus.ViaFabricPlus;
 import de.florianmichael.viafabricplus.injection.ViaFabricPlusMixinPlugin;
 import de.florianmichael.viafabricplus.protocoltranslator.ProtocolTranslator;
 import de.florianmichael.viafabricplus.protocoltranslator.impl.viaversion.ViaFabricPlusVLViaConfig;
 import net.fabricmc.loader.api.FabricLoader;
-import net.raphimc.vialoader.impl.platform.ViaVersionPlatformImpl;
+import com.viaversion.vialoader.impl.platform.ViaVersionPlatformImpl;
 
 import java.io.File;
 
 public class ViaFabricPlusViaVersionPlatformImpl extends ViaVersionPlatformImpl {
 
-    public ViaFabricPlusViaVersionPlatformImpl(File rootFolder) {
+    public ViaFabricPlusViaVersionPlatformImpl(File rootFolder) { // Only required to not throw an exception, not used
         super(rootFolder);
     }
 
     @Override
     protected AbstractViaConfig createConfig() {
-        return new ViaFabricPlusVLViaConfig(new File(this.getDataFolder(), "viaversion.yml"), this.getLogger());
+        // Use config overload and change directory to root folder
+        return new ViaFabricPlusVLViaConfig(new File(getDataFolder(), "viaversion.yml"), this.getLogger());
     }
 
     @Override
@@ -73,4 +75,11 @@ public class ViaFabricPlusViaVersionPlatformImpl extends ViaVersionPlatformImpl 
 
         return platformDump;
     }
+
+    @Override
+    public File getDataFolder() {
+        // Move ViaLoader files directly into root folder
+        return ViaFabricPlus.global().getDirectory();
+    }
+
 }

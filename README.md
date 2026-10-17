@@ -13,22 +13,22 @@
 
 # Why another protocol translator?
 ViaFabricPlus implements the [ViaVersion projects](https://github.com/ViaVersion) into Fabric and provides tons of fixes to the existing protocol translation which can't be implemented in the original ViaVersion project.
-These fixes consist of movment changes, block/entity collisions, rendering changes, and many more.
+These fixes consist of movement changes, block/entity collisions, rendering changes, and many more.
 
 At the time of writing, ViaFabricPlus is the only mod that supports joining all Minecraft server versions down to the first multiplayer version while implementing
-legacy combat mechanics, movement, and rendering changes to make the gameplay more feel like the old days.
+legacy combat mechanics, movement, and rendering changes to make the gameplay feel more like the old days.
 
 **On the other hand, ViaFabricPlus supports only the latest Minecraft client version, and only Fabric.**
 If you need ViaFabricPlus for older versions of the game, you can use [ViaFabric](https://viaversion.com/fabric)
 
 ## Supported Server versions
-- Release (1.0.0 - 1.21)
+- Release (1.0.0 - 1.21.3)
 - Beta (b1.0 - b1.8.1)
 - Alpha (a1.0.15 - a1.2.6)
 - Classic (c0.0.15 - c0.30 including [CPE](https://wiki.vg/Classic_Protocol_Extension))
 - April Fools (3D Shareware, 20w14infinite)
 - Combat Snapshots (Combat Test 8c)
-- Bedrock Edition 1.21.2 ([Some features are missing](https://github.com/RaphiMC/ViaBedrock#features))
+- Bedrock Edition 1.21.40 ([Some features are missing](https://github.com/RaphiMC/ViaBedrock#features))
 
 ## How to (Users)
 - [A detailed guide on how to install and use the mod](docs/USAGE.md)
@@ -37,7 +37,7 @@ If you need ViaFabricPlus for older versions of the game, you can use [ViaFabric
   - [the ViaVersion Discord](https://discord.gg/viaversion)
 
 ## How to (Developers)
-- [Detailed guidelines for contributions as well as setting up a dev environment](docs/UPDATE_INSTRUCTIONS.md)
+- [Detailed guidelines for contributions as well as setting up a dev environment](CONTRIBUTING.md)
 - [API and integration examples for developers](docs/DEVELOPER_API.md)
 
 ## ViaFabric

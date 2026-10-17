@@ -19,9 +19,9 @@
 
 package de.florianmichael.viafabricplus.fixes;
 
+import com.viaversion.viaaprilfools.api.AprilFoolsProtocolVersion;
 import com.viaversion.viaversion.api.protocol.version.ProtocolVersion;
-import de.florianmichael.viafabricplus.event.ChangeProtocolVersionCallback;
-import de.florianmichael.viafabricplus.event.PostGameLoadCallback;
+import de.florianmichael.viafabricplus.event.*;
 import de.florianmichael.viafabricplus.fixes.data.EntityDimensionDiff;
 import de.florianmichael.viafabricplus.fixes.data.ResourcePackHeaderDiff;
 import de.florianmichael.viafabricplus.fixes.versioned.EnchantmentAttributesEmulation1_20_6;
@@ -29,19 +29,18 @@ import de.florianmichael.viafabricplus.fixes.versioned.classic.CPEAdditions;
 import de.florianmichael.viafabricplus.fixes.versioned.classic.GridItemSelectionScreen;
 import de.florianmichael.viafabricplus.fixes.versioned.visual.ArmorHudEmulation1_8;
 import de.florianmichael.viafabricplus.fixes.versioned.visual.FootStepParticle1_12_2;
+import de.florianmichael.viafabricplus.fixes.versioned.visual.UnicodeFontFix1_12_2;
 import de.florianmichael.viafabricplus.injection.access.IClientConnection;
 import de.florianmichael.viafabricplus.protocoltranslator.ProtocolTranslator;
 import de.florianmichael.viafabricplus.settings.impl.BedrockSettings;
+import de.florianmichael.viafabricplus.settings.impl.VisualSettings;
 import de.florianmichael.viafabricplus.util.DataCustomPayload;
 import net.minecraft.block.*;
 import net.minecraft.client.MinecraftClient;
-import net.minecraft.client.font.FontStorage;
 import net.minecraft.client.network.ClientPlayNetworkHandler;
-import net.minecraft.client.network.ServerAddress;
 import net.minecraft.network.PacketByteBuf;
 import net.minecraft.network.RegistryByteBuf;
 import net.minecraft.registry.Registries;
-import net.raphimc.viaaprilfools.api.AprilFoolsProtocolVersion;
 import net.raphimc.viabedrock.api.BedrockProtocolVersion;
 import net.raphimc.viabedrock.protocol.data.ProtocolConstants;
 import net.raphimc.vialegacy.api.LegacyProtocolVersion;
@@ -68,12 +67,14 @@ public class ClientsideFixes {
     /**
      * This identifier is an internal identifier used to identify packets that are sent by ViaFabricPlus
      */
+    @ApiStatus.Internal
     public static final String PACKET_SYNC_IDENTIFIER = UUID.randomUUID() + ":" + UUID.randomUUID();
 
     /**
      * This is an incremental index used for tablist entries to implement FIFO behavior <= 1.7
      */
-    public static int GLOBAL_TABLIST_INDEX = 0;
+    @ApiStatus.Internal
+    public static int globalTablistIndex = 0;
 
     static {
         // Register additional CPE features
@@ -81,6 +82,8 @@ public class ClientsideFixes {
 
         // Check if the pack format mappings are correct
         ResourcePackHeaderDiff.checkOutdated();
+
+        UnicodeFontFix1_12_2.init();
 
         PostGameLoadCallback.EVENT.register(() -> {
             // Handle clientside enchantment calculations in <= 1.20.6
@@ -95,11 +98,7 @@ public class ClientsideFixes {
 
         // Reloads some clientside stuff when the protocol version changes
         ChangeProtocolVersionCallback.EVENT.register((oldVersion, newVersion) -> MinecraftClient.getInstance().execute(() -> {
-            // Clear all font caches to enforce a reload of all fonts (this is needed because we change the font renderer behavior)
-            for (FontStorage storage : MinecraftClient.getInstance().fontManager.fontStorages.values()) {
-                storage.glyphRendererCache.clear();
-                storage.glyphCache.clear();
-            }
+            VisualSettings.global().filterNonExistingGlyphs.onValueChanged();
 
             // Reloads all bounding boxes of the blocks that we changed
             for (Block block : Registries.BLOCK) {
@@ -171,13 +170,13 @@ public class ClientsideFixes {
      * @param version The protocol version
      * @return The server address with the replaced default port
      */
-    public static ServerAddress replaceDefaultPort(final String address, final ProtocolVersion version) {
+    public static String replaceDefaultPort(final String address, final ProtocolVersion version) {
         // If the default port for this entry should be replaced, check if the address already contains a port
         // We can't just replace vanilla's default port because a bedrock server might be running on the same port
         if (BedrockSettings.global().replaceDefaultPort.getValue() && Objects.equals(version, BedrockProtocolVersion.bedrockLatest) && !address.contains(":")) {
-            return ServerAddress.parse(address + ":" + ProtocolConstants.BEDROCK_DEFAULT_PORT);
+            return address + ":" + ProtocolConstants.BEDROCK_DEFAULT_PORT;
         } else {
-            return ServerAddress.parse(address);
+            return address;
         }
     }
 

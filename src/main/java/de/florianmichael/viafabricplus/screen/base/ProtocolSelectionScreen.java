@@ -31,7 +31,7 @@ import net.minecraft.client.gui.DrawContext;
 import net.minecraft.client.gui.widget.ButtonWidget;
 import net.minecraft.client.util.math.MatrixStack;
 import net.minecraft.text.Text;
-import net.raphimc.vialoader.util.ProtocolVersionList;
+import com.viaversion.vialoader.util.ProtocolVersionList;
 
 import java.awt.*;
 
@@ -58,14 +58,7 @@ public class ProtocolSelectionScreen extends VFPScreen {
         super.init();
     }
 
-    @Override
-    public void render(DrawContext context, int mouseX, int mouseY, float delta) {
-        super.render(context, mouseX, mouseY, delta);
-
-        this.renderTitle(context);
-    }
-
-    public static class SlotList extends VFPList<VFPListEntry> {
+    public static class SlotList extends VFPList {
         private static double scrollAmount;
 
         public SlotList(MinecraftClient minecraftClient, int width, int height, int top, int bottom, int entryHeight) {

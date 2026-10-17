@@ -19,7 +19,6 @@
 
 package de.florianmichael.viafabricplus.screen;
 
-import com.mojang.blaze3d.systems.RenderSystem;
 import de.florianmichael.viafabricplus.ViaFabricPlus;
 import net.minecraft.client.MinecraftClient;
 import net.minecraft.client.gui.DrawContext;
@@ -38,7 +37,32 @@ import java.awt.*;
 
 /**
  * This class is a wrapper for the {@link net.minecraft.client.gui.screen.Screen} class which provides some global
- * functions and features used in all screens which are added by ViaFabricPlus
+ * functions and features used in all screens which are added by ViaFabricPlus.
+ * <p>
+ * Features:
+ * <ul>
+ *     <li>Title and subtitle system, see:
+ *     <ul>
+ *         <li>{@link #setupDefaultSubtitle()}</li>
+ *         <li>{@link #setupUrlSubtitle(String)}</li>
+ *         <li>{@link #setupSubtitle(Text)}</li>
+ *         <li>{@link #setupSubtitle(Text, ButtonWidget.PressAction)}</li>
+ *     </ul>
+ *     </li>
+ *     <li>Automatically adds a back button when set inside the constructor</li>
+ *     <li>Helper functions:
+ *     <ul>
+ *         <li>{@link #playClickSound()}</li>
+ *         <li>{@link #showErrorScreen(Text, Throwable, Screen)}</li>
+ *     </ul>
+ *     </li>
+ * </ul>
+ *
+ * Terminology:
+ * <p>
+ *     Instead of creating the screen every time it needs to be opened, the screen is created once and hold by a static
+ *     field and later opened by calling the {@link #open(Screen)} method.
+ * </p>
  */
 public class VFPScreen extends Screen {
 
@@ -116,8 +140,13 @@ public class VFPScreen extends Screen {
      */
     public void open(final Screen prevScreen) {
         this.prevScreen = prevScreen;
+        setScreen(this);
+    }
 
-        RenderSystem.recordRenderCall(() -> MinecraftClient.getInstance().setScreen(this));
+    public static void setScreen(final Screen screen) {
+        final MinecraftClient client = MinecraftClient.getInstance();
+
+        client.execute(() -> client.setScreen(screen));
     }
 
     @Override
@@ -125,6 +154,20 @@ public class VFPScreen extends Screen {
         if (backButton) {
             this.addDrawableChild(ButtonWidget.builder(Text.of("<-"), button -> this.close()).position(5, 5).size(20, 20).build());
         }
+    }
+
+    public void addRefreshButton(final Runnable click) {
+        this.addDrawableChild(ButtonWidget.builder(Text.translatable("base.viafabricplus.refresh"), button -> {
+            click.run();
+            client.setScreen(this);
+        }).position(width - 60 - 5, 5).size(60, 20).build());
+    }
+
+    @Override
+    public void render(DrawContext context, int mouseX, int mouseY, float delta) {
+        super.render(context, mouseX, mouseY, delta);
+
+        this.renderTitle(context);
     }
 
     @Override
@@ -159,8 +202,18 @@ public class VFPScreen extends Screen {
      */
     public void renderSubtitle(final DrawContext context) {
         if (subtitle != null && subtitlePressAction == null) {
-            context.drawCenteredTextWithShadow(textRenderer, subtitle, width / 2, (textRenderer.fontHeight + 2) * 2 + 3, -1);
+            final int startY = (textRenderer.fontHeight + 2) * 2 + 3;
+            context.drawCenteredTextWithShadow(textRenderer, subtitle, width / 2, subtitleCentered() ? this.height / 2 - startY : startY, -1);
         }
+    }
+
+    protected boolean subtitleCentered() {
+        // To be overriden
+        return false;
+    }
+
+    public void renderScreenTitle(final DrawContext context) {
+        context.drawCenteredTextWithShadow(this.textRenderer, this.title, this.width / 2, 70, 16777215);
     }
 
     /**

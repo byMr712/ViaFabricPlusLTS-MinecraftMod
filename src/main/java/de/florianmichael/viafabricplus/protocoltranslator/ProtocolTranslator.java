@@ -48,16 +48,18 @@ import io.netty.channel.ChannelOption;
 import io.netty.util.AttributeKey;
 import net.fabricmc.fabric.api.client.command.v2.ClientCommandRegistrationCallback;
 import net.fabricmc.fabric.api.client.command.v2.FabricClientCommandSource;
+import net.lenni0451.reflect.stream.RStream;
+import net.lenni0451.reflect.stream.field.FieldWrapper;
 import net.minecraft.SharedConstants;
 import net.minecraft.client.MinecraftClient;
 import net.minecraft.client.network.ClientPlayNetworkHandler;
 import net.minecraft.network.ClientConnection;
 import net.raphimc.viabedrock.api.BedrockProtocolVersion;
 import net.raphimc.viabedrock.protocol.data.ProtocolConstants;
-import net.raphimc.vialoader.ViaLoader;
-import net.raphimc.vialoader.impl.platform.ViaAprilFoolsPlatformImpl;
-import net.raphimc.vialoader.impl.platform.ViaBackwardsPlatformImpl;
-import net.raphimc.vialoader.impl.platform.ViaBedrockPlatformImpl;
+import com.viaversion.vialoader.ViaLoader;
+import com.viaversion.vialoader.impl.platform.ViaAprilFoolsPlatformImpl;
+import com.viaversion.vialoader.impl.platform.ViaBackwardsPlatformImpl;
+import com.viaversion.vialoader.impl.platform.ViaBedrockPlatformImpl;
 import org.cloudburstmc.netty.channel.raknet.config.RakChannelOption;
 import org.jetbrains.annotations.ApiStatus;
 
@@ -141,6 +143,7 @@ public class ProtocolTranslator {
                 channel.config().setOption(RakChannelOption.RAK_PROTOCOL_VERSION, ProtocolConstants.BEDROCK_RAKNET_PROTOCOL_VERSION);
                 channel.config().setOption(RakChannelOption.RAK_COMPATIBILITY_MODE, true);
                 channel.config().setOption(RakChannelOption.RAK_CLIENT_INTERNAL_ADDRESSES, 20);
+                channel.config().setOption(RakChannelOption.RAK_TIME_BETWEEN_SEND_CONNECTION_ATTEMPTS_MS, 500);
                 channel.config().setOption(RakChannelOption.RAK_CONNECT_TIMEOUT, channel.config().getOption(ChannelOption.CONNECT_TIMEOUT_MILLIS).longValue());
                 channel.config().setOption(RakChannelOption.RAK_SESSION_TIMEOUT, 30_000L);
                 channel.config().setOption(RakChannelOption.RAK_GUID, ThreadLocalRandom.current().nextLong());
@@ -263,13 +266,13 @@ public class ProtocolTranslator {
     /**
      * Apply recommended config options to the ViaVersion config files
      *
-     * @param configFolder The directory where the ViaVersion config files is located
+     * @param directory The directory where the ViaVersion config files is located
      */
-    private static void patchConfigs(final File configFolder) {
-        configFolder.mkdirs();
+    private static void patchConfigs(final File directory) {
+        directory.mkdirs();
 
         try {
-            final File viaVersionConfig = new File(configFolder, "viaversion.yml");
+            final File viaVersionConfig = new File(directory, "viaversion.yml");
             Files.writeString(viaVersionConfig.toPath(), """
                     fix-infested-block-breaking: false
                     shield-blocking: false
@@ -282,7 +285,7 @@ public class ProtocolTranslator {
         }
 
         try {
-            final File viaLegacyConfig = new File(configFolder, "vialegacy.yml");
+            final File viaLegacyConfig = new File(directory, "vialegacy.yml");
             Files.writeString(viaLegacyConfig.toPath(), """
                     legacy-skull-loading: true
                     legacy-skin-loading: true
@@ -290,6 +293,25 @@ public class ProtocolTranslator {
         } catch (FileAlreadyExistsException ignored) {
         } catch (Throwable e) {
             throw new RuntimeException("Failed to patch ViaLegacy config", e);
+        }
+    }
+
+    private static void changeBedrockProtocolName() {
+        final ProtocolVersion bedrockLatest = RStream.of(BedrockProtocolVersion.class).fields().by("bedrockLatest").get();
+
+        final FieldWrapper name = RStream.of(bedrockLatest).withSuper().fields().by("name");
+        name.set(name.get() + " (Work in progress)");
+    }
+
+    @Deprecated/*(forRemoval = true)*/
+    private static void migrateOldConfigs(final File directory) {
+        final File oldDirectory = new File(directory, "ViaLoader");
+        if (oldDirectory.exists()) {
+            // Move all files from this folder into the directory itself
+            for (File file : oldDirectory.listFiles()) {
+                file.renameTo(new File(directory, file.getName()));
+            }
+            oldDirectory.delete();
         }
     }
 
@@ -304,7 +326,8 @@ public class ProtocolTranslator {
         if (SharedConstants.getProtocolVersion() != NATIVE_VERSION.getOriginalVersion()) {
             throw new IllegalStateException("Native version is not the same as the current version");
         }
-        patchConfigs(new File(directory, "ViaLoader"));
+        migrateOldConfigs(directory);
+        patchConfigs(directory);
 
         // Register command callback for /viafabricplus
         ClientCommandRegistrationCallback.EVENT.register((dispatcher, registryAccess) -> {
@@ -328,6 +351,7 @@ public class ProtocolTranslator {
                     ViaBedrockPlatformImpl::new
             );
             ProtocolVersion.register(AUTO_DETECT_PROTOCOL);
+            changeBedrockProtocolName();
             ViaFabricPlusProtocol.INSTANCE.initialize();
         });
     }

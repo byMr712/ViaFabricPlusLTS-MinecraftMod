@@ -121,6 +121,13 @@ public abstract class MixinPlayerEntity extends LivingEntity {
         return ProtocolTranslator.getTargetVersion().newerThan(ProtocolVersion.v1_15_2) && instance.hasStatusEffect(registryEntry);
     }
 
+    @Inject(method = "canConsume", at = @At("HEAD"), cancellable = true)
+    private void preventEatingFoodInCreative(boolean ignoreHunger, CallbackInfoReturnable<Boolean> cir) {
+        if (ProtocolTranslator.getTargetVersion().olderThanOrEqualTo(ProtocolVersion.v1_14_4) && this.abilities.invulnerable) {
+            cir.setReturnValue(false);
+        }
+    }
+
     @Inject(method = "checkFallFlying", at = @At("HEAD"), cancellable = true)
     private void replaceFallFlyingCondition(CallbackInfoReturnable<Boolean> cir) {
         if (ProtocolTranslator.getTargetVersion().olderThanOrEqualTo(ProtocolVersion.v1_14_4)) {
@@ -147,7 +154,7 @@ public abstract class MixinPlayerEntity extends LivingEntity {
                 pose = EntityPose.SWIMMING;
             } else if (this.isUsingRiptide()) {
                 pose = EntityPose.SPIN_ATTACK;
-            } else if (this.isSneaking() && !this.abilities.flying) {
+            } else if (this.isSneaking()) {
                 pose = EntityPose.CROUCHING;
             } else {
                 pose = EntityPose.STANDING;

@@ -81,7 +81,7 @@ public class ClassiCubeLoginScreen extends VFPScreen {
 
                 @Override
                 public void handleSuccessfulLogin(CCAccount account) {
-                    RenderSystem.recordRenderCall(() -> ClassiCubeServerListScreen.open(prevScreen, this));
+                    ClassiCubeServerListScreen.open(prevScreen, this);
                 }
 
                 @Override
@@ -103,9 +103,7 @@ public class ClassiCubeLoginScreen extends VFPScreen {
     @Override
     public void render(DrawContext context, int mouseX, int mouseY, float delta) {
         super.render(context, mouseX, mouseY, delta);
-        this.renderTitle(context);
-
-        context.drawCenteredTextWithShadow(this.textRenderer, this.title, this.width / 2, 70, 16777215);
+        this.renderScreenTitle(context);
     }
 
 }
