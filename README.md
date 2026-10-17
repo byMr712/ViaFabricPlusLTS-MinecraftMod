@@ -1,80 +1,48 @@
 <!--suppress HtmlDeprecatedAttribute -->
 <div align="center">
-  <img src="src/main/resources/assets/viafabricplus/icon.png" width="150" alt="ViaFabricPlus logo">
-  <h1>ViaFabricPlus</h1>
+  <img src="src/main/resources/assets/viafabricplus/icon.png" width="150" alt="ViaFabricPlusLTS logo">
+  <h1>ViaFabricPlusLTS (Minecraft 26.2)</h1>
   <a href="https://fabricmc.net"><img src="https://img.shields.io/badge/Mod%20Loader-Fabric-lightyellow?logo=fabric" alt="Mod Loader: Fabric"></a>
+  <img src="https://img.shields.io/badge/Minecraft-26.2-blue" alt="Minecraft 26.2">
   <img src="https://img.shields.io/badge/Environment-Client-purple" alt="Environment: Client">
-  <a href="https://discord.gg/viaversion"><img src="https://img.shields.io/discord/316206679014244363?color=0098DB&label=Discord&logo=discord&logoColor=0098DB" alt="Discord"></a><br/>
-  <a href="https://modrinth.com/mod/viafabricplus"><img src="https://img.shields.io/badge/dynamic/json?color=158000&label=downloads&prefix=+%20&query=downloads&url=https://api.modrinth.com/v2/project/rIC2XJV4&logo=modrinth" alt="Modrinth Downloads"></a>
-  <a href="https://curseforge.com/minecraft/mc-mods/viafabricplus"><img src="https://cf.way2muchnoise.eu/full_830604_downloads.svg" alt="CurseForge Downloads"></a>
-  <a href="https://github.com/ViaVersion/ViaFabricPlus/actions/workflows/build.yml"><img src="https://github.com/ViaVersion/ViaFabricPlus/actions/workflows/build.yml/badge.svg" alt="Build Status"></a>
+  <a href="https://github.com/byMr712/ViaFabricPlusLTS-MinecraftMod"><img src="https://img.shields.io/badge/Maintainer-byMr712-orange" alt="Maintainer: byMr712"></a>
 
-  <p><strong>Minecraft Fabric mod that allows you to join <em>every</em> Minecraft server version (Classic, Alpha, Beta, Release, April Fools)</strong></p>
+  <p><strong>Клиентский мод для Fabric, позволяющий подключаться к ЛЮБЫМ серверам Minecraft (Classic, Alpha, Beta, Release, April Fools) на клиенте 26.2</strong></p>
+  <p><a href="README.en.md">English Version</a></p>
 </div>
 
-**ViaFabricPlus** is a Minecraft mod for [Fabric](https://fabricmc.net/) that builds on
-the [ViaVersion plugin](https://github.com/ViaVersion/ViaVersion).
-It lets you connect to servers from almost every Minecraft version while fixing issues that the original project
-couldn't.
+**ViaFabricPlusLTS** — расширенный долгосрочный (LTS) форк популярного мода [ViaFabricPlus](https://github.com/ViaVersion/ViaFabricPlus), поддерживаемый [byMr712](https://github.com/byMr712).
+Данный форк адаптирован для **Minecraft 26.2** с полноценной поддержкой современных и старых сетевых протоколов.
 
-These fixes make older servers feel much closer to how they originally played, with improvements to movement, block and
-entity interactions, graphics, and more. In short, it recreates the classic Minecraft experience on today's client.
+---
 
-## Important to know
+### ✨ Особенности сборки LTS для 26.2
 
-- Works **only with the newest Minecraft client version**
-- Runs **only on [Fabric](https://fabricmc.net/)**. (There won't be a Forge or NeoForge version)
-- **Multiplayer only** – it does not affect singleplayer worlds
-- **Clientside only** – it does not run on Multiplayer servers
-- **No cross-version resource packs** – resource packs from older versions are not supported
-- If you want to play using **older Minecraft clients**, you should use the
-  original [ViaFabric](https://viaversion.com/fabric) instead.
-  For a detailed comparison between the two projects, check out
-  the [ViaFabric vs ViaFabricPlus section](https://github.com/ViaVersion/ViaFabric?tab=readme-ov-file#differences-with-viafabricplus).
+- 🌐 **Подключение ко всем версиям**: Подключайтесь с клиента Minecraft 26.2 к серверам от Classic c0.0.15 до современных версий.
+- 🛠 **Точные исправления физики и визуала**: Воссоздание оригинальной механики движения, блоков и сущностей соответствующих версий.
+- ⚡ **Оптимизированная сборка**: Единый чистый JAR-архив без лишних артефактов (`ViaFabricPlusLTS-26.2-byMr712.jar`).
 
-## How to use
+---
 
-- [Step-by-step installation and usage guide](docs/USAGE.md)
-- Found a bug? Please report it on the [issue tracker](https://github.com/ViaVersion/ViaFabricPlus/issues)
-- Got questions? Join the [ViaVersion Discord](https://discord.gg/viaversion)
+### 📦 Установка
 
-### Supported Client versions
+1. Установите [Fabric Loader](https://fabricmc.net/use/) для **Minecraft 26.2**.
+2. Установите [Fabric API](https://modrinth.com/mod/fabric-api) для 26.2.
+3. Скачайте `ViaFabricPlusLTS-26.2-byMr712.jar` из раздела [Releases](https://github.com/byMr712/ViaFabricPlusLTS-MinecraftMod/releases) и поместите в папку `.minecraft/mods`.
+4. Запустите игру и выберите версию протокола в меню мультиплеера.
 
-| **Version**                    | **Feature Updates** | **Bug Fixes** |
-|--------------------------------|---------------------|---------------|
-| Minecraft 26.3                 | Yes                 | Yes           |
-| Minecraft 26.2                 | No                  | Yes           |
-| Minecraft 26.1.x *(and older)* | No                  | No            |
+---
 
-### Supported Server versions
+### ⚠️ Важно знать
 
-- Release (1.0.0–26.3*)
-- Beta (b1.0 – b1.8.1)
-- Alpha (a1.0.15 – a1.2.6)
-- Classic (c0.0.15 – c0.30 including [CPE](https://wiki.vg/Classic_Protocol_Extension))
-- April Fools (3D Shareware, 20w14infinite, 25w14craftmine)
-- Combat Snapshots (Combat Test 8c)
+- **Только Fabric**: Мод предназначен только для загрузчика Fabric.
+- **Только клиент**: Мод работает на стороне клиента в многопользовательском режиме.
+- **Честная игра**: Поведение некоторых старых протоколов может вызывать подозрения серверных античитов. Используйте с умом.
 
-*[Support for new Mojang releases is usually added within a few days](https://github.com/ViaVersion/ViaVersion#snapshot-support)
+---
 
-## Bedrock Edition
+### 📜 Лицензия и благодарности
 
-Support for Minecraft: Bedrock Edition servers and Realms is available through the separate
-[ViaFabricPlus Bedrock](https://github.com/florianreuth/viafabricplus-bedrock) addon, which is based on
-[ViaBedrock](https://github.com/RaphiMC/ViaBedrock).
-
-## For Developers & Contributors
-
-- [Contribution guide & dev setup](CONTRIBUTING.md)
-- [API docs & integration examples](docs/DEVELOPER_API.md)
-
-## Credits
-
-Huge thanks to all our [contributors](https://github.com/ViaVersion/ViaFabricPlus/graphs/contributors) who made this
-project possible.
-
-## Disclaimer
-
-We cannot guarantee this mod will be allowed on every server.
-Some servers may treat it as suspicious and flag it with anti-cheat plugins.
-**Use responsibly and at your own risk!**
+Оригинальный проект разработан [Florian Reuth (EnZaXD)](https://github.com/florianreuth), [RaphiMC](https://github.com/RaphiMC) и участниками сообщества ViaVersion.
+Форк и LTS-сопровождение: [byMr712](https://github.com/byMr712).
+Распространяется по лицензии **GPL-3.0**.

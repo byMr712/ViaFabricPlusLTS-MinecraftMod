@@ -51,3 +51,16 @@ dependencies {
 }
 
 includeTransitiveJijDependencies()
+
+tasks.named<Jar>("jar") {
+    archiveFileName.set("ViaFabricPlusLTS-26.2-byMr712.jar")
+}
+
+allprojects {
+    tasks.configureEach {
+        if (name == "sourcesJar" || name == "remapSourcesJar" || name == "javadocJar") {
+            enabled = false
+        }
+    }
+}
+
