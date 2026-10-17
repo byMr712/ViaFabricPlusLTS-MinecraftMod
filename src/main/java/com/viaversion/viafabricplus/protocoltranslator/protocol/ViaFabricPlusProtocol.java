@@ -140,4 +140,9 @@ public final class ViaFabricPlusProtocol extends AbstractProtocol<ClientboundPac
         );
     }
 
+    @Override
+    protected void applySharedRegistrations() {
+        // Not for us, protocols will already track states down the line
+    }
+
 }

@@ -22,7 +22,6 @@
 package com.viaversion.viafabricplus.protocoltranslator.impl.provider.viabedrock;
 
 import com.viaversion.viafabricplus.protocoltranslator.netty.ViaFabricPlusVLLegacyPipeline;
-import com.viaversion.vialoader.netty.VLPipeline;
 import com.viaversion.viaversion.api.connection.UserConnection;
 import io.netty.channel.Channel;
 import net.raphimc.viabedrock.api.io.compression.ProtocolCompression;
@@ -54,7 +53,7 @@ public final class ViaFabricPlusNettyPipelineProvider extends NettyPipelineProvi
         }
 
         try {
-            channel.pipeline().addAfter(VLPipeline.VIABEDROCK_FRAME_ENCAPSULATION_HANDLER_NAME, ViaFabricPlusVLLegacyPipeline.VIABEDROCK_ENCRYPTION_HANDLER_NAME, new AesEncryptionCodec(key));
+            channel.pipeline().addAfter("viabedrock-frame-encapsulation", ViaFabricPlusVLLegacyPipeline.VIABEDROCK_ENCRYPTION_HANDLER_NAME, new AesEncryptionCodec(key));
         } catch (Throwable e) {
             throw new RuntimeException(e);
         }
