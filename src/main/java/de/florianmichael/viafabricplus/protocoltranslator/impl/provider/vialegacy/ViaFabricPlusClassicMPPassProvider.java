@@ -24,10 +24,10 @@ import com.viaversion.viaversion.api.connection.UserConnection;
 import de.florianmichael.classic4j.BetaCraftHandler;
 import de.florianmichael.viafabricplus.ViaFabricPlus;
 import de.florianmichael.viafabricplus.settings.impl.AuthenticationSettings;
-import net.raphimc.vialegacy.protocol.classic.c0_28_30toa1_0_15.provider.ClassicMPPassProvider;
+import net.raphimc.vialegacy.protocol.classic.c0_28_30toa1_0_15.provider.ClassicMpPassProvider;
 import net.raphimc.vialegacy.protocol.release.r1_2_4_5tor1_3_1_2.provider.OldAuthProvider;
 
-public class ViaFabricPlusClassicMPPassProvider extends ClassicMPPassProvider {
+public class ViaFabricPlusClassicMPPassProvider extends ClassicMpPassProvider {
 
     public static String classicubeMPPass;
 
