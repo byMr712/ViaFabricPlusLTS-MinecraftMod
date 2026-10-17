@@ -88,3 +88,13 @@ fun Project.configureVVDependencies(configuration: String) {
         }
     }
 }
+
+tasks.named<net.fabricmc.loom.task.RemapJarTask>("remapJar") {
+    archiveFileName.set("ViaFabricPlusLTS-1.21.11-byMr712.jar")
+}
+
+allprojects {
+    tasks.matching { it.name in listOf("sourcesJar", "remapSourcesJar", "javadocJar", "javadoc") }.configureEach {
+        enabled = false
+    }
+}
