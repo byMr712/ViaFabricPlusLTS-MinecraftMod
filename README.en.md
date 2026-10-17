@@ -38,7 +38,7 @@ Allows connecting to almost any server version — from Alpha/Beta/Classic up to
 
 ## Installation
 
-1. Download the latest `ViaFabricPlusLTS-1.21.3-byMr712.jar` from [Releases](https://github.com/byMr712/ViaFabricPlusLTS-MinecraftMod/releases).
+1. Download the latest `ViaFabricPlusLTS-1.21.2-byMr712.jar` from [Releases](https://github.com/byMr712/ViaFabricPlusLTS-MinecraftMod/releases).
 2. Drop the `.jar` into the `mods` folder of your Fabric instance.
 3. Make sure **Fabric Loader** (>=0.16.9) and **Fabric API** for your Minecraft version are installed.
 4. Launch the game — the version selection button will appear on the main title screen and multiplayer menu.

@@ -145,7 +145,7 @@ jar {
 }
 
 remapJar {
-	archiveFileName = "ViaFabricPlusLTS-1.21.3-byMr712.jar"
+	archiveFileName = "ViaFabricPlusLTS-1.21.2-byMr712.jar"
 }
 
 tasks.matching { it.name == 'sourcesJar' || it.name == 'remapSourcesJar' || it.name == 'javadocJar' }.configureEach {

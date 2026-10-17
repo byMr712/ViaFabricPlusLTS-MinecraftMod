@@ -38,7 +38,7 @@
 
 ## Установка
 
-1. Скачайте последнюю версию мода `ViaFabricPlusLTS-1.21.3-byMr712.jar` из раздела [Releases](https://github.com/byMr712/ViaFabricPlusLTS-MinecraftMod/releases).
+1. Скачайте последнюю версию мода `ViaFabricPlusLTS-1.21.2-byMr712.jar` из раздела [Releases](https://github.com/byMr712/ViaFabricPlusLTS-MinecraftMod/releases).
 2. Поместите `.jar` файл в папку `mods` вашего экземпляра Fabric.
 3. Убедитесь, что установлен **Fabric Loader** (>=0.16.9) и **Fabric API** для вашей версии Minecraft (1.21.2 или 1.21.3).
 4. Запустите игру — кнопка выбора версии появится на главном экране и в меню сетевой игры.
