@@ -44,6 +44,7 @@ repositories {
 
 		content {
 			includeGroup "com.github.Oryxel"
+			includeGroup "com.github.oryxel1"
 		}
 	}
 }
@@ -67,17 +68,17 @@ dependencies {
 
 	modCompileOnly "com.terraformersmc:modmenu:12.0.0"
 
-	jij "com.viaversion:viaversion-common:5.2.0"
-	jij "com.viaversion:viabackwards-common:5.2.0"
-	jij "net.raphimc:viaaprilfools-common:3.0.4"
-	jij "net.raphimc:ViaLegacy:3.0.6"
-	jij ("net.raphimc:ViaBedrock:0.0.14-20241206.155528-1") {
-		exclude group: "io.jsonwebtoken"
-		exclude group: "com.mojang", module: "brigadier"
-	}
-	jij ("net.raphimc:ViaLoader:3.0.4") {
+	jij "com.viaversion:viaversion-common:5.8.0"
+	jij "com.viaversion:viabackwards-common:5.8.0"
+	jij "com.viaversion:viaaprilfools-common:4.0.2"
+	jij("com.viaversion:vialoader:4.0.3") {
 		exclude group: "com.google.guava", module: "guava"
 		exclude group: "org.slf4j", module: "slf4j-api"
+	}
+	jij "net.raphimc:ViaLegacy:3.0.11-SNAPSHOT"
+	jij("net.raphimc:ViaBedrock:0.0.18-SNAPSHOT") {
+		exclude group: "io.jsonwebtoken"
+		exclude group: "com.mojang", module: "brigadier"
 	}
 
 	jij ("net.raphimc:MinecraftAuth:4.1.1") {
@@ -130,8 +131,6 @@ Provider<String> latestCommitHash() {
 }
 
 java {
-	withSourcesJar()
-
 	sourceCompatibility = JavaVersion.VERSION_21
 	targetCompatibility = JavaVersion.VERSION_21
 }
@@ -143,6 +142,14 @@ jar {
 			"${it}_${project.archivesBaseName}"
 		}
 	}
+}
+
+remapJar {
+	archiveFileName = "ViaFabricPlusLTS-1.21.3-byMr712.jar"
+}
+
+tasks.matching { it.name == 'sourcesJar' || it.name == 'remapSourcesJar' || it.name == 'javadocJar' }.configureEach {
+	enabled = false
 }
 
 publishing {

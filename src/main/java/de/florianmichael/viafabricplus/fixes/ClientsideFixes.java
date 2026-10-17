@@ -19,6 +19,7 @@
 
 package de.florianmichael.viafabricplus.fixes;
 
+import com.viaversion.viaaprilfools.api.AprilFoolsProtocolVersion;
 import com.viaversion.viaversion.api.protocol.version.ProtocolVersion;
 import de.florianmichael.viafabricplus.event.ChangeProtocolVersionCallback;
 import de.florianmichael.viafabricplus.event.PostGameLoadCallback;
@@ -42,7 +43,6 @@ import net.minecraft.client.network.ClientPlayNetworkHandler;
 import net.minecraft.network.PacketByteBuf;
 import net.minecraft.network.RegistryByteBuf;
 import net.minecraft.registry.Registries;
-import net.raphimc.viaaprilfools.api.AprilFoolsProtocolVersion;
 import net.raphimc.viabedrock.api.BedrockProtocolVersion;
 import net.raphimc.viabedrock.protocol.data.ProtocolConstants;
 import net.raphimc.vialegacy.api.LegacyProtocolVersion;
