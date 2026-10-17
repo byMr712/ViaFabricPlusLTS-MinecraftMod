@@ -48,14 +48,14 @@ import java.util.Map;
 import static com.viaversion.viaversion.util.ProtocolUtil.packetTypeMap;
 
 // Protocol to handle error handling changes in older protocols, always last element of the pipeline
-public class ViaFabricPlusProtocol extends AbstractProtocol<ClientboundPackets1_21, ClientboundPackets1_21, ServerboundPackets1_20_5, ServerboundPackets1_20_5> {
+public class ViaFabricPlusProtocol extends AbstractProtocol<ClientboundPackets1_21_2, ClientboundPackets1_21_2, ServerboundPackets1_21_2, ServerboundPackets1_21_2> {
 
     public static final ViaFabricPlusProtocol INSTANCE = new ViaFabricPlusProtocol();
 
     private final Map<String, Pair<ProtocolVersion, PacketReader>> payloadDiff = new HashMap<>();
 
     public ViaFabricPlusProtocol() {
-        super(ClientboundPackets1_21.class, ClientboundPackets1_21.class, ServerboundPackets1_20_5.class, ServerboundPackets1_20_5.class);
+        super(ClientboundPackets1_21_2.class, ClientboundPackets1_21_2.class, ServerboundPackets1_21_2.class, ServerboundPackets1_21_2.class);
         registerMapping(BrandCustomPayload.ID, LegacyProtocolVersion.c0_0_15a_1, wrapper -> wrapper.passthrough(Types.STRING));
         registerMapping(DebugGameTestAddMarkerCustomPayload.ID, ProtocolVersion.v1_14, wrapper -> {
             wrapper.passthrough(Types.BLOCK_POSITION1_14);
@@ -72,12 +72,12 @@ public class ViaFabricPlusProtocol extends AbstractProtocol<ClientboundPackets1_
     }
 
     @Override
-    protected PacketTypesProvider<ClientboundPackets1_21, ClientboundPackets1_21, ServerboundPackets1_20_5, ServerboundPackets1_20_5> createPacketTypesProvider() {
+    protected PacketTypesProvider<ClientboundPackets1_21_2, ClientboundPackets1_21_2, ServerboundPackets1_21_2, ServerboundPackets1_21_2> createPacketTypesProvider() {
         return new SimplePacketTypesProvider<>(
-            packetTypeMap(unmappedClientboundPacketType, ClientboundPackets1_21.class),
-            packetTypeMap(mappedClientboundPacketType, ClientboundPackets1_21.class),
-            packetTypeMap(mappedServerboundPacketType, ServerboundPackets1_20_5.class),
-            packetTypeMap(unmappedServerboundPacketType, ServerboundPackets1_20_5.class)
+            packetTypeMap(unmappedClientboundPacketType, ClientboundPackets1_21_2.class),
+            packetTypeMap(mappedClientboundPacketType, ClientboundPackets1_21_2.class),
+            packetTypeMap(mappedServerboundPacketType, ServerboundPackets1_21_2.class),
+            packetTypeMap(unmappedServerboundPacketType, ServerboundPackets1_21_2.class)
         );
     }
 
