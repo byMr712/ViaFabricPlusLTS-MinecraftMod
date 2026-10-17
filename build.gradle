@@ -43,6 +43,7 @@ repositories {
 
 		content {
 			includeGroup "com.github.Oryxel"
+			includeGroup "com.github.oryxel1"
 		}
 	}
 }
@@ -66,8 +67,8 @@ dependencies {
 
 	modCompileOnly "com.terraformersmc:modmenu:11.0.3"
 
-	jij "com.viaversion:viaversion-common:5.4.2-SNAPSHOT"
-	jij "com.viaversion:viabackwards-common:5.4.1"
+	jij "com.viaversion:viaversion-common:5.8.0"
+	jij "com.viaversion:viabackwards-common:5.8.0"
 	jij "com.viaversion:viaaprilfools-common:4.0.2"
 	jij("com.viaversion:vialoader:4.0.3") {
 		exclude group: "com.google.guava", module: "guava"
@@ -145,6 +146,14 @@ jar {
 			"${it}_${project.archivesBaseName}"
 		}
 	}
+}
+
+remapJar {
+	archiveFileName = "ViaFabricPlusLTS-1.21-byMr712.jar"
+}
+
+tasks.matching { it.name == 'sourcesJar' || it.name == 'remapSourcesJar' || it.name == 'javadocJar' }.configureEach {
+	enabled = false
 }
 
 publishing {
