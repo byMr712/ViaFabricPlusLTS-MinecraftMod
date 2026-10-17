@@ -131,6 +131,12 @@ if (launcherModsDir.exists()) {
 }
 
 
+subprojects {
+    tasks.matching { it.name == "runClient" || it.name == "runServer" }.configureEach {
+        enabled = false
+    }
+}
+
 tasks.matching { it.name == 'sourcesJar' || it.name == 'remapSourcesJar' || it.name == 'javadocJar' }.configureEach {
     enabled = false
 }

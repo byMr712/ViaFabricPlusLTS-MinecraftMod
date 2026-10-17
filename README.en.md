@@ -1,8 +1,6 @@
-# ViaFabricPlus BackPort (Fabric 1.21.4)
-
 > **Language:** [Русский](README.md) · English
 
-A specialized build and backport of ViaFabricPlus for **Minecraft 1.21.4 (Fabric)**, allowing players to connect to servers running virtually any Minecraft version — from classic Alpha/Beta releases to the latest versions and snapshots.
+# [MR] ViaFabricPlus BackPort
 
 ![Java 21](https://img.shields.io/badge/Java-21-blue.svg)
 ![Minecraft](https://img.shields.io/badge/Minecraft-1.21.4-blue.svg)
@@ -10,73 +8,69 @@ A specialized build and backport of ViaFabricPlus for **Minecraft 1.21.4 (Fabric
 ![ModMenu](https://img.shields.io/badge/ModMenu-Supported-blue.svg)
 ![License](https://img.shields.io/badge/License-GPL_3.0-blue.svg)
 
+An extended fork of **ViaFabricPlus** for **Minecraft 1.21.4 (Fabric)** that restores the ability for older client versions to connect to ALL servers up to the latest releases (**1.21.11** and **26.3**), something upstream does not provide.
+
 ---
 
-## About the Fork
+## What Does This Mod Do? (Player Friendly)
 
-All rights belong to the original upstream authors — [ViaVersion](https://github.com/ViaVersion) / [FlorianMichael](https://github.com/FlorianMichael) / [RaphiMC](https://github.com/RaphiMC).  
-Original repository: [ViaVersion/ViaFabricPlus](https://github.com/ViaVersion/ViaFabricPlus).  
+The original [ViaFabricPlus](https://github.com/ViaVersion/ViaFabricPlus) by FlorianMichael and the ViaVersion team follows a strict policy: development targets **only the very latest Minecraft release**, while support for older client versions is dropped immediately upon a new Minecraft release.
 
-- **1.21.4 Client Backport:** Allows staying on the 1.21.4 client with your full mod setup while expanding protocol compatibility up to **26.3 / 1.21.11** servers.
-- **Smart Version Auto-Detection:** Fast non-blocking server polling with timeout and SRV record support. Added target version parsing from the server name (e.g. `26.3` or `26.2`): if a version is explicitly specified in the server name, it is used with top priority (in case ping-based auto-detection does not work on the server/proxy).
-- **Netty Pipeline Stability:** Fixed crashes and disconnects when switching between proxy servers (BungeeCord, Velocity, 6b6t) and traversing portals (`EncoderTransitioner`/`DecoderTransitioner`), added safe handling of desynced command trees (`CommandTreeS2CPacket`) and leftover packet bytes.
-- **Informative Error Screens:** Clear and readable disconnect and packet decode error messages.
-- **Cleanup & Build Scripts:** Removed unused `ViaBedrock` module, added `build.bat` quick build script.
+This puts players in a frustrating situation:
+- Either remain on a favorite stable version (e.g. 1.21.4) with a custom-tuned modpack, but lose access to modern servers;
+- Or update the game and break compatibility with existing mods.
+
+### Fork Philosophy:
+This project changes that philosophy: **it brings modern server connectivity back to older Minecraft versions**. You can stay on your client version with all your favorite mods and seamlessly play on any server!
+
+---
+
+## Key Features & Improvements
+
+- **Backported Server Compatibility up to 26.3 / 1.21.11:** Bundles modern ViaVersion and ViaBackwards libraries, allowing a 1.21.4 client to join servers of any version — from the first multiplayer Classic c0.0.15 release to modern snapshots and releases.
+- **Async Protocol Warmup:** Eliminates the notorious 30-second login timeout ("ReadTimeoutException") when first connecting to newer versions. Mapping tables and pipelines are pre-warmed in the background upon UI selection or server pinging.
+- **Hybrid Server Support (ViaBackwards Native Priority):** Automatically detects servers (e.g. Paper 1.21.11 with ViaBackwards) advertising native 1.21.4 (769) protocol support and connects natively without dual client-side translation. This resolves carpet hitbox desyncs and false-positive anticheat kicks.
+- **Safe Netty Packet Decoder:** Gracefully recovers from malformed Brigadier command tree packets (`CommandTreeS2CPacket`) and trailing buffer bytes by substituting safe fallbacks, preventing unnecessary disconnects.
+- **Mr712 Debug Settings Toggle:** Advanced warmup and compatibility options are neatly tucked away behind an optional developer toggle in the mod settings.
 
 ---
 
 ## Supported Server Versions
 
-- **Release:** 1.0.0 — 26.3
-- **Beta:** b1.0 — b1.8.1
-- **Alpha:** a1.0.15 — a1.2.6
-- **Classic:** c0.0.15 — c0.30 (including [CPE](https://wiki.vg/Classic_Protocol_Extension))
-- **Snapshots & April Fools:** 3D Shareware, 20w14infinite, Combat Snapshots 8c
+| Type | Version Range |
+| :--- | :--- |
+| **Release** | 1.0.0 through **26.3** (including 1.21.4, 1.21.11, 26.1, 26.2, 26.3) |
+| **Beta** | b1.0 — b1.8.1 |
+| **Alpha** | a1.0.15 — a1.2.6 |
+| **Classic** | c0.0.15 — c0.30 (including [CPE](https://wiki.vg/Classic_Protocol_Extension)) |
+| **Snapshots** | 3D Shareware, 20w14infinite, Combat Snapshots 8c |
 
 ---
 
-## Mod Overview
+## Installation
 
-ViaFabricPlus embeds the [ViaVersion](https://github.com/ViaVersion) protocol translators directly into the Fabric client, complemented by numerous gameplay and physics fixes replicating original version behaviors (movement, hitboxes, legacy 1.8/1.12 combat, etc.).
-
-**Core Advantage:** You do not need to upgrade your client or break your curated 1.21.4 modpack just to join servers running newer releases or snapshots up to **26.3**.
-
----
-
-## Usage
-
-1. Open the ViaFabricPlus protocol version selector from the Title Screen or Multiplayer menu.
-2. Select your desired target version manually or leave it on Auto-Detect.
-3. Connect directly to the server.
+1. Download the latest release `ViaFabricPlusBackPort-1.21.4-byMr712.jar` from the [Releases](https://github.com/byMr712/ViaFabricPlusBackPort-1.21.4-MinecraftMod/releases) page.
+2. Place the `.jar` into your Minecraft instance's `mods` folder.
+3. Ensure you have **Fabric Loader** (>=0.16.10) and **Fabric API** installed for your Minecraft version.
+4. Launch the game — the version selector button will appear on the title and multiplayer screens.
 
 ---
 
-## Building
+## Building from Source
 
-To build the project:
+To build the mod from source:
 
-```bat
-build.bat
+```bash
+git clone https://github.com/byMr712/ViaFabricPlusBackPort-1.21.4-MinecraftMod.git
+cd ViaFabricPlusBackPort-1.21.4-MinecraftMod
+./gradlew build
 ```
 
-or via Gradle:
-
-- **Windows:** `.\gradlew.bat clean build`
-- **Linux / macOS:** `./gradlew clean build`
-
-The compiled jar file will be located in `build/libs/`.
+The resulting `.jar` file will be generated in `build/libs/`.
 
 ---
 
-## Disclaimer & Mod Compatibility
+## License
 
-- **Server Rules & Anti-Cheats:** Certain server administrations and anti-cheat plugins may restrict protocol translation mods. Exercise caution on competitive public servers.
-- **Content Mod Compatibility:** ViaFabricPlus is designed around standard vanilla network protocols and bundles compatibility modules for known mods. However, complex third-party content mods altering low-level packets or registries may require additional compat patches or temporary disabling in multiplayer.
-
----
-
-## Credits & License
-
-- **Original Authors:** [ViaVersion](https://github.com/ViaVersion), [FlorianMichael](https://github.com/FlorianMichael), [RaphiMC](https://github.com/RaphiMC)
-- **1.21.4 Backport & Maintenance:** [byMr712](https://github.com/byMr712)
-- **License:** [GNU General Public License v3.0](LICENSE)
+All original work belongs to [ViaVersion](https://github.com/ViaVersion) / [FlorianMichael](https://github.com/FlorianMichael) / [RaphiMC](https://github.com/RaphiMC) and ViaFabricPlus contributors.  
+This project is licensed under the **GPL-3.0 License**.
