@@ -2,7 +2,7 @@
   "schemaVersion": 1,
   "id": "viafabricplus",
   "version": "${version}",
-  "name": "ViaFabricPlus",
+  "name": "ViaFabricPlusLTS",
   "description": "${description}",
   "authors": [
     {
@@ -19,7 +19,7 @@
       }
     },
     {
-      "name": "byMr712 (1.21.4 Backport)",
+      "name": "byMr712 (LTS Maintainer)",
       "contact": {
         "homepage": "https://github.com/byMr712"
       }
@@ -36,10 +36,8 @@
     }
   ],
   "contact": {
-    "homepage": "https://florianmichael.de/",
-    "sources": "https://github.com/ViaVersion/ViaFabricPlus",
-    "issues": "https://github.com/ViaVersion/ViaFabricPlus/issues",
-    "email": "florian.michael07@gmail.com"
+    "sources": "https://github.com/byMr712/ViaFabricPlusLTS-MinecraftMod",
+    "issues": "https://github.com/byMr712/ViaFabricPlusLTS-MinecraftMod/issues"
   },
   "license": "GPL-v3",
   "icon": "assets/viafabricplus/icon.png",

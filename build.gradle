@@ -4,7 +4,7 @@ plugins {
 
 base {
     description = "Fabric mod to connect to EVERY Minecraft server version (Release, Beta, Alpha, Classic, Snapshots) with QoL fixes to the gameplay"
-    archivesName = "ViaFabricPlusBackPort"
+    archivesName = "ViaFabricPlusLTS"
 }
 
 loom {
@@ -109,7 +109,7 @@ jar {
 }
 
 remapJar {
-    archiveFileName = "ViaFabricPlusBackPort-1.21.4-byMr712.jar"
+    archiveFileName = "ViaFabricPlusLTS-1.21.4-byMr712.jar"
 }
 
 def launcherModsDir = file("E:/ATLauncher/instances/FabulouslyOptimizedFPStest1214/mods")

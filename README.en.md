@@ -1,6 +1,6 @@
 > **Language:** [Русский](README.md) · English
 
-# [MR] ViaFabricPlus BackPort
+# [MR] ViaFabricPlusLTS
 
 ![Java 21](https://img.shields.io/badge/Java-21-blue.svg)
 ![Minecraft](https://img.shields.io/badge/Minecraft-1.21.4-blue.svg)
@@ -49,7 +49,7 @@ This project changes that philosophy: **it brings modern server connectivity bac
 
 ## Installation
 
-1. Download the latest release `ViaFabricPlusBackPort-1.21.4-byMr712.jar` from the [Releases](https://github.com/byMr712/ViaFabricPlusBackPort-1.21.4-MinecraftMod/releases) page.
+1. Download the latest release `ViaFabricPlusLTS-1.21.4-byMr712.jar` from the [Releases](https://github.com/byMr712/ViaFabricPlusLTS-MinecraftMod/releases) page.
 2. Place the `.jar` into your Minecraft instance's `mods` folder.
 3. Ensure you have **Fabric Loader** (>=0.16.10) and **Fabric API** installed for your Minecraft version.
 4. Launch the game — the version selector button will appear on the title and multiplayer screens.
@@ -61,8 +61,8 @@ This project changes that philosophy: **it brings modern server connectivity bac
 To build the mod from source:
 
 ```bash
-git clone https://github.com/byMr712/ViaFabricPlusBackPort-1.21.4-MinecraftMod.git
-cd ViaFabricPlusBackPort-1.21.4-MinecraftMod
+git clone https://github.com/byMr712/ViaFabricPlusLTS-MinecraftMod.git
+cd ViaFabricPlusLTS-MinecraftMod
 ./gradlew build
 ```
 
