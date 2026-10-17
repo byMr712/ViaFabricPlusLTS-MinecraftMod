@@ -2,9 +2,15 @@
   "schemaVersion": 1,
   "id": "viafabricplus",
   "version": "${version}",
-  "name": "ViaFabricPlus",
+  "name": "ViaFabricPlusLTS",
   "description": "${description}",
   "authors": [
+    {
+      "name": "byMr712 (LTS Maintainer)",
+      "contact": {
+        "homepage": "https://github.com/byMr712"
+      }
+    },
     {
       "name": "Florian Reuth (EnZaXD)",
       "contact": {
@@ -30,10 +36,9 @@
     }
   ],
   "contact": {
-    "homepage": "https://florianreuth.de/",
-    "sources": "https://github.com/ViaVersion/ViaFabricPlus",
-    "issues": "https://github.com/ViaVersion/ViaFabricPlus/issues",
-    "email": "florian@florianreuth.de"
+    "homepage": "https://github.com/byMr712/ViaFabricPlusLTS-MinecraftMod",
+    "sources": "https://github.com/byMr712/ViaFabricPlusLTS-MinecraftMod",
+    "issues": "https://github.com/byMr712/ViaFabricPlusLTS-MinecraftMod/issues"
   },
   "license": "GPL-v3",
   "icon": "assets/viafabricplus/icon.png",

@@ -101,3 +101,16 @@ fun Project.configureVVDependencies(configuration: String) {
         }
     }
 }
+
+tasks.named<Jar>("jar") {
+    archiveFileName.set("ViaFabricPlusLTS-26.1-byMr712.jar")
+}
+
+allprojects {
+    tasks.configureEach {
+        if (name == "sourcesJar" || name == "remapSourcesJar" || name == "javadocJar") {
+            enabled = false
+        }
+    }
+}
+
