@@ -31,7 +31,6 @@ import com.viaversion.viafabricplus.protocoltranslator.ProtocolTranslator;
 import com.viaversion.viafabricplus.protocoltranslator.netty.ViaFabricPlusVLLegacyPipeline;
 import com.viaversion.vialoader.netty.CompressionReorderEvent;
 import com.viaversion.vialoader.netty.VLLegacyPipeline;
-import com.viaversion.vialoader.netty.VLPipeline;
 import com.viaversion.vialoader.netty.viabedrock.RakNetPingEncapsulationCodec;
 import com.viaversion.viaversion.api.connection.UserConnection;
 import com.viaversion.viaversion.api.protocol.version.ProtocolVersion;
@@ -55,7 +54,6 @@ import net.minecraft.network.HandlerNames;
 import net.minecraft.network.protocol.Packet;
 import net.minecraft.util.debugchart.LocalSampleLogger;
 import net.raphimc.viabedrock.api.BedrockProtocolVersion;
-import net.raphimc.viabedrock.protocol.RakNetStatusProtocol;
 import net.raphimc.vialegacy.api.LegacyProtocolVersion;
 import org.cloudburstmc.netty.channel.raknet.RakChannelFactory;
 import org.jetbrains.annotations.NotNull;
@@ -172,15 +170,12 @@ public abstract class MixinConnection extends SimpleChannelInboundHandler<Packet
             return instance.register().syncUninterruptibly().channel().bind(new InetSocketAddress(0)).addListeners(ChannelFutureListener.FIRE_EXCEPTION_ON_FAILURE, (ChannelFutureListener) f -> {
                 if (f.isSuccess()) {
                     f.channel().pipeline().replace(
-                        VLPipeline.VIABEDROCK_RAKNET_MESSAGE_CODEC_NAME,
+                        "viabedrock-raknet-message-codec",
                         ViaFabricPlusVLLegacyPipeline.VIABEDROCK_PING_ENCAPSULATION_HANDLER_NAME,
                         new RakNetPingEncapsulationCodec(new InetSocketAddress(inetHost, inetPort))
                     );
-                    f.channel().pipeline().remove(VLPipeline.VIABEDROCK_PACKET_CODEC_NAME);
+                    f.channel().pipeline().remove("viabedrock-packet-codec");
                     f.channel().pipeline().remove(HandlerNames.SPLITTER);
-
-                    UserConnection user = ((IConnection) clientConnection).viaFabricPlus$getUserConnection();
-                    user.getProtocolInfo().getPipeline().add(RakNetStatusProtocol.INSTANCE);
                 }
             });
         } else {

@@ -31,6 +31,7 @@ import com.viaversion.viaversion.api.type.Types;
 import com.viaversion.viaversion.protocols.v1_20_3to1_20_5.packet.ServerboundPackets1_20_5;
 import com.viaversion.viaversion.protocols.v1_21to1_21_2.Protocol1_21To1_21_2;
 import com.viaversion.viaversion.protocols.v1_21to1_21_2.storage.ClientVehicleStorage;
+import com.viaversion.viaversion.protocols.v1_21to1_21_2.storage.ProtocolStorables1_21_2;
 import net.minecraft.client.player.AbstractClientPlayer;
 import net.minecraft.client.multiplayer.ClientPacketListener;
 import net.minecraft.client.player.LocalPlayer;
@@ -95,10 +96,11 @@ public abstract class MixinLocalPlayer extends AbstractClientPlayer {
             movePlayerPosRot.sendToServer(Protocolr1_5_2Tor1_6_1.class);
 
             // Copied from the 1.21->1.21.2 protocol since it's changing the packet order, and we manually send the movement packet here
-            final ClientVehicleStorage vehicleStorage = connection.get(ClientVehicleStorage.class);
-            if (vehicleStorage == null) {
+            final ProtocolStorables1_21_2 storables = connection.storables(Protocol1_21To1_21_2.class);
+            if (storables == null || storables.clientVehicleStorage() == null) {
                 return;
             }
+            final ClientVehicleStorage vehicleStorage = storables.clientVehicleStorage();
 
             final PacketWrapper playerInput = PacketWrapper.create(ServerboundPackets1_20_5.PLAYER_INPUT, connection);
             playerInput.write(Types.FLOAT, vehicleStorage.sidewaysMovement());

@@ -110,10 +110,6 @@ public final class ViaFabricPlusImpl implements ViaFabricPlusBase {
         SettingsManager.INSTANCE.init();
         SaveManager.INSTANCE.init();
 
-        // Init features
-        SyncTasks.init();
-        FeaturesLoading.init();
-
         // Init ViaVersion protocol translator platform
         loadingFuture = ProtocolTranslator.init(path);
 
@@ -125,7 +121,16 @@ public final class ViaFabricPlusImpl implements ViaFabricPlusBase {
             loadingFuture.join();
             SaveManager.INSTANCE.postInit();
         });
+
+        // Init features
+        SyncTasks.init();
+        FeaturesLoading.init();
+
         Events.LOADING_CYCLE.invoker().onLoadCycle(LoadingCycleCallback.LoadingCycle.FINAL_LOAD);
+    }
+
+    public CompletableFuture<Void> loadingFuture() {
+        return loadingFuture;
     }
 
     // --------------------------------------------------------------------------------------------
