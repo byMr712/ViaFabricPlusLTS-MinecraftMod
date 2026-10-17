@@ -52,7 +52,7 @@ public class ViaFabricPlusNettyPipelineProvider extends NettyPipelineProvider {
         }
 
         try {
-            channel.pipeline().addAfter(VLPipeline.VIABEDROCK_FRAME_ENCAPSULATION_HANDLER_NAME, ViaFabricPlusVLLegacyPipeline.VIABEDROCK_ENCRYPTION_HANDLER_NAME, new AesEncryptionCodec(key));
+            channel.pipeline().addAfter("viabedrock-frame-encapsulation", ViaFabricPlusVLLegacyPipeline.VIABEDROCK_ENCRYPTION_HANDLER_NAME, new AesEncryptionCodec(key));
         } catch (Throwable e) {
             throw new RuntimeException(e);
         }

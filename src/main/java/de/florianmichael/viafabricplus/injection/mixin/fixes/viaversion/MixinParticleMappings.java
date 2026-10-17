@@ -20,6 +20,7 @@
 package de.florianmichael.viafabricplus.injection.mixin.fixes.viaversion;
 
 import com.viaversion.viaversion.api.data.FullMappingsBase;
+import com.viaversion.viaversion.api.data.MappingDataLoader;
 import com.viaversion.viaversion.api.data.Mappings;
 import com.viaversion.viaversion.api.data.ParticleMappings;
 import de.florianmichael.viafabricplus.fixes.versioned.visual.FootStepParticle1_12_2;
@@ -30,8 +31,8 @@ import java.util.List;
 @Mixin(ParticleMappings.class)
 public abstract class MixinParticleMappings extends FullMappingsBase {
 
-    public MixinParticleMappings(List<String> unmappedIdentifiers, List<String> mappedIdentifiers, Mappings mappings) {
-        super(unmappedIdentifiers, mappedIdentifiers, mappings);
+    public MixinParticleMappings(final MappingDataLoader.IdentifiersPair identifiersPair, final Mappings mappings) {
+        super(identifiersPair, mappings);
     }
 
     @Override

@@ -20,11 +20,13 @@
 package de.florianmichael.viafabricplus.fixes.viaversion;
 
 import com.viaversion.viaversion.api.connection.UserConnection;
-import com.viaversion.viaversion.api.protocol.AbstractSimpleProtocol;
+import com.viaversion.viaversion.api.protocol.AbstractProtocol;
 import com.viaversion.viaversion.api.protocol.packet.ClientboundPacketType;
 import com.viaversion.viaversion.api.protocol.packet.PacketWrapper;
 import com.viaversion.viaversion.api.protocol.packet.ServerboundPacketType;
 import com.viaversion.viaversion.api.protocol.packet.State;
+import com.viaversion.viaversion.api.protocol.packet.provider.PacketTypesProvider;
+import com.viaversion.viaversion.api.protocol.packet.provider.SimplePacketTypesProvider;
 import com.viaversion.viaversion.api.protocol.version.ProtocolVersion;
 import com.viaversion.viaversion.api.type.Types;
 import com.viaversion.viaversion.protocols.v1_20_3to1_20_5.packet.ServerboundPackets1_20_5;
@@ -43,14 +45,17 @@ import net.raphimc.vialegacy.api.LegacyProtocolVersion;
 import java.util.HashMap;
 import java.util.Map;
 
+import static com.viaversion.viaversion.util.ProtocolUtil.packetTypeMap;
+
 // Protocol to handle error handling changes in older protocols, always last element of the pipeline
-public class ViaFabricPlusProtocol extends AbstractSimpleProtocol {
+public class ViaFabricPlusProtocol extends AbstractProtocol<ClientboundPackets1_21, ClientboundPackets1_21, ServerboundPackets1_20_5, ServerboundPackets1_20_5> {
 
     public static final ViaFabricPlusProtocol INSTANCE = new ViaFabricPlusProtocol();
 
     private final Map<String, Pair<ProtocolVersion, PacketReader>> payloadDiff = new HashMap<>();
 
     public ViaFabricPlusProtocol() {
+        super(ClientboundPackets1_21.class, ClientboundPackets1_21.class, ServerboundPackets1_20_5.class, ServerboundPackets1_20_5.class);
         registerMapping(BrandCustomPayload.ID, LegacyProtocolVersion.c0_0_15a_1, wrapper -> wrapper.passthrough(Types.STRING));
         registerMapping(DebugGameTestAddMarkerCustomPayload.ID, ProtocolVersion.v1_14, wrapper -> {
             wrapper.passthrough(Types.BLOCK_POSITION1_14);
@@ -60,6 +65,20 @@ public class ViaFabricPlusProtocol extends AbstractSimpleProtocol {
         });
         registerMapping(DebugGameTestClearCustomPayload.ID, ProtocolVersion.v1_14, wrapper -> {
         });
+    }
+
+    @Override
+    protected void applySharedRegistrations() {
+    }
+
+    @Override
+    protected PacketTypesProvider<ClientboundPackets1_21, ClientboundPackets1_21, ServerboundPackets1_20_5, ServerboundPackets1_20_5> createPacketTypesProvider() {
+        return new SimplePacketTypesProvider<>(
+            packetTypeMap(unmappedClientboundPacketType, ClientboundPackets1_21.class),
+            packetTypeMap(mappedClientboundPacketType, ClientboundPackets1_21.class),
+            packetTypeMap(mappedServerboundPacketType, ServerboundPackets1_20_5.class),
+            packetTypeMap(unmappedServerboundPacketType, ServerboundPackets1_20_5.class)
+        );
     }
 
     @Override
