@@ -22,6 +22,7 @@
 package com.viaversion.viafabricplus.features;
 
 import com.viaversion.viaaprilfools.api.AprilFoolsProtocolVersion;
+import com.viaversion.viafabricplus.ViaFabricPlusImpl;
 import com.viaversion.viafabricplus.api.events.LoadingCycleCallback;
 import com.viaversion.viafabricplus.base.Events;
 import com.viaversion.viafabricplus.features.block.shape.CollisionShapes;
@@ -54,6 +55,8 @@ public final class FeaturesLoading {
 
         Events.LOADING_CYCLE.register(cycle -> {
             if (cycle == LoadingCycleCallback.LoadingCycle.POST_GAME_LOAD) {
+                ViaFabricPlusImpl.INSTANCE.loadingFuture().join();
+
                 // Handle clientside enchantment calculations in <= 1.20.6
                 EnchantmentAttributesEmulation1_20_6.init();
 
