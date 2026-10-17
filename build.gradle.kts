@@ -19,6 +19,7 @@ allprojects {
         maven("https://jitpack.io") {
             content {
                 includeGroup("com.github.Oryxel")
+                includeGroup("com.github.oryxel1")
             }
         }
     }
@@ -32,7 +33,7 @@ subprojects {
 }
 
 base {
-    archivesName.set("ViaFabricPlus")
+    archivesName.set("ViaFabricPlusLTS")
 }
 
 configureTestTasks(project.findProperty("updating_minecraft") as? Boolean ?: false)
@@ -63,17 +64,27 @@ includeTransitiveJijDependencies()
 
 fun Project.configureVVDependencies(configuration: String) {
     dependencies {
-        configuration("com.viaversion:viaversion-common:5.4.1-20250620.234812-2")
-        configuration("com.viaversion:viabackwards-common:5.4.0")
+        configuration("com.viaversion:viaversion-common:5.8.0")
+        configuration("com.viaversion:viabackwards-common:5.8.0")
         configuration("com.viaversion:viaaprilfools-common:4.0.2")
         configuration("com.viaversion:vialoader:4.0.3") {
             exclude(group = "com.google.guava", module = "guava")
             exclude(group = "org.slf4j", module = "slf4j-api")
         }
-        configuration("net.raphimc:ViaLegacy:3.0.10")
-        configuration("net.raphimc:ViaBedrock:0.0.18-20250620.232050-1") {
+        configuration("net.raphimc:ViaLegacy:3.0.11-SNAPSHOT")
+        configuration("net.raphimc:ViaBedrock:0.0.18-SNAPSHOT") {
             exclude(group = "io.jsonwebtoken")
             exclude(group = "com.mojang", module = "brigadier")
         }
+    }
+}
+
+tasks.named<net.fabricmc.loom.task.RemapJarTask>("remapJar") {
+    archiveFileName.set("ViaFabricPlusLTS-1.21.5-byMr712.jar")
+}
+
+allprojects {
+    tasks.matching { it.name in listOf("sourcesJar", "remapSourcesJar", "javadocJar", "javadoc") }.configureEach {
+        enabled = false
     }
 }

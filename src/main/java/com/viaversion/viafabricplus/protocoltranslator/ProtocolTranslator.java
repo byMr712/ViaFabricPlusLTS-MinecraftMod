@@ -266,10 +266,13 @@ public final class ProtocolTranslator {
     }
 
     private static void changeBedrockProtocolName() {
-        final ProtocolVersion bedrockLatest = RStream.of(BedrockProtocolVersion.class).fields().by("bedrockLatest").get();
+        try {
+            final ProtocolVersion bedrockLatest = RStream.of(BedrockProtocolVersion.class).fields().by("bedrockLatest").get();
 
-        final FieldWrapper name = RStream.of(bedrockLatest).withSuper().fields().by("name");
-        name.set(name.get() + " (Work in progress)");
+            final FieldWrapper name = RStream.of(bedrockLatest).withSuper().fields().by("name");
+            name.set(name.get() + " (Work in progress)");
+        } catch (Throwable ignored) {
+        }
     }
 
     /**
