@@ -36,6 +36,8 @@
     "compat.minecraftauth.MixinClasses",
     "compat.minecraftauth.MixinDefaultJwtParserBuilder",
     "fixes.authlib.MixinKeyPairResponse",
+    "fixes.authlib.MixinProperty",
+    "fixes.authlib.MixinYggdrasilServicesKeyInfo",
     "fixes.authlib.MixinYggdrasilUserApiService",
     "fixes.minecraft.MixinActionResult",
     "fixes.minecraft.MixinAllowedAddressResolver",
