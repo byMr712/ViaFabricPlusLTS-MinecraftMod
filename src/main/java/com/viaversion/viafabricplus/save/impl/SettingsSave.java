@@ -27,17 +27,34 @@ import com.viaversion.viafabricplus.api.settings.SettingGroup;
 import com.viaversion.viafabricplus.protocoltranslator.ProtocolTranslator;
 import com.viaversion.viafabricplus.save.AbstractSave;
 import com.viaversion.viafabricplus.settings.SettingsManager;
+import com.google.gson.JsonArray;
+import com.google.gson.JsonElement;
 import com.viaversion.viafabricplus.settings.impl.GeneralSettings;
 import com.viaversion.viafabricplus.util.ChatUtil;
 import com.viaversion.viaversion.api.protocol.version.ProtocolVersion;
 import net.raphimc.viabedrock.api.BedrockProtocolVersion;
 
+import java.util.LinkedHashSet;
+import java.util.Set;
+
 public final class SettingsSave extends AbstractSave {
 
+    private final Set<String> favoriteProtocolVersions = new LinkedHashSet<>();
     private String selectedProtocolVersion;
 
     public SettingsSave() {
         super("settings");
+    }
+
+    public boolean isFavorite(final ProtocolVersion version) {
+        return this.favoriteProtocolVersions.contains(version.getName());
+    }
+
+    public void toggleFavorite(final ProtocolVersion version) {
+        if (!this.favoriteProtocolVersions.remove(version.getName())) {
+            this.favoriteProtocolVersions.add(version.getName());
+        }
+        save();
     }
 
     @Override
@@ -52,6 +69,10 @@ public final class SettingsSave extends AbstractSave {
         }
 
         object.addProperty("selected-protocol-version", ProtocolTranslator.getTargetVersion().getName());
+
+        final JsonArray favorites = new JsonArray();
+        this.favoriteProtocolVersions.forEach(favorites::add);
+        object.add("favorite_protocol_versions", favorites);
     }
 
     @Override
@@ -73,6 +94,13 @@ public final class SettingsSave extends AbstractSave {
 
         if (object.has("selected-protocol-version")) {
             selectedProtocolVersion = object.get("selected-protocol-version").getAsString();
+        }
+
+        if (object.has("favorite_protocol_versions")) {
+            this.favoriteProtocolVersions.clear();
+            for (final JsonElement element : object.getAsJsonArray("favorite_protocol_versions")) {
+                this.favoriteProtocolVersions.add(element.getAsString());
+            }
         }
     }
 
