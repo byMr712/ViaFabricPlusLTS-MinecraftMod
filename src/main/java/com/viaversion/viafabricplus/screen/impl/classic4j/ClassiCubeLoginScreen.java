@@ -91,6 +91,7 @@ public final class ClassiCubeLoginScreen extends VFPScreen {
                 @Override
                 public void handleException(Throwable throwable) {
                     ViaFabricPlusImpl.INSTANCE.getLogger().error("Error while logging in to ClassiCube!", throwable);
+                    SaveManager.INSTANCE.getAccountsSave().setClassicubeAccount(null);
                     setupSubtitle(Text.of(throwable.getMessage()));
                 }
             });
