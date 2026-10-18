@@ -28,6 +28,7 @@ import de.florianmichael.viafabricplus.protocoltranslator.ProtocolTranslator;
 import de.florianmichael.viafabricplus.protocoltranslator.impl.provider.vialegacy.ViaFabricPlusClassicMPPassProvider;
 import de.florianmichael.viafabricplus.protocoltranslator.util.ProtocolVersionDetector;
 import de.florianmichael.viafabricplus.settings.impl.AuthenticationSettings;
+import de.florianmichael.viafabricplus.settings.impl.Mr712Settings;
 import io.netty.channel.ChannelFuture;
 import net.minecraft.client.gui.screen.multiplayer.ConnectScreen;
 import net.minecraft.client.network.ServerInfo;
@@ -66,12 +67,24 @@ public abstract class MixinConnectScreen_1 {
             targetVersion = mixinServerInfo.viaFabricPlus$forcedVersion();
             mixinServerInfo.viaFabricPlus$passDirectConnectScreen(false); // reset state
         }
-        if (targetVersion == ProtocolTranslator.AUTO_DETECT_PROTOCOL) {
-            this.field_2416.setStatus(Text.translatable("base.viafabricplus.detecting_server_version"));
+        if (Mr712Settings.global().fixDoubleTranslation.getValue()) {
             try {
-                targetVersion = ProtocolVersionDetector.get(address, ProtocolTranslator.NATIVE_VERSION);
+                final ProtocolVersion detected = ProtocolVersionDetector.get(address, ProtocolTranslator.NATIVE_VERSION);
+                if (detected == ProtocolTranslator.NATIVE_VERSION) {
+                    targetVersion = ProtocolTranslator.NATIVE_VERSION;
+                } else if (targetVersion == ProtocolTranslator.AUTO_DETECT_PROTOCOL) {
+                    targetVersion = detected;
+                }
             } catch (final Throwable ignored) {
-                // Don't let this one through as not relevant
+            }
+        } else {
+            if (targetVersion == ProtocolTranslator.AUTO_DETECT_PROTOCOL) {
+                this.field_2416.setStatus(Text.translatable("base.viafabricplus.detecting_server_version"));
+                try {
+                    targetVersion = ProtocolVersionDetector.get(address, ProtocolTranslator.NATIVE_VERSION);
+                } catch (final Throwable ignored) {
+                    // Don't let this one through as not relevant
+                }
             }
         }
         ProtocolTranslator.setTargetVersion(targetVersion, true);
