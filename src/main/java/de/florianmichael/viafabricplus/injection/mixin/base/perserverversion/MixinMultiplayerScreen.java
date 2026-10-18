@@ -39,4 +39,12 @@ public abstract class MixinMultiplayerScreen {
         original.call(instance, entry);
     }
 
+    @Shadow
+    private ServerInfo selectedEntry;
+
+    @org.spongepowered.asm.mixin.injection.Inject(method = "editEntry", at = @At(value = "INVOKE", target = "Lnet/minecraft/client/option/ServerList;saveFile()V"))
+    private void storeForcedVersion(boolean result, org.spongepowered.asm.mixin.injection.callback.CallbackInfo ci, @com.llamalad7.mixinextras.sugar.Local ServerInfo current) {
+        ((IServerInfo) current).viaFabricPlus$forceVersion(((IServerInfo) this.selectedEntry).viaFabricPlus$forcedVersion());
+    }
+
 }
