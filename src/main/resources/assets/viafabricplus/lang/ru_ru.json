@@ -140,18 +140,17 @@
   "classicube.viafabricplus.profile": "Профиль ClassiCube:",
   "classicube.viafabricplus.warning": "Эта функция отправит запросы к API ClassiCube.",
 
-  "betacraft.viafabricplus.failed_to_verify_session": "ViaFabricPlus не удалось проверить сессию. Используйте действительную учётную запись Microsoft или отключите аутентификацию BetaCraft в настройках ViaFabricPlus.",
+  "betacraft.viafabricplus.failed_to_verify_session": "ViaFabricPlusLTS не удалось проверить сессию. Используйте действительную учётную запись Microsoft или отключите аутентификацию BetaCraft в настройках ViaFabricPlusLTS.",
   "betacraft.viafabricplus.loading": "Загрузка...",
   "betacraft.viafabricplus.warning": "Нажатие этой кнопки отправит запрос к API \"betacraft.uk/serverlist\".",
 
   "translation.viafabricplus.packet_error": "Во время преобразования пакета произошла ошибка. Проверьте журнал для получения подробностей.",
 
-  "classic4j_library.viafabricplus.error.token": "Некорректный токен. Возможно, версия ViaFabricPlus устарела.",
+  "classic4j_library.viafabricplus.error.token": "Некорректный токен. Возможно, версия ViaFabricPlusLTS устарела.",
   "classic4j_library.viafabricplus.error.username": "Неверное имя пользователя.",
   "classic4j_library.viafabricplus.error.password": "Неверный пароль.",
   "classic4j_library.viafabricplus.error.verification": "Пользователь ещё не подтвердил свой адрес электронной почты.",
   "classic4j_library.viafabricplus.error.logincode": "Запрошена многофакторная аутентификация. Проверьте вашу электронную почту.",
-
   "minecraftauth_library.viafabricplus.xbldevicetoken": "Аутентификация устройства в Xbox Live...",
   "minecraftauth_library.viafabricplus.xblsisuauthentication": "Аутентификация в Xbox Live через SISU...",
   "minecraftauth_library.viafabricplus.mcchain": "Аутентификация в Minecraft Services...",
@@ -162,11 +161,15 @@
   "bedrock_realms.viafabricplus.warning": "Эта функция требует добавления учётной записи Bedrock Edition в настройках ViaFabricPlus.",
   "bedrock_realms.viafabricplus.availability_check": "Проверка доступа...",
   "bedrock_realms.viafabricplus.no_worlds": "Миров не найдено :(",
-  "bedrock_realms.viafabricplus.unavailable": "Версия ViaFabricPlus устарела и несовместима с Minecraft Realms.",
+  "bedrock_realms.viafabricplus.unavailable": "Версия ViaFabricPlusLTS устарела и несовместима с Minecraft Realms.",
   "bedrock_realms.viafabricplus.error": "Произошла ошибка, проверьте журнал для получения подробностей",
   "bedrock_realms.viafabricplus.join": "Открыть реалм",
   "bedrock_realms.viafabricplus.leave": "Покинуть реалм",
   "bedrock_realms.viafabricplus.invite": "Добавить код реалма",
   "bedrock_realms.viafabricplus.expired": "Реалм просрочен",
-  "bedrock_realms.viafabricplus.incompatible": "Версия вашего клиента не совпадает с версией Realms"
+  "bedrock_realms.viafabricplus.incompatible": "Версия вашего клиента не совпадает с версией Realms",
+
+  "protocol_selection.viafabricplus.all": "Все",
+  "protocol_selection.viafabricplus.favorites": "★ Избранное",
+  "protocol_selection.viafabricplus.no_favorites": "Избранные версии ещё не добавлены. Нажмите ★ чтобы добавить."
 }

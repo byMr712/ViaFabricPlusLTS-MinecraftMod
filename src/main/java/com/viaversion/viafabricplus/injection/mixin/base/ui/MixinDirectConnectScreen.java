@@ -45,8 +45,7 @@ public abstract class MixinDirectConnectScreen extends Screen {
         if (buttonPosition == 0) { // Off
             return;
         }
-
-        final ButtonWidget.Builder builder = ButtonWidget.builder(Text.of("ViaFabricPlus"), button -> ProtocolSelectionScreen.INSTANCE.open(this)).size(98, 20);
+        final ButtonWidget.Builder builder = ButtonWidget.builder(Text.of("ViaFabricPlusLTS"), button -> ProtocolSelectionScreen.INSTANCE.open(this)).size(98, 20);
         GeneralSettings.setOrientation(builder::position, buttonPosition, width, height);
         this.addDrawableChild(builder.build());
     }

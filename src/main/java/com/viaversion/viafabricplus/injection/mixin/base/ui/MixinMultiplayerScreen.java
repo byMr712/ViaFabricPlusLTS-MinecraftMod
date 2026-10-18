@@ -58,10 +58,9 @@ public abstract class MixinMultiplayerScreen extends Screen {
         if (buttonPosition == 0) { // Off
             return;
         }
-
         if (viaFabricPlus$button == null) {
             viaFabricPlus$button = ButtonWidget
-                .builder(Text.of("ViaFabricPlus"), button -> ProtocolSelectionScreen.INSTANCE.open(this))
+                .builder(Text.of("ViaFabricPlusLTS"), button -> ProtocolSelectionScreen.INSTANCE.open(this))
                 .size(98, 20)
                 .build();
             this.addDrawableChild(viaFabricPlus$button);
