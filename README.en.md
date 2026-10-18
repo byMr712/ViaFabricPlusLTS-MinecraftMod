@@ -75,12 +75,11 @@ The resulting `.jar` file will be generated in `build/libs/`.
 - **Original Project:** [ViaFabricPlus](https://github.com/ViaVersion/ViaFabricPlus)  
   Authors: [FlorianMichael/EnZaXD](https://github.com/FlorianMichael), [RK_01/RaphiMC](https://github.com/RaphiMC), and ViaVersion contributors.  
   Licensed under the **GNU General Public License v3.0 (GPL-3.0)**.
-- **Fork Maintainer:** [byMr712](https://github.com/byMr712)
-- **Fork Contributions:**
-  - Backporting and adapting modern ViaVersion / ViaBackwards protocol translation libraries across multiple older Minecraft client versions (1.21, 1.21.1, 1.21.4 and other branches).
-  - Enabling connections to modern server releases (including 1.21.11 and 26.3).
-  - Dynamic double translation optimization (`fixDoubleTranslation`).
-  - Asynchronous background protocol pre-warming (`ProtocolWarmupManager`).
-  - Safe Netty packet decoding defense against malformed Brigadier command trees (`Safe Netty Decoder`).
-  - Localization and dedicated Mr712 Debug settings group.
+- **Fork Maintainer (LTS Releases):** [byMr712](https://github.com/byMr712)
+- **Technical Contributions (Engineering & Architecture):**
+  - **Multi-version Protocol Stack Backporting:** Adapting and integrating modern `ViaVersion` and `ViaBackwards` libraries into older client environments (1.21, 1.21.1, 1.21.4, and other branches), enabling seamless translation up to server versions 1.21.11 and 26.3.
+  - **Dynamic Double Translation Optimization (`fixDoubleTranslation`):** When connecting to hybrid servers (e.g. Paper with ViaVersion/ViaBackwards) or proxies (Velocity/BungeeCord), the client conducts a fast pre-handshake probe (`ProtocolVersionDetector`). If the server advertises native protocol support for the client, translation is bypassed for the session. This session override automatically reverts upon disconnect via `injectPreviousVersionReset` channel listeners without altering the user's persistent version configuration.
+  - **Asynchronous Pipeline Pre-warming (`ProtocolWarmupManager`):** Offloads protocol mapping table initialization to a dedicated background daemon thread (`ViaFabricPlus-Warmup`) with reduced priority. Pre-warming occurs upon UI selection or server pinging, eliminating 30-second handshake timeouts (`ReadTimeoutException`) and frame drops.
+  - **Netty Pipeline Hardening (`Safe Netty Decoder`):** Catches and gracefully recovers from malformed Brigadier command tree packets (`CommandTreeS2CPacket`) and flushes lingering buffer bytes, preventing client disconnects caused by `DecoderException` on modded/hybrid servers.
+  - **Modular Settings Architecture (`Mr712Settings`):** Standalone settings group with automatic JSON serialization via `SettingsSave`, complete bilingual localization (`ru_ru`, `en_us`), and hover tooltip fixes (removing raw LF characters in favor of adaptive multi-line wrapping via `wrapLines` + `drawOrderedTooltip`).
 - **License:** In full accordance with GPL-3.0, this fork remains free, open-source software distributed under the terms of the **GPL-3.0 License**. All original copyrights and author attributions are preserved.
