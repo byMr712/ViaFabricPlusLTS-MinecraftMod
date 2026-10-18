@@ -23,6 +23,7 @@ package com.viaversion.viafabricplus.injection.mixin.features.interaction.replac
 
 import com.llamalad7.mixinextras.injector.ModifyExpressionValue;
 import com.viaversion.viafabricplus.protocoltranslator.ProtocolTranslator;
+import com.viaversion.viafabricplus.visuals.settings.VisualSettings;
 import com.viaversion.viaversion.api.protocol.version.ProtocolVersion;
 import net.minecraft.client.MinecraftClient;
 import org.spongepowered.asm.mixin.Mixin;
@@ -33,12 +34,12 @@ public abstract class MixinMinecraftClient {
 
     @ModifyExpressionValue(method = "handleBlockBreaking", at = @At(value = "INVOKE", target = "Lnet/minecraft/client/network/ClientPlayerEntity;isUsingItem()Z"))
     private boolean allowBlockBreakAndItemUsageAtTheSameTime(boolean original) {
-        return ProtocolTranslator.getTargetVersion().newerThan(ProtocolVersion.v1_7_6) && original;
+        return ProtocolTranslator.getTargetVersion().newerThan(ProtocolVersion.v1_7_6) && !VisualSettings.INSTANCE.allowItemUsageWhileMining.isEnabled() && original;
     }
 
     @ModifyExpressionValue(method = "doItemUse", at = @At(value = "INVOKE", target = "Lnet/minecraft/client/network/ClientPlayerInteractionManager;isBreakingBlock()Z"))
     private boolean allowItemUsageAndBlockBreakAtTheSameTime(boolean original) {
-        return ProtocolTranslator.getTargetVersion().newerThan(ProtocolVersion.v1_7_6) && original;
+        return ProtocolTranslator.getTargetVersion().newerThan(ProtocolVersion.v1_7_6) && !VisualSettings.INSTANCE.allowItemUsageWhileMining.isEnabled() && original;
     }
 
 }
