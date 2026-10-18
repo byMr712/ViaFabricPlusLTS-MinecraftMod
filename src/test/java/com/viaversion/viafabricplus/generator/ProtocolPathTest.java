@@ -32,8 +32,26 @@ public class ProtocolPathTest {
                 ViaAprilFoolsPlatformImpl::new
         );
 
-        ProtocolVersion clientVersion = ProtocolVersion.v1_21_4;
         ProtocolVersion serverVersion = ProtocolVersion.v26_3;
+        ProtocolVersion[] allClientVersions = {
+                ProtocolVersion.v1_21,
+                ProtocolVersion.v1_21_2,
+                ProtocolVersion.v1_21_4,
+                ProtocolVersion.v1_21_5,
+                ProtocolVersion.v1_21_6,
+                ProtocolVersion.v1_21_7,
+                ProtocolVersion.v1_21_9,
+                ProtocolVersion.v1_21_11,
+                ProtocolVersion.v26_1,
+                ProtocolVersion.v26_2
+        };
+        for (ProtocolVersion cv : allClientVersions) {
+            List<ProtocolPathEntry> p = Via.getManager().getProtocolManager().getProtocolPath(cv, serverVersion);
+            System.out.println("VERIFIED_PATH: " + cv.getName() + " -> 26.3 (" + (p != null ? p.size() + " steps" : "NULL") + ")");
+            org.junit.jupiter.api.Assertions.assertNotNull(p, "Path must exist for " + cv.getName());
+        }
+
+        ProtocolVersion clientVersion = ProtocolVersion.v1_21_4;
 
         List<ProtocolPathEntry> path = Via.getManager().getProtocolManager().getProtocolPath(clientVersion, serverVersion);
         System.out.println("Path for 1.21.4 -> 26.3: " + path);
