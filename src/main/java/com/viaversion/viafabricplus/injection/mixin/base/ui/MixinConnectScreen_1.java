@@ -29,6 +29,7 @@ import com.viaversion.viafabricplus.protocoltranslator.impl.provider.vialegacy.V
 import com.viaversion.viafabricplus.protocoltranslator.util.ProtocolVersionDetector;
 import com.viaversion.viafabricplus.save.SaveManager;
 import com.viaversion.viafabricplus.settings.impl.AuthenticationSettings;
+import com.viaversion.viafabricplus.settings.impl.Mr712Settings;
 import com.viaversion.viaversion.api.protocol.version.ProtocolVersion;
 import de.florianmichael.classic4j.model.classicube.account.CCAccount;
 import io.netty.channel.ChannelFuture;
@@ -74,6 +75,17 @@ public abstract class MixinConnectScreen_1 {
         if (mixinServerInfo.viaFabricPlus$forcedVersion() != null && !mixinServerInfo.viaFabricPlus$passedDirectConnectScreen()) {
             targetVersion = mixinServerInfo.viaFabricPlus$forcedVersion();
             mixinServerInfo.viaFabricPlus$passDirectConnectScreen(false); // reset state
+        }
+        if (Mr712Settings.INSTANCE.fixDoubleTranslation.getValue()) {
+            try {
+                final ProtocolVersion detected = ProtocolVersionDetector.get(field_33737, address, ProtocolTranslator.NATIVE_VERSION);
+                if (detected == ProtocolTranslator.NATIVE_VERSION) {
+                    targetVersion = ProtocolTranslator.NATIVE_VERSION;
+                } else if (targetVersion == ProtocolTranslator.AUTO_DETECT_PROTOCOL) {
+                    targetVersion = detected;
+                }
+            } catch (final Throwable ignored) {
+            }
         }
         if (targetVersion == ProtocolTranslator.AUTO_DETECT_PROTOCOL) {
             // If the server got already pinged, try to use that version if it's valid. Otherwise, perform auto-detect
