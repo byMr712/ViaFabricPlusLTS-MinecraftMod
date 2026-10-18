@@ -28,8 +28,8 @@ import net.minecraft.network.chat.Component;
 
 public final class ChatUtil {
 
-    public static final String PREFIX = ChatFormatting.WHITE + "[" + ChatFormatting.BLUE + "ViaFabricPlus" + ChatFormatting.WHITE + "]";
-    public static final Component PREFIX_TEXT = Component.literal("[").withStyle(ChatFormatting.WHITE).append(Component.literal("ViaFabricPlus").withColor(VFPScreen.ACCENT_COLOR)).append("]");
+    public static final String PREFIX = ChatFormatting.WHITE + "[" + ChatFormatting.BLUE + "ViaFabricPlusLTS" + ChatFormatting.WHITE + "]";
+    public static final Component PREFIX_TEXT = Component.literal("[").withStyle(ChatFormatting.WHITE).append(Component.literal("ViaFabricPlusLTS").withColor(VFPScreen.ACCENT_COLOR)).append("]");
 
     public static Component prefixText(final String message) {
         return prefixText(Component.nullToEmpty(message));
