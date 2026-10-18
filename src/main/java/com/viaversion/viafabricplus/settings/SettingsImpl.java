@@ -33,6 +33,7 @@ import com.viaversion.viafabricplus.protocoltranslator.ProtocolTranslationImpl;
 import com.viaversion.viafabricplus.settings.base.SettingGroupImpl;
 import com.viaversion.viafabricplus.settings.impl.AdvancedSettingsImpl;
 import com.viaversion.viafabricplus.settings.impl.GeneralSettingsImpl;
+import com.viaversion.viafabricplus.settings.impl.Mr712SettingsImpl;
 import com.viaversion.viafabricplus.settings.impl.VisualSettingsImpl;
 import com.viaversion.viafabricplus.util.JsonSave;
 import com.viaversion.viafabricplus.util.LegacySaveMigrator;
@@ -50,11 +51,13 @@ public final class SettingsImpl implements Settings {
     private final GeneralSettingsImpl general = new GeneralSettingsImpl();
     private final VisualSettingsImpl visual = new VisualSettingsImpl();
     private final AdvancedSettingsImpl advanced = new AdvancedSettingsImpl();
+    private final Mr712SettingsImpl mr712 = new Mr712SettingsImpl();
 
     public SettingsImpl() {
         this.groups.add(this.general);
         this.groups.add(this.visual);
         this.groups.add(this.advanced);
+        this.groups.add(this.mr712);
     }
 
     private String selectedProtocolVersion;
@@ -138,6 +141,10 @@ public final class SettingsImpl implements Settings {
     @Override
     public AdvancedSettingsImpl advanced() {
         return this.advanced;
+    }
+
+    public Mr712SettingsImpl mr712() {
+        return this.mr712;
     }
 
     @Override
