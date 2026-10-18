@@ -110,6 +110,7 @@
   "visual_settings.viafabricplus.lock_blocking_arm_rotation": "Неподвижная рука в позе защиты (вид от 3-го лица)",
   "visual_settings.viafabricplus.change_body_rotation_interpolation": "Старый (дёрганый) поворот тела (вид от 3-го лица)",
   "visual_settings.viafabricplus.potion_enchantment_glint": "Мерцание зелий",
+  "visual_settings.viafabricplus.allow_item_usage_while_mining": "Использование предметов при копании",
 
   "force_version.viafabricplus.title": "Укажите версию для проверки связи с сервером и подключения к нему.",
 
