@@ -103,7 +103,7 @@ fun Project.configureVVDependencies(configuration: String) {
 }
 
 tasks.named<Jar>("jar") {
-    archiveFileName.set("ViaFabricPlusLTS-26.1-byMr712.jar")
+    archiveFileName.set("ViaFabricPlusLTS-26.1.2-byMr712.jar")
 }
 
 allprojects {
