@@ -143,6 +143,10 @@ public final class ProtocolTranslator {
         return targetVersion;
     }
 
+    public static ProtocolVersion getPersistentVersion() {
+        return previousVersion != null ? previousVersion : targetVersion;
+    }
+
     public static ProtocolVersion getTargetVersion(final Channel channel) {
         if (channel == null || !channel.hasAttr(TARGET_VERSION_ATTRIBUTE_KEY)) {
             throw new IllegalStateException("Target version attribute not set");

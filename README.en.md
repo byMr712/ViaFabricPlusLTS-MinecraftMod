@@ -12,7 +12,7 @@ An extended fork of **ViaFabricPlus** for **Minecraft (Fabric)** that restores c
 
 ---
 
-## What Does This Mod Do? (Player Friendly)
+## What Does This Mod Do?
 
 The original [ViaFabricPlus](https://github.com/ViaVersion/ViaFabricPlus) project by FlorianMichael and the ViaVersion team primarily focuses on supporting the latest Minecraft versions: when new updates arrive, active development naturally transitions to the newest client releases.
 
@@ -22,16 +22,6 @@ This puts players in a frustrating situation:
 
 ### Fork Philosophy:
 This project changes that philosophy: **it brings modern server connectivity back to older Minecraft versions**. You can stay on your client version with all your favorite mods and seamlessly play on any server!
-
----
-
-## Key Features & Improvements
-
-- **Backported Server Compatibility up to 26.3 / 1.21.11:** Bundles modern ViaVersion and ViaBackwards libraries, allowing older client versions to join servers of any version — from the first multiplayer Classic c0.0.15 release to modern snapshots and releases.
-- **Async Protocol Warmup:** Eliminates the notorious 30-second login timeout ("ReadTimeoutException") when first connecting to newer versions. Mapping tables and pipelines are pre-warmed in the background upon UI selection or server pinging.
-- **"Fix Double Translation" Option:** Enabled by default in the mod's "Mr712 Debug" settings group. When connecting to servers with ViaVersion / ViaBackwards plugins, dynamically detects if the server supports the client's native protocol and bypasses redundant client-side packet conversion. This significantly reduces CPU overhead, latency, and anticheat desyncs, while keeping the user's manual version settings intact.
-- **Safe Netty Packet Decoder:** Gracefully recovers from malformed Brigadier command tree packets (`CommandTreeS2CPacket`) and trailing buffer bytes by substituting safe fallbacks, preventing unnecessary disconnects.
-- **Mr712 Debug Settings Section:** Dedicated settings section in the mod settings screen containing advanced compatibility options, pipeline warmup mode toggles, and the double translation fix.
 
 ---
 
