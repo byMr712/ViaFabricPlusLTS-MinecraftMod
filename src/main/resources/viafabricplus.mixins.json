@@ -35,6 +35,8 @@
     "compat.fabricapi.MixinClientRegistrySyncHandler",
     "compat.ipnext.MixinAutoRefillHandler_ItemSlotMonitor",
     "compat.lithium.MixinEntity",
+    "fixes.authlib.MixinProperty",
+    "fixes.authlib.MixinYggdrasilServicesKeyInfo",
     "features.april_fools_8bit_sound.MixinStaticSound",
     "features.block.interaction.MixinAbstractSignBlock",
     "features.block.interaction.MixinDecoratedPotBlock",
