@@ -108,6 +108,9 @@
   "visual_settings.viafabricplus.filter_non_existing_glyphs": "Отключать неизвестные Unicode-символы",
   "visual_settings.viafabricplus.sneak_instantly": "Моментальное приседание",
   "visual_settings.viafabricplus.allow_item_usage_while_mining": "Использование предметов при копании",
+  "protocol_selection.viafabricplus.all": "Все",
+  "protocol_selection.viafabricplus.favorites": "★ Избранное",
+  "protocol_selection.viafabricplus.no_favorites": "Нет избранных версий. Нажмите ★ рядом с любой версией, чтобы добавить её.",
 
   "force_version.viafabricplus.title": "Укажите версию для проверки связи с сервером и подключения к нему.",
 
