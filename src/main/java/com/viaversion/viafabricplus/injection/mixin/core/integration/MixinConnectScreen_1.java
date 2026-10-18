@@ -78,6 +78,17 @@ public abstract class MixinConnectScreen_1 {
             targetVersion = mixinServerInfo.viaFabricPlus$forcedVersion();
             mixinServerInfo.viaFabricPlus$passDirectConnectScreen(false); // reset state
         }
+        if (ViaFabricPlusImpl.impl().settings().mr712().fixDoubleTranslation().isActive()) {
+            try {
+                final ProtocolVersion detected = ProtocolVersionDetector.get(this.val$hostAndPort, address, ProtocolTranslationImpl.NATIVE_VERSION);
+                if (detected == ProtocolTranslationImpl.NATIVE_VERSION) {
+                    targetVersion = ProtocolTranslationImpl.NATIVE_VERSION;
+                } else if (targetVersion == ProtocolTranslation.AUTO_DETECT_VERSION) {
+                    targetVersion = detected;
+                }
+            } catch (final Throwable ignored) {
+            }
+        }
         if (targetVersion == ProtocolTranslation.AUTO_DETECT_VERSION) {
             // If the server got already pinged, try to use that version if it's valid. Otherwise, perform auto-detect
             final boolean serverPinged = this.val$server.state() == ServerData.State.SUCCESSFUL || this.val$server.state() == ServerData.State.INCOMPATIBLE;
