@@ -29,7 +29,7 @@ This project changes that philosophy: **it brings modern server connectivity bac
 
 - **Backported Server Compatibility up to 26.3 / 1.21.11:** Bundles modern ViaVersion and ViaBackwards libraries, allowing a 1.21.4 client to join servers of any version — from the first multiplayer Classic c0.0.15 release to modern snapshots and releases.
 - **Async Protocol Warmup:** Eliminates the notorious 30-second login timeout ("ReadTimeoutException") when first connecting to newer versions. Mapping tables and pipelines are pre-warmed in the background upon UI selection or server pinging.
-- **Hybrid Server Support (ViaBackwards Native Priority):** Automatically detects servers (e.g. Paper 1.21.11 with ViaBackwards) advertising native 1.21.4 (769) protocol support and connects natively without dual client-side translation. This resolves carpet hitbox desyncs and false-positive anticheat kicks.
+- **"Fix Double Translation" Option:** Enabled by default in the mod's General Settings. When connecting to servers with ViaVersion / ViaBackwards plugins, dynamically detects if the server supports the client's native protocol and bypasses redundant client-side packet conversion. This significantly reduces CPU overhead, latency, and anticheat desyncs, while keeping the user's manual version settings intact.
 - **Safe Netty Packet Decoder:** Gracefully recovers from malformed Brigadier command tree packets (`CommandTreeS2CPacket`) and trailing buffer bytes by substituting safe fallbacks, preventing unnecessary disconnects.
 - **Mr712 Debug Settings Toggle:** Advanced warmup and compatibility options are neatly tucked away behind an optional developer toggle in the mod settings.
 
