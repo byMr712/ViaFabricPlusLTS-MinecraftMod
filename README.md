@@ -1,48 +1,75 @@
-<!--suppress HtmlDeprecatedAttribute -->
-<div align="center">
-  <img src="src/main/resources/assets/viafabricplus/icon.png" width="150" alt="ViaFabricPlusLTS logo">
-  <h1>ViaFabricPlusLTS (Minecraft 26.3)</h1>
-  <a href="https://fabricmc.net"><img src="https://img.shields.io/badge/Mod%20Loader-Fabric-lightyellow?logo=fabric" alt="Mod Loader: Fabric"></a>
-  <img src="https://img.shields.io/badge/Minecraft-26.3-blue" alt="Minecraft 26.3">
-  <img src="https://img.shields.io/badge/Environment-Client-purple" alt="Environment: Client">
-  <a href="https://github.com/byMr712/ViaFabricPlusLTS-MinecraftMod"><img src="https://img.shields.io/badge/Maintainer-byMr712-orange" alt="Maintainer: byMr712"></a>
+> **Language:** Русский · [English](README.en.md)
 
-  <p><strong>Клиентский мод для Fabric, позволяющий подключаться к ЛЮБЫМ серверам Minecraft (Classic, Alpha, Beta, Release, April Fools) на клиенте 26.3</strong></p>
-  <p><a href="README.en.md">English Version</a></p>
-</div>
+# [MR] ViaFabricPlusLTS
 
-**ViaFabricPlusLTS** — расширенный долгосрочный (LTS) форк популярного мода [ViaFabricPlus](https://github.com/ViaVersion/ViaFabricPlus), поддерживаемый [byMr712](https://github.com/byMr712).
-Данный форк адаптирован для **Minecraft 26.3** с полноценной поддержкой современных и старых сетевых протоколов.
+![Java 21](https://img.shields.io/badge/Java-21-blue.svg)
+![Minecraft](https://img.shields.io/badge/Minecraft-1.21.x+-blue.svg)
+![Fabric](https://img.shields.io/badge/Loader-Fabric-blue.svg)
+![ModMenu](https://img.shields.io/badge/ModMenu-Supported-blue.svg)
+![License](https://img.shields.io/badge/License-GPL_3.0-blue.svg)
+
+Расширенный форк мода [**ViaFabricPlus**](https://github.com/ViaVersion/ViaFabricPlus) для **Minecraft (Fabric)**, возвращающий игрокам на старых версиях клиента возможность подключаться к серверам вплоть до самых новых версий. Обозначение **LTS** (*Long-Term Support* — долгосрочная поддержка) в названии отражает главную цель форка: продлить жизнь оригинальному моду ViaFabricPlus на широком спектре старых версий Minecraft, позволяя комфортно оставаться на любимой сборке модов и свободно играть на любых серверах.
 
 ---
 
-### ✨ Особенности сборки LTS для 26.3
+## Что делает этот мод?
 
-- 🌐 **Подключение ко всем версиям**: Подключайтесь с клиента Minecraft 26.3 к серверам от Classic c0.0.15 до современных версий.
-- 🛠 **Точные исправления физики и визуала**: Воссоздание оригинальной механики движения, блоков и сущностей соответствующих версий.
-- ⚡ **Оптимизированная сборка**: Единый чистый JAR-архив без лишних артефактов (`ViaFabricPlusLTS-26.3-byMr712.jar`).
+Оригинальный проект [ViaFabricPlus](https://github.com/ViaVersion/ViaFabricPlus) от FlorianMichael и команды ViaVersion ориентирован прежде всего на поддержку самых актуальных версий Minecraft: с выходом каждого нового обновления игры фокус разработки переключается на свежие версии клиента.
 
----
+Из-за этого игроки сталкиваются с дилеммой:
+- Либо играть на любимой стабильной версии (например, 1.21.4, 1.21.1, 1.21 и др.) со своей тщательно настроенной сборкой модов, но потерять возможность заходить на новые сервера;
+- Либо переходить на новую версию игры, теряя совместимость с большинством модов.
 
-### 📦 Установка
-
-1. Установите [Fabric Loader](https://fabricmc.net/use/) для **Minecraft 26.3**.
-2. Установите [Fabric API](https://modrinth.com/mod/fabric-api) для 26.3.
-3. Скачайте `ViaFabricPlusLTS-26.3-byMr712.jar` из раздела [Releases](https://github.com/byMr712/ViaFabricPlusLTS-MinecraftMod/releases) и поместите в папку `.minecraft/mods`.
-4. Запустите игру и выберите версию протокола в меню мультиплеера.
+### Философия этого форка:
+Этот проект меняет философию: **он дарит старым версиям Minecraft полноценное подключение к новейшим серверам**. Вы остаётесь на своей версии клиента со всеми модами и комфортно играете на любых серверах!
 
 ---
 
-### ⚠️ Важно знать
+## Поддерживаемые версии серверов
 
-- **Только Fabric**: Мод предназначен только для загрузчика Fabric.
-- **Только клиент**: Мод работает на стороне клиента в многопользовательском режиме.
-- **Честная игра**: Поведение некоторых старых протоколов может вызывать подозрения серверных античитов. Используйте с умом.
+| Тип | Диапазон версий |
+| :--- | :--- |
+| **Release** | От 1.0.0 до **26.3** (включая 1.21.4, 1.21.11, 26.1, 26.2, 26.3) |
+| **Beta** | b1.0 — b1.8.1 |
+| **Alpha** | a1.0.15 — a1.2.6 |
+| **Classic** | c0.0.15 — c0.30 (включая [CPE](https://wiki.vg/Classic_Protocol_Extension)) |
+| **Снапшоты** | 3D Shareware, 20w14infinite, Combat Snapshots 8c |
 
 ---
 
-### 📜 Лицензия и благодарности
+## Установка
 
-Оригинальный проект разработан [Florian Reuth (EnZaXD)](https://github.com/florianreuth), [RaphiMC](https://github.com/RaphiMC) и участниками сообщества ViaVersion.
-Форк и LTS-сопровождение: [byMr712](https://github.com/byMr712).
-Распространяется по лицензии **GPL-3.0**.
+1. Скачайте релиз мода под нужную вам версию игры (например, `MrViaFabricPlusLTS-1.21.4-byMr712.jar`) из раздела [Releases](https://github.com/byMr712/ViaFabricPlusLTS-MinecraftMod/releases).
+2. Поместите `.jar` файл в папку `mods` вашего экземпляра Fabric.
+3. Убедитесь, что установлен **Fabric Loader** (>=0.16.10) и **Fabric API** для вашей версии Minecraft.
+4. Запустите игру — кнопка выбора версии появится на главном экране и в меню сетевой игры.
+
+---
+
+## Сборка из исходников
+
+Для сборки мода:
+
+```bash
+git clone https://github.com/byMr712/ViaFabricPlusLTS-MinecraftMod.git
+cd ViaFabricPlusLTS-MinecraftMod
+./gradlew build
+```
+
+Собранный файл будет находиться в директории `build/libs/`.
+
+---
+
+## Лицензия и авторство
+
+- **Оригинальный проект:** [ViaFabricPlus](https://github.com/ViaVersion/ViaFabricPlus)  
+  Авторы: [FlorianMichael/EnZaXD](https://github.com/FlorianMichael), [RK_01/RaphiMC](https://github.com/RaphiMC) и контрибьюторы ViaVersion.  
+  Оригинальный проект распространяется под лицензией **GNU General Public License v3.0 (GPL-3.0)**.
+- **Автор форка и мейнтейнер LTS-версий:** [byMr712](https://github.com/byMr712)
+- **Технический вклад форка (Engineering & Architecture):**
+  - **Мультиверсионный бэкпорт протокольного стека:** адаптация и интеграция актуальных библиотек `ViaVersion` и `ViaBackwards` в клиентскую среду широкого спектра старых версий игры (ветки 1.21, 1.21.1, 1.21.4 и др.), обеспечивающая трансляцию пакетов вплоть до серверов 1.21.11 и 26.3.
+  - **Динамическое устранение двойной трансляции (`fixDoubleTranslation`):** при подключении к гибридным серверам (Paper/Purpur с ViaBackwards/ViaVersion) или прокси (Velocity/BungeeCord) клиент выполняет пре-хэндшейк опрос (`ProtocolVersionDetector`). Если сервер уже нативно поддерживает версию клиента, включается прямой режим обмена пакетами без промежуточной клиентской трансляции. Оверрайд работает на уровне сессии и автоматически откатывается через перехватчик `injectPreviousVersionReset` при отключении, не модифицируя сохранённый конфиг пользователя.
+  - **Асинхронный предпрогрев пайплайнов (`ProtocolWarmupManager`):** вынесение инициализации маппингов и промежуточных таблиц трансляции в отдельный фоновый поток `ViaFabricPlus-Warmup` с пониженным приоритетом. Загрузка запускается заранее (при наведении в GUI или пинге серверов), устраняя лаги первичного подключения и дисконнекты по `ReadTimeoutException`.
+  - **Защита сетевого конвейера Netty (`Safe Netty Decoder`):** изолированный перехват исключений при парсинге повреждённых пакетов деревьев команд (`CommandTreeS2CPacket`) и корректная очистка буферов при остаточных байтах, предотвращающая падение соединения из-за ошибок `DecoderException` на стороне нестандартных серверных плагинов.
+  - **Изолированная архитектура настроек (`Mr712Settings`):** выделенная группа конфигурации с авто-сериализацией через `SettingsSave`, полная локализация (`ru_ru`, `en_us`) и фикс рендеринга подсказок (устранение спецсимволов LF и переход на адаптивный перенос строк `wrapLines` + `drawOrderedTooltip`).
+- **Лицензия:** В полном соответствии с условиями GPL-3.0 данный форк является свободным программным обеспечением с открытым исходным кодом и распространяется на условиях лицензии **GPL-3.0**. Все исходные авторские права сохранены.
