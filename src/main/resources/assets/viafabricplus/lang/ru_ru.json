@@ -109,6 +109,7 @@
   "visual_settings.viafabricplus.hide_crafting_recipe_book": "Старые верстаки без рецептов",
   "visual_settings.viafabricplus.force_unicode_font_for_non_ascii_languages": "Старый шрифт",
   "visual_settings.viafabricplus.sneak_instantly": "Моментальное приседание",
+  "visual_settings.viafabricplus.allow_item_usage_while_mining": "Разрешить использование предметов при добыче блоков",
 
   "force_version.viafabricplus.title": "Укажите версию для проверки связи с сервером и подключения к нему.",
 

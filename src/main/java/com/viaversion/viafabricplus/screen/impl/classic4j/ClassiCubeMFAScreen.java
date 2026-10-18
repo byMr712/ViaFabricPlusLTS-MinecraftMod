@@ -68,6 +68,7 @@ public final class ClassiCubeMFAScreen extends VFPScreen {
 
                 @Override
                 public void handleException(Throwable throwable) {
+                    SaveManager.INSTANCE.getAccountsSave().setClassicubeAccount(null);
                     setupSubtitle(Text.of(throwable.getMessage()));
                 }
             });
