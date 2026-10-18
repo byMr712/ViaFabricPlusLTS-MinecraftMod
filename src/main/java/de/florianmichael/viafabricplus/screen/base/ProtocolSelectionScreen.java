@@ -46,14 +46,14 @@ public class ProtocolSelectionScreen extends VFPScreen {
     private ButtonWidget favoritesTabButton;
 
     protected ProtocolSelectionScreen() {
-        super("ViaFabricPlus", true);
+        super("ViaFabricPlusLTS", true);
     }
 
     @Override
     protected void init() {
         this.setupDefaultSubtitle();
 
-        // Tabs: "All" and "★ Favorites"
+        // Tabs: "All" and "★ Favorites" (offset by 25px to the right to place immediately after the 20px back button)
         final int tabY = 5;
         this.addDrawableChild(this.allTabButton = ButtonWidget.builder(Text.translatable("protocol_selection.viafabricplus.all"), button -> {
             this.showFavoritesOnly = false;
@@ -61,7 +61,7 @@ public class ProtocolSelectionScreen extends VFPScreen {
             if (this.slotList != null) {
                 this.slotList.populate(false);
             }
-        }).position(5, tabY).size(50, 20).build());
+        }).position(30, tabY).size(50, 20).build());
 
         this.addDrawableChild(this.favoritesTabButton = ButtonWidget.builder(Text.translatable("protocol_selection.viafabricplus.favorites"), button -> {
             this.showFavoritesOnly = true;
@@ -69,7 +69,7 @@ public class ProtocolSelectionScreen extends VFPScreen {
             if (this.slotList != null) {
                 this.slotList.populate(true);
             }
-        }).position(58, tabY).size(95, 20).build());
+        }).position(85, tabY).size(95, 20).build());
 
         updateTabButtons();
 
