@@ -42,4 +42,5 @@ If these rules are not followed, the correct behavior is:
 1. **Защита Authlib от пустых подписей скинов:** В `Property.hasSignature()` проверка `!signature.isEmpty()`, в `validateProperty` возврат `false` при пустой/null подписи.
 2. **Верстка вкладок GUI:** В ветках 1.21 – 26.1.2 вкладки `all` и `favorites` смещены вправо на `+25px` во избежание перекрытия кнопки «Назад».
 3. **Брендинг:** Использование `ViaFabricPlusLTS` в заголовках, кнопках, сообщениях чата и URL репозитория: `https://github.com/byMr712/ViaFabricPlusLTS-MinecraftMod`.
+4. **Идентификатор мода и SemVer:** Идентификатор мода строго оригинальный (`id: "viafabricplus"`) с повышенной версией относительно апстрима (LTS-патч). Никаких переименований ID в `viafabricplus-lts` (ломает аддоны и вызывает конфликты SAT-солвера в provides/breaks) и никаких платформозависимых GUI-диалогов.
 
