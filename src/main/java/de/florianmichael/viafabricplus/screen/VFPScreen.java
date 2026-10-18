@@ -66,7 +66,7 @@ import java.awt.*;
  */
 public class VFPScreen extends Screen {
 
-    private static final String MOD_URL = "https://github.com/ViaVersion/ViaFabricPlus";
+    private static final String MOD_URL = "https://github.com/byMr712/ViaFabricPlusLTS-MinecraftMod";
 
     private final boolean backButton;
     public Screen prevScreen;
@@ -189,7 +189,7 @@ public class VFPScreen extends Screen {
 
         matrices.push();
         matrices.scale(2F, 2F, 2F);
-        context.drawCenteredTextWithShadow(textRenderer, "ViaFabricPlus", width / 4, 3, Color.ORANGE.getRGB());
+        context.drawCenteredTextWithShadow(textRenderer, "ViaFabricPlusLTS", width / 4, 3, Color.ORANGE.getRGB());
         matrices.pop();
 
         renderSubtitle(context);
