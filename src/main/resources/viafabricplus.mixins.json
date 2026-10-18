@@ -43,6 +43,8 @@
     "compat.mcstructs.MixinTextComponentSerializer",
     "compat.minecraftauth.MixinClasses",
     "compat.minecraftauth.MixinDefaultJwtParserBuilder",
+    "fixes.authlib.MixinProperty",
+    "fixes.authlib.MixinYggdrasilServicesKeyInfo",
     "features.april_fools_8bit_sound.MixinSoundBuffer",
     "features.bedrock.allow_new_line.MixinFont",
     "features.bedrock.block.MixinCactusBlock",

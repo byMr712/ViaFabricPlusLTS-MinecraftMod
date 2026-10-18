@@ -188,7 +188,7 @@ public class VFPScreen extends Screen {
 
         matrices.pushMatrix();
         matrices.scale(2F, 2F);
-        context.drawCenteredString(font, "ViaFabricPlus", width / 4, 3, Color.ORANGE.getRGB());
+        context.drawCenteredString(font, "ViaFabricPlusLTS", width / 4, 3, Color.ORANGE.getRGB());
         matrices.popMatrix();
 
         renderSubtitle(context);

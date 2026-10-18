@@ -31,8 +31,8 @@ import net.minecraft.ChatFormatting;
  */
 public final class ChatUtil {
 
-    public static final String PREFIX = ChatFormatting.WHITE + "[" + ChatFormatting.GOLD + "ViaFabricPlus" + ChatFormatting.WHITE + "]";
-    public static final Component PREFIX_TEXT = Component.literal("[").withStyle(ChatFormatting.WHITE).append(Component.literal("ViaFabricPlus").withStyle(ChatFormatting.GOLD)).append("]");
+    public static final String PREFIX = ChatFormatting.WHITE + "[" + ChatFormatting.GOLD + "ViaFabricPlusLTS" + ChatFormatting.WHITE + "]";
+    public static final Component PREFIX_TEXT = Component.literal("[").withStyle(ChatFormatting.WHITE).append(Component.literal("ViaFabricPlusLTS").withStyle(ChatFormatting.GOLD)).append("]");
 
     /**
      * Prefixes the message with the ViaFabricPlus prefix
