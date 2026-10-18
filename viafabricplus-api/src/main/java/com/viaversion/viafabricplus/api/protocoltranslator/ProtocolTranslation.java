@@ -23,16 +23,48 @@ package com.viaversion.viafabricplus.api.protocoltranslator;
 
 import com.viaversion.viaversion.api.connection.UserConnection;
 import com.viaversion.viaversion.api.protocol.version.ProtocolVersion;
+import com.viaversion.viaversion.api.protocol.version.VersionType;
 import io.netty.channel.Channel;
+import java.util.Comparator;
 import java.util.function.BiConsumer;
 import net.minecraft.client.multiplayer.ServerData;
 import net.minecraft.network.Connection;
+import net.minecraft.network.chat.Component;
 import org.jetbrains.annotations.Nullable;
 
 /**
  * Protocol translator.
  */
 public interface ProtocolTranslation {
+
+    /**
+     * The protocol version used when version auto-detection is enabled. Note that this won't be returned on any
+     * version getters after the initial connection has been established (e.g., {@link #targetVersion()}).
+     */
+    ProtocolVersion AUTO_DETECT_VERSION = new ProtocolVersion(VersionType.SPECIAL, -2, -1, "version_title.viafabricplus.auto_detect", null) {
+        @Override
+        protected Comparator<ProtocolVersion> customComparator() {
+            return (o1, o2) -> {
+                if (o1 == AUTO_DETECT_VERSION) {
+                    return 1;
+                } else if (o2 == AUTO_DETECT_VERSION) {
+                    return -1;
+                } else {
+                    return 0;
+                }
+            };
+        }
+
+        @Override
+        public String getName() {
+            return Component.translatable(super.getName()).getString();
+        }
+
+        @Override
+        public boolean isKnown() {
+            return false;
+        }
+    };
 
     /**
      * The target version either selected by the user in the global menu or set per server. Note that this method
@@ -109,5 +141,13 @@ public interface ProtocolTranslation {
      * @return the pre-server version of the server
      */
     @Nullable ProtocolVersion serverVersion(final ServerData serverData);
+
+    /**
+     * Sets the pre-server version of the server.
+     *
+     * @param serverData the server data
+     * @param version    the version
+     */
+    void setServerVersion(final ServerData serverData, final ProtocolVersion version);
 
 }

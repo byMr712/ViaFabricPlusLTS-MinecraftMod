@@ -2,7 +2,7 @@
   "schemaVersion": 1,
   "id": "viafabricplus",
   "version": "${version}",
-  "name": "ViaFabricPlusLTS",
+  "name": "[MR] ViaFabricPlusLTS",
   "description": "${description}",
   "authors": [
     {
@@ -54,7 +54,7 @@
   "mixins": [
     "viafabricplus.mixins.json"
   ],
-  "accessWidener": "viafabricplus.accesswidener",
+  "accessWidener": "viafabricplus.classtweaker",
   "depends": {
     "fabric-resource-loader-v1": ">=1.0.2",
     "fabric-networking-api-v1": ">=3.1.1",
