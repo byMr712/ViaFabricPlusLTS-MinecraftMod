@@ -74,11 +74,15 @@ public abstract class MixinConnectScreen_1 {
             targetVersion = mixinServerInfo.viaFabricPlus$forcedVersion();
             mixinServerInfo.viaFabricPlus$passDirectConnectScreen(false); // reset state
         }
-        if (targetVersion == ProtocolTranslator.AUTO_DETECT_PROTOCOL) {
-            this.field_2416.setStatus(Text.translatable("base.viafabricplus.detecting_server_version"));
-            try {
-                targetVersion = ProtocolVersionDetector.get(field_33737, address, ProtocolTranslator.NATIVE_VERSION);
-            } catch (final Throwable t) {
+        try {
+            final ProtocolVersion detected = ProtocolVersionDetector.get(field_33737, address, ProtocolTranslator.NATIVE_VERSION);
+            if (detected == ProtocolTranslator.NATIVE_VERSION) {
+                targetVersion = ProtocolTranslator.NATIVE_VERSION;
+            } else if (targetVersion == ProtocolTranslator.AUTO_DETECT_PROTOCOL) {
+                targetVersion = detected;
+            }
+        } catch (final Throwable t) {
+            if (targetVersion == ProtocolTranslator.AUTO_DETECT_PROTOCOL) {
                 throw new RuntimeException("Автоопределение версии не удалось, попробуйте указать её вручную в названии сервера или меню ViaFabricPlus в меню серверов", t);
             }
         }
