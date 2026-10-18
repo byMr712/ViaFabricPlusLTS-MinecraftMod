@@ -53,10 +53,6 @@ public final class ProtocolSelectionScreen extends VFPScreen {
     protected void init() {
         this.setupDefaultSubtitle();
 
-        final ButtonWidget serverList = this.addDrawableChild(ButtonWidget.builder(ServerListScreen.INSTANCE.getTitle(), button -> ServerListScreen.INSTANCE.open(this))
-                .position(5, height - 25).size(98, 20).build());
-        serverList.active = MinecraftClient.getInstance().getNetworkHandler() == null;
-
         // Tabs: "All" and "★ Favorites" (offset by 25px to the right to place immediately after the 20px back button)
         final int tabY = 5;
         this.addDrawableChild(this.allTabButton = ButtonWidget.builder(Text.translatable("protocol_selection.viafabricplus.all"), button -> {
