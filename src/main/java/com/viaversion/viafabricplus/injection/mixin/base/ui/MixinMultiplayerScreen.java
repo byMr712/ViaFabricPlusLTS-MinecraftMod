@@ -62,4 +62,12 @@ public abstract class MixinMultiplayerScreen extends Screen {
         original.call(instance, entry);
     }
 
+    @org.spongepowered.asm.mixin.Shadow
+    private ServerInfo selectedEntry;
+
+    @Inject(method = "editEntry", at = @At(value = "INVOKE", target = "Lnet/minecraft/client/option/ServerList;saveFile()V"))
+    private void storeForcedVersion(boolean result, CallbackInfo ci, @com.llamalad7.mixinextras.sugar.Local ServerInfo current) {
+        ((IServerInfo) current).viaFabricPlus$forceVersion(((IServerInfo) this.selectedEntry).viaFabricPlus$forcedVersion());
+    }
+
 }
