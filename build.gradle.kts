@@ -30,8 +30,6 @@ dependencies {
 
     compileOnly(libs.modmenu)
 }
-includeTransitiveJijDependencies()
-
 tasks.named<Jar>("jar") {
     archiveFileName.set("MrViaFabricPlusLTS-26.3-byMr712.jar")
 }
