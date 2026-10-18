@@ -1,49 +1,75 @@
-<!--suppress HtmlDeprecatedAttribute -->
-<div align="center">
-  <img src="src/main/resources/assets/viafabricplus/icon.png" width="150" alt="ViaFabricPlusLTS logo">
-  <h1>ViaFabricPlusLTS (Minecraft 26.1)</h1>
-  <a href="https://fabricmc.net"><img src="https://img.shields.io/badge/Mod%20Loader-Fabric-lightyellow?logo=fabric" alt="Mod Loader: Fabric"></a>
-  <img src="https://img.shields.io/badge/Minecraft-26.1-blue" alt="Minecraft 26.1">
-  <img src="https://img.shields.io/badge/Environment-Client-purple" alt="Environment: Client">
-  <a href="https://github.com/byMr712/ViaFabricPlusLTS-MinecraftMod"><img src="https://img.shields.io/badge/Maintainer-byMr712-orange" alt="Maintainer: byMr712"></a>
+> **Language:** [Русский](README.md) · English
 
-  <p><strong>Fabric client mod that allows you to join EVERY Minecraft server version (Classic, Alpha, Beta, Release, April Fools, Bedrock) from a 26.1 client</strong></p>
-  <p><a href="README.md">Русская версия</a></p>
-</div>
+# [MR] ViaFabricPlusLTS
 
-**ViaFabricPlusLTS** is an extended Long Term Support (LTS) fork of the popular [ViaFabricPlus](https://github.com/ViaVersion/ViaFabricPlus) mod, maintained by [byMr712](https://github.com/byMr712).
-This build is tailored for **Minecraft 26.1** with full support for modern and legacy protocols.
+![Java 21](https://img.shields.io/badge/Java-21-blue.svg)
+![Minecraft](https://img.shields.io/badge/Minecraft-1.21.x+-blue.svg)
+![Fabric](https://img.shields.io/badge/Loader-Fabric-blue.svg)
+![ModMenu](https://img.shields.io/badge/ModMenu-Supported-blue.svg)
+![License](https://img.shields.io/badge/License-GPL_3.0-blue.svg)
+
+An extended fork of [**ViaFabricPlus**](https://github.com/ViaVersion/ViaFabricPlus) for **Minecraft (Fabric)** that restores connectivity from older client versions to servers up to the latest releases. The **LTS** (*Long-Term Support*) designation reflects the core purpose of this fork: extending the active lifespan of the original ViaFabricPlus mod across multiple older Minecraft versions, allowing players to keep their favorite modpacks while playing seamlessly on any server.
 
 ---
 
-### ✨ LTS Features for 26.1
+## What Does This Mod Do?
 
-- 🌐 **Join Any Version**: Connect from a Minecraft 26.1 client to servers from Classic c0.0.15 all the way to modern releases.
-- 📱 **Bedrock Support**: Join Minecraft Bedrock Edition servers (up to 1.26.30).
-- 🛠 **Accurate Physics & Visuals**: Emulates original movement mechanics, interactions, and visuals for each protocol era.
-- ⚡ **Optimized Artifact**: Single, clean JAR build (`ViaFabricPlusLTS-26.1-byMr712.jar`).
+The original [ViaFabricPlus](https://github.com/ViaVersion/ViaFabricPlus) project by FlorianMichael and the ViaVersion team primarily focuses on supporting the latest Minecraft versions: when new updates arrive, active development naturally transitions to the newest client releases.
 
----
+This puts players in a frustrating situation:
+- Either remain on a favorite stable version (e.g. 1.21.4, 1.21.1, 1.21, etc.) with a custom-tuned modpack, but lose access to modern servers;
+- Or update the game and break compatibility with existing mods.
 
-### 📦 Installation
-
-1. Install [Fabric Loader](https://fabricmc.net/use/) for **Minecraft 26.1**.
-2. Install [Fabric API](https://modrinth.com/mod/fabric-api) for 26.1.
-3. Download `ViaFabricPlusLTS-26.1-byMr712.jar` from [Releases](https://github.com/byMr712/ViaFabricPlusLTS-MinecraftMod/releases) and place it into `.minecraft/mods`.
-4. Launch Minecraft and choose the target protocol version in the Multiplayer screen.
+### Fork Philosophy:
+This project changes that philosophy: **it brings modern server connectivity back to older Minecraft versions**. You can stay on your client version with all your favorite mods and seamlessly play on any server!
 
 ---
 
-### ⚠️ Important Notes
+## Supported Server Versions
 
-- **Fabric Only**: Built specifically for the Fabric mod loader.
-- **Clientside Only**: Runs entirely on the client for multiplayer connections.
-- **Fair Play**: Emulating legacy movement may trigger aggressive anti-cheat plugins on some servers. Use responsibly.
+| Type | Version Range |
+| :--- | :--- |
+| **Release** | 1.0.0 through **26.3** (including 1.21.4, 1.21.11, 26.1, 26.2, 26.3) |
+| **Beta** | b1.0 — b1.8.1 |
+| **Alpha** | a1.0.15 — a1.2.6 |
+| **Classic** | c0.0.15 — c0.30 (including [CPE](https://wiki.vg/Classic_Protocol_Extension)) |
+| **Snapshots** | 3D Shareware, 20w14infinite, Combat Snapshots 8c |
 
 ---
 
-### 📜 License & Credits
+## Installation
 
-Original project developed by [Florian Reuth (EnZaXD)](https://github.com/florianreuth), [RaphiMC](https://github.com/RaphiMC), and the ViaVersion community.
-LTS Fork maintained by [byMr712](https://github.com/byMr712).
-Licensed under **GPL-3.0**.
+1. Download the release `.jar` for your Minecraft version (e.g. `MrViaFabricPlusLTS-1.21.4-byMr712.jar`) from the [Releases](https://github.com/byMr712/ViaFabricPlusLTS-MinecraftMod/releases) page.
+2. Place the `.jar` into your Minecraft instance's `mods` folder.
+3. Ensure you have **Fabric Loader** (>=0.16.10) and **Fabric API** installed for your Minecraft version.
+4. Launch the game — the version selector button will appear on the title and multiplayer screens.
+
+---
+
+## Building from Source
+
+To build the mod from source:
+
+```bash
+git clone https://github.com/byMr712/ViaFabricPlusLTS-MinecraftMod.git
+cd ViaFabricPlusLTS-MinecraftMod
+./gradlew build
+```
+
+The resulting `.jar` file will be generated in `build/libs/`.
+
+---
+
+## License & Attribution
+
+- **Original Project:** [ViaFabricPlus](https://github.com/ViaVersion/ViaFabricPlus)  
+  Authors: [FlorianMichael/EnZaXD](https://github.com/FlorianMichael), [RK_01/RaphiMC](https://github.com/RaphiMC), and ViaVersion contributors.  
+  Licensed under the **GNU General Public License v3.0 (GPL-3.0)**.
+- **Fork Maintainer (LTS Releases):** [byMr712](https://github.com/byMr712)
+- **Technical Contributions (Engineering & Architecture):**
+  - **Multi-version Protocol Stack Backporting:** Adapting and integrating modern `ViaVersion` and `ViaBackwards` libraries into older client environments (1.21, 1.21.1, 1.21.4, and other branches), enabling seamless translation up to server versions 1.21.11 and 26.3.
+  - **Dynamic Double Translation Optimization (`fixDoubleTranslation`):** When connecting to hybrid servers (e.g. Paper with ViaVersion/ViaBackwards) or proxies (Velocity/BungeeCord), the client conducts a fast pre-handshake probe (`ProtocolVersionDetector`). If the server advertises native protocol support for the client, translation is bypassed for the session. This session override automatically reverts upon disconnect via `injectPreviousVersionReset` channel listeners without altering the user's persistent version configuration.
+  - **Asynchronous Pipeline Pre-warming (`ProtocolWarmupManager`):** Offloads protocol mapping table initialization to a dedicated background daemon thread (`ViaFabricPlus-Warmup`) with reduced priority. Pre-warming occurs upon UI selection or server pinging, eliminating 30-second handshake timeouts (`ReadTimeoutException`) and frame drops.
+  - **Netty Pipeline Hardening (`Safe Netty Decoder`):** Catches and gracefully recovers from malformed Brigadier command tree packets (`CommandTreeS2CPacket`) and flushes lingering buffer bytes, preventing client disconnects caused by `DecoderException` on modded/hybrid servers.
+  - **Modular Settings Architecture (`Mr712Settings`):** Standalone settings group with automatic JSON serialization via `SettingsSave`, complete bilingual localization (`ru_ru`, `en_us`), and hover tooltip fixes (removing raw LF characters in favor of adaptive multi-line wrapping via `wrapLines` + `drawOrderedTooltip`).
+- **License:** In full accordance with GPL-3.0, this fork remains free, open-source software distributed under the terms of the **GPL-3.0 License**. All original copyrights and author attributions are preserved.
