@@ -89,7 +89,7 @@ public final class ViaFabricPlusImpl implements ViaFabricPlusBase {
         ViaFabricPlus.init(INSTANCE);
 
         // Get mod version
-        final ModMetadata metadata = FabricLoader.getInstance().getModContainer("viafabricplus-lts").orElseGet(() -> FabricLoader.getInstance().getModContainer("viafabricplus").get()).getMetadata();
+        final ModMetadata metadata = FabricLoader.getInstance().getModContainer("viafabricplus").get().getMetadata();
         version = metadata.getVersion().getFriendlyString();
         implVersion = metadata.getCustomValue("vfp:implVersion").getAsString();
 
