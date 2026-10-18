@@ -143,18 +143,17 @@
   "classicube.viafabricplus.profile": "ClassiCube Profile:",
   "classicube.viafabricplus.warning": "This feature will send API requests to the ClassiCube API.",
 
-  "betacraft.viafabricplus.failed_to_verify_session": "ViaFabricPlus couldn't verify your session! Please log in to an account or disable the BetaCraft authentication in the ViaFabricPlus Settings",
+  "betacraft.viafabricplus.failed_to_verify_session": "ViaFabricPlusLTS couldn't verify your session! Please log in to an account or disable the BetaCraft authentication in the ViaFabricPlusLTS Settings",
   "betacraft.viafabricplus.loading": "Loading...",
   "betacraft.viafabricplus.warning": "Pressing this button will send API requests to \"betacraft.uk/serverlist\".",
 
   "translation.viafabricplus.packet_error": "An error occurred while translating a packet! See more details in the logs!",
 
-  "classic4j_library.viafabricplus.error.token": "Incorrect token. Is your ViaFabricPlus out of date?",
+  "classic4j_library.viafabricplus.error.token": "Incorrect token. Is your ViaFabricPlusLTS out of date?",
   "classic4j_library.viafabricplus.error.username": "Invalid username.",
   "classic4j_library.viafabricplus.error.password": "Invalid password.",
   "classic4j_library.viafabricplus.error.verification": "User hasn't verified their email address yet.",
   "classic4j_library.viafabricplus.error.logincode": "Multi-factor authentication requested. Please check your email.",
-
   "minecraftauth_library.viafabricplus.msatoken": "Obtained Microsoft Access Token",
   "minecraftauth_library.viafabricplus.xbldevicetoken": "Obtained Xbox Live Device Token",
   "minecraftauth_library.viafabricplus.xblusertoken": "Obtained Xbox Live User Token",
@@ -170,12 +169,16 @@
   "bedrock_realms.viafabricplus.warning": "This feature requires a Bedrock Edition account to be set in the settings!",
   "bedrock_realms.viafabricplus.availability_check": "Checking availability...",
   "bedrock_realms.viafabricplus.no_worlds": "No worlds found :(",
-  "bedrock_realms.viafabricplus.unavailable": "Your ViaFabricPlus is outdated and not compatible with Minecraft Realms.",
+  "bedrock_realms.viafabricplus.unavailable": "Your ViaFabricPlusLTS is outdated and not compatible with Minecraft Realms.",
   "bedrock_realms.viafabricplus.error": "An error occurred, see the logs for more information",
   "bedrock_realms.viafabricplus.join": "Join realm",
   "bedrock_realms.viafabricplus.leave": "Leave realm",
   "bedrock_realms.viafabricplus.invite": "Accept invite code",
   "bedrock_realms.viafabricplus.expired": "The Realm is expired",
   "bedrock_realms.viafabricplus.incompatible": "The Realms Minecraft version is either too old or too new",
-  "bedrock_realms.viafabricplus.unsupported_protocol": "Realms via the %s protocol is not supported. You can't join this realm."
+  "bedrock_realms.viafabricplus.unsupported_protocol": "Realms via the %s protocol is not supported. You can't join this realm.",
+
+  "protocol_selection.viafabricplus.all": "All",
+  "protocol_selection.viafabricplus.favorites": "★ Favorites",
+  "protocol_selection.viafabricplus.no_favorites": "No favorites added yet. Click ★ to add."
 }
