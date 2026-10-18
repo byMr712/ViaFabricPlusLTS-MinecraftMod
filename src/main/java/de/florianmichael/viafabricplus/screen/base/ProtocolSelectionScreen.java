@@ -138,7 +138,7 @@ public class ProtocolSelectionScreen extends VFPScreen {
         private static final int FAVORITE_COLOR = 0xFFFFAA00;
         private static final int NO_FAVORITE_COLOR = 0xFF555555;
         private static final int HOVER_STAR_COLOR = 0xFFAAAAAA;
-        private static final int STAR_CLICK_WIDTH = 25;
+        private static final int STAR_CLICK_WIDTH = 32;
 
         private final ProtocolSelectionScreen screen;
         private final ProtocolVersion protocolVersion;
