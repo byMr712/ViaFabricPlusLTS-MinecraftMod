@@ -90,12 +90,12 @@
 
   "classicube.viafabricplus.loading": "Loading profile information and server list...",
 
-  "betacraft.viafabricplus.failed_to_verify_session": "ViaFabricPlus couldn't verify your session! Please log in to an account or disable the BetaCraft authentication in the ViaFabricPlus Settings",
+  "betacraft.viafabricplus.failed_to_verify_session": "ViaFabricPlusLTS couldn't verify your session! Please log in to an account or disable the BetaCraft authentication in the ViaFabricPlusLTS Settings",
   "betacraft.viafabricplus.loading": "Loading...",
 
   "translation.viafabricplus.packet_error": "An error occurred while translating a packet! See more details in the logs!",
 
-  "classic4j_library.viafabricplus.error.token": "Incorrect token. Is your ViaFabricPlus out of date?",
+  "classic4j_library.viafabricplus.error.token": "Incorrect token. Is your ViaFabricPlusLTS out of date?",
   "classic4j_library.viafabricplus.error.username": "Invalid username.",
   "classic4j_library.viafabricplus.error.password": "Invalid password.",
   "classic4j_library.viafabricplus.error.verification": "User hasn't verified their email address yet.",

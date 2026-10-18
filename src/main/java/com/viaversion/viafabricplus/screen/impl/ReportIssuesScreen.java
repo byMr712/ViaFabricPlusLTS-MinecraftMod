@@ -45,11 +45,11 @@ public final class ReportIssuesScreen extends VFPPopup {
         super(Component.translatable("screen.viafabricplus.report_issues"), BUTTON_WIDTH + 2 * BUTTON_MARGIN, 4 * (BUTTON_HEIGHT + BUTTON_MARGIN) + BUTTON_MARGIN);
 
         actions.put("report.viafabricplus.bug_report", () -> {
-            Util.getPlatform().openUri(URI.create("https://github.com/ViaVersion/ViaFabricPlus/issues/new?assignees=&labels=bug&projects=&template=bug_report.yml"));
+            Util.getPlatform().openUri(URI.create("https://github.com/byMr712/ViaFabricPlusLTS-MinecraftMod/issues/new?assignees=&labels=bug&projects=&template=bug_report.yml"));
             showToast(Component.translatable("report.viafabricplus.bug_report.response"));
         });
         actions.put("report.viafabricplus.feature_request", () -> {
-            Util.getPlatform().openUri(URI.create("https://github.com/ViaVersion/ViaFabricPlus/issues/new?assignees=&labels=enhancement&projects=&template=feature_request.yml"));
+            Util.getPlatform().openUri(URI.create("https://github.com/byMr712/ViaFabricPlusLTS-MinecraftMod/issues/new?assignees=&labels=enhancement&projects=&template=feature_request.yml"));
             showToast(Component.translatable("report.viafabricplus.feature_request.response"));
         });
         actions.put("report.viafabricplus.create_via_dump", () -> DumpUtil.postDump(minecraft.getUser().getProfileId()).whenComplete((s, throwable) -> {
