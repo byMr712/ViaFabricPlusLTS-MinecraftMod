@@ -77,8 +77,6 @@ public class ProtocolSelectionScreen extends VFPScreen {
 
         this.addDrawableChild(ButtonWidget.builder(Text.translatable("base.viafabricplus.settings"), button -> SettingsScreen.INSTANCE.open(this)).position(width - 98 - 5, 5).size(98, 20).build());
 
-        this.addDrawableChild(ButtonWidget.builder(ServerListScreen.INSTANCE.getTitle(), button -> ServerListScreen.INSTANCE.open(this))
-                .position(5, height - 25).size(98, 20).build());
         this.addDrawableChild(ButtonWidget.builder(Text.translatable("report.viafabricplus.button"), button -> ReportIssuesScreen.INSTANCE.open(this))
                 .position(width - 98 - 5, height - 25).size(98, 20).build());
 

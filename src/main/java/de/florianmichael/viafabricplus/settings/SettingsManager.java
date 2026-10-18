@@ -39,7 +39,8 @@ public class SettingsManager {
                 BedrockSettings.global(),
                 AuthenticationSettings.global(),
                 VisualSettings.global(),
-                DebugSettings.global()
+                DebugSettings.global(),
+                Mr712Settings.global()
         );
 
         RegisterSettingsCallback.EVENT.invoker().onRegisterSettings(this, RegisterSettingsCallback.State.POST);
