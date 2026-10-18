@@ -151,5 +151,20 @@
 
   "protocol_selection.viafabricplus.all": "Все",
   "protocol_selection.viafabricplus.favorites": "★ Избранное",
-  "protocol_selection.viafabricplus.no_favorites": "Избранные версии ещё не добавлены. Нажмите ★ чтобы добавить."
+  "protocol_selection.viafabricplus.no_favorites": "Избранные версии ещё не добавлены. Нажмите ★ чтобы добавить.",
+
+  "setting_group_name.viafabricplus.mr712": "Отладка Mr712",
+  "mr712_settings.viafabricplus": "Отладка Mr712",
+  "mr712_settings.viafabricplus.fix_double_translation": "Исправлять двойную трансляцию",
+  "mr712_settings.viafabricplus.fix_double_translation.tooltip": "Помогает снизить нагрузку и количество проблем при подключении на сервера с плагинами ViaVersion/ViaBackwards, пожалуйста не отключайте эту опцию без причины!",
+  "mr712_settings.viafabricplus.server_warmup_mode": "Совместимость с гибридными серверами и прогрев",
+  "mr712_settings.viafabricplus.server_warmup_mode.short": "Режим прогрева",
+  "mr712_settings.viafabricplus.server_warmup_mode.on_demand_ui": "Предпрогрев в UI и при пинге",
+  "mr712_settings.viafabricplus.server_warmup_mode.startup_preload": "Фоновый прогрев при запуске",
+  "mr712_settings.viafabricplus.server_warmup_mode.native_priority": "Приоритет нативного протокола",
+  "mr712_settings.viafabricplus.server_warmup_mode.disabled": "Отключено (ленивая загрузка)",
+  "mr712_settings.viafabricplus.server_warmup_mode.tooltip.0": "Предпрогрев в UI и при пинге (по умолчанию): фоновая предзагрузка таблиц маппингов при выборе версии в меню или автоопределении серверов в списке, предотвращая таймауты подключения и экономя память.",
+  "mr712_settings.viafabricplus.server_warmup_mode.tooltip.1": "Фоновый прогрев при запуске: предзагрузка цепочек популярных версий (1.21.x -> 1.21.11, 1.20.x, 1.16.5, 1.12.2, 1.8.9) в фоновом потоке сразу при старте игры или открытии меню сетевой игры.",
+  "mr712_settings.viafabricplus.server_warmup_mode.tooltip.2": "Приоритет нативного протокола: при подключении к гибридным серверам (например, Paper с ViaBackwards), заявляющим поддержку нативной версии клиента, подключается нативно без трансляции на клиенте.",
+  "mr712_settings.viafabricplus.server_warmup_mode.tooltip.3": "Отключено: классическая ленивая загрузка (маппинги загружаются только при прохождении первого сетевого пакета)."
 }

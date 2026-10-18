@@ -179,5 +179,20 @@
 
   "protocol_selection.viafabricplus.all": "All",
   "protocol_selection.viafabricplus.favorites": "★ Favorites",
-  "protocol_selection.viafabricplus.no_favorites": "No favorites added yet. Click ★ to add."
+  "protocol_selection.viafabricplus.no_favorites": "No favorites added yet. Click ★ to add.",
+
+  "setting_group_name.viafabricplus.mr712": "Mr712 Debug",
+  "mr712_settings.viafabricplus": "Mr712 Debug",
+  "mr712_settings.viafabricplus.fix_double_translation": "Fix double translation",
+  "mr712_settings.viafabricplus.fix_double_translation.tooltip": "Helps reduce overhead and connection issues when connecting to servers with ViaVersion/ViaBackwards plugins. Please do not disable this option without reason!",
+  "mr712_settings.viafabricplus.server_warmup_mode": "Hybrid server compatibility & warmup",
+  "mr712_settings.viafabricplus.server_warmup_mode.short": "Warmup Mode",
+  "mr712_settings.viafabricplus.server_warmup_mode.on_demand_ui": "On-Demand UI & Ping Warmup",
+  "mr712_settings.viafabricplus.server_warmup_mode.startup_preload": "Async Startup Preload",
+  "mr712_settings.viafabricplus.server_warmup_mode.native_priority": "Native Protocol Priority",
+  "mr712_settings.viafabricplus.server_warmup_mode.disabled": "Disabled (Lazy)",
+  "mr712_settings.viafabricplus.server_warmup_mode.tooltip.0": "On-Demand UI & Ping Warmup (Default): Pre-warms protocol mapping tables in the background as soon as a version is selected in the UI or detected by ServerListPinger/Auto-Detect, eliminating connection login timeout lag while saving RAM.",
+  "mr712_settings.viafabricplus.server_warmup_mode.tooltip.1": "Async Startup Preload: Pre-warms all popular version chains (1.21.x -> 1.21.11, 1.20.x, 1.16.5, 1.12.2, 1.8.9) in a background thread upon game launch or opening Multiplayer screen.",
+  "mr712_settings.viafabricplus.server_warmup_mode.tooltip.2": "Native Protocol Priority: When connecting to hybrid servers (e.g. Paper with ViaBackwards) that advertise native support, connects natively without client-side translation to avoid overhead.",
+  "mr712_settings.viafabricplus.server_warmup_mode.tooltip.3": "Disabled: Classic lazy loading (mappings are loaded only on the first network packet)."
 }
