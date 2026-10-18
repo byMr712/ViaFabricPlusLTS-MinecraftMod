@@ -57,6 +57,8 @@
   "general_settings.viafabricplus.load_skins_and_skulls_in_legacy_versions": "Скины и головы игроков в старых версиях",
   "general_settings.viafabricplus.emulate_inventory_actions_in_alpha_versions": "Эмулировать действия в инвентаре в alpha-версиях",
   "general_settings.viafabricplus.save_scroll_position_in_slot_screens": "Запоминать позицию прокрутки в настройках ViaFabricPlus",
+  "general_settings.viafabricplus.fix_double_translation": "Исправлять двойную трансляцию",
+  "general_settings.viafabricplus.fix_double_translation.tooltip": "Помогает снизить нагрузку и количество проблем при подключении на сервера с плагинами ViaVersion/ViaBackwards, пожалуйста не отключайте эту опцию без причины!",
   "general_settings.viafabricplus.show_mr712_debug_settings": "Показывать настройки для отладки Mr712",
   "general_settings.viafabricplus.show_mr712_debug_settings.tooltip": "Отображает расширенные параметры отладки, режим совместимости и переключатели прогрева пайплайна Mr712.",
   "general_settings.viafabricplus.server_warmup_mode": "Совместимость с гибридными серверами и прогрев",

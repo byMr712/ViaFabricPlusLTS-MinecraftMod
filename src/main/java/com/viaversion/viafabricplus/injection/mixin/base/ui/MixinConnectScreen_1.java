@@ -29,6 +29,7 @@ import com.viaversion.viafabricplus.protocoltranslator.impl.provider.vialegacy.V
 import com.viaversion.viafabricplus.protocoltranslator.util.ProtocolVersionDetector;
 import com.viaversion.viafabricplus.save.SaveManager;
 import com.viaversion.viafabricplus.settings.impl.AuthenticationSettings;
+import com.viaversion.viafabricplus.settings.impl.GeneralSettings;
 import com.viaversion.viaversion.api.protocol.version.ProtocolVersion;
 import de.florianmichael.classic4j.model.classicube.account.CCAccount;
 import io.netty.channel.ChannelFuture;
@@ -74,16 +75,27 @@ public abstract class MixinConnectScreen_1 {
             targetVersion = mixinServerInfo.viaFabricPlus$forcedVersion();
             mixinServerInfo.viaFabricPlus$passDirectConnectScreen(false); // reset state
         }
-        try {
-            final ProtocolVersion detected = ProtocolVersionDetector.get(field_33737, address, ProtocolTranslator.NATIVE_VERSION);
-            if (detected == ProtocolTranslator.NATIVE_VERSION) {
-                targetVersion = ProtocolTranslator.NATIVE_VERSION;
-            } else if (targetVersion == ProtocolTranslator.AUTO_DETECT_PROTOCOL) {
-                targetVersion = detected;
+        if (GeneralSettings.INSTANCE.fixDoubleTranslation.getValue()) {
+            try {
+                final ProtocolVersion detected = ProtocolVersionDetector.get(field_33737, address, ProtocolTranslator.NATIVE_VERSION);
+                if (detected == ProtocolTranslator.NATIVE_VERSION) {
+                    targetVersion = ProtocolTranslator.NATIVE_VERSION;
+                } else if (targetVersion == ProtocolTranslator.AUTO_DETECT_PROTOCOL) {
+                    targetVersion = detected;
+                }
+            } catch (final Throwable t) {
+                if (targetVersion == ProtocolTranslator.AUTO_DETECT_PROTOCOL) {
+                    throw new RuntimeException("Автоопределение версии не удалось, попробуйте указать её вручную в названии сервера или меню ViaFabricPlus в меню серверов", t);
+                }
             }
-        } catch (final Throwable t) {
+        } else {
             if (targetVersion == ProtocolTranslator.AUTO_DETECT_PROTOCOL) {
-                throw new RuntimeException("Автоопределение версии не удалось, попробуйте указать её вручную в названии сервера или меню ViaFabricPlus в меню серверов", t);
+                this.field_2416.setStatus(Text.translatable("base.viafabricplus.detecting_server_version"));
+                try {
+                    targetVersion = ProtocolVersionDetector.get(field_33737, address, ProtocolTranslator.NATIVE_VERSION);
+                } catch (final Throwable t) {
+                    throw new RuntimeException("Автоопределение версии не удалось, попробуйте указать её вручную в названии сервера или меню ViaFabricPlus в меню серверов", t);
+                }
             }
         }
         ProtocolTranslator.setTargetVersion(targetVersion, true);

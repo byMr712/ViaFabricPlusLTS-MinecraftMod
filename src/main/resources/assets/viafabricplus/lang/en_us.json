@@ -56,6 +56,8 @@
   "general_settings.viafabricplus.load_skins_and_skulls_in_legacy_versions": "Load skins and skulls in legacy versions",
   "general_settings.viafabricplus.emulate_inventory_actions_in_alpha_versions": "Emulate inventory actions in alpha versions",
   "general_settings.viafabricplus.save_scroll_position_in_slot_screens": "Save scroll position in slot screens",
+  "general_settings.viafabricplus.fix_double_translation": "Fix double translation",
+  "general_settings.viafabricplus.fix_double_translation.tooltip": "Helps reduce overhead and connection issues when connecting to servers with ViaVersion/ViaBackwards plugins. Please do not disable this option without reason!",
   "general_settings.viafabricplus.show_mr712_debug_settings": "Show Mr712 debug settings",
   "general_settings.viafabricplus.show_mr712_debug_settings.tooltip": "Displays advanced debug options, compatibility mode, and Mr712 protocol pipeline warmup toggles.",
   "general_settings.viafabricplus.server_warmup_mode": "Hybrid server compatibility & warmup",
