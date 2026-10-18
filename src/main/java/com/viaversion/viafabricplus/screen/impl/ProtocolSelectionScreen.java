@@ -72,10 +72,6 @@ public final class ProtocolSelectionScreen extends VFPScreen {
 
         updateTabButtons();
 
-        final Button serverList = this.addRenderableWidget(Button.builder(ServerListScreen.INSTANCE.getTitle(), button -> ServerListScreen.INSTANCE.open(this))
-            .pos(5, height - 25).size(98, 20).build());
-        serverList.active = Minecraft.getInstance().getConnection() == null;
-
         this.addRenderableWidget(Button.builder(Component.translatable("report.viafabricplus.button"), button -> ReportIssuesScreen.INSTANCE.open(this))
             .pos(width - 98 - 5, height - 25).size(98, 20).build());
 
