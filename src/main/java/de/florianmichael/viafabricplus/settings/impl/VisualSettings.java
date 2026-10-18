@@ -79,6 +79,7 @@ public class VisualSettings extends SettingGroup {
 
     // 1.9 -> 1.8.x
     public final VersionedBooleanSetting alwaysRenderCrosshair = new VersionedBooleanSetting(this, Text.translatable("visual_settings.viafabricplus.always_render_crosshair"), VersionRange.andOlder(ProtocolVersion.v1_8));
+    public final VersionedBooleanSetting allowItemUsageWhileMining = new VersionedBooleanSetting(this, Text.translatable("visual_settings.viafabricplus.allow_item_usage_while_mining"), VersionRange.andOlder(ProtocolVersion.v1_8));
     public final VersionedBooleanSetting emulateArmorHud = new VersionedBooleanSetting(this, Text.translatable("visual_settings.viafabricplus.emulate_armor_hud"), VersionRange.andOlder(ProtocolVersion.v1_8));
     public final VersionedBooleanSetting hideModernCommandBlockScreenFeatures = new VersionedBooleanSetting(this, Text.translatable("visual_settings.viafabricplus.hide_modern_command_block_screen_features"), VersionRange.andOlder(ProtocolVersion.v1_8));
     public final VersionedBooleanSetting swordBlockingAnimation = new VersionedBooleanSetting(this, Text.translatable("visual_settings.viafabricplus.sword_blocking_animation"), VersionRange.andOlder(ProtocolVersion.v1_8));
@@ -110,6 +111,7 @@ public class VisualSettings extends SettingGroup {
 
         hideDownloadTerrainScreenTransitionEffects.setValue(VersionedBooleanSetting.DISABLED_INDEX);
         forceUnicodeFontForNonAsciiLanguages.setValue(VersionedBooleanSetting.DISABLED_INDEX);
+        allowItemUsageWhileMining.setValue(VersionedBooleanSetting.DISABLED_INDEX);
     }
 
     public static VisualSettings global() {
