@@ -35,8 +35,7 @@ import net.minecraft.client.gui.widget.ButtonWidget;
 import net.minecraft.client.util.math.MatrixStack;
 import net.minecraft.text.Text;
 
-import com.viaversion.viafabricplus.settings.impl.Mr712Settings;
-import net.minecraft.client.gui.tooltip.Tooltip;
+
 
 import java.awt.Color;
 
@@ -55,43 +54,17 @@ public final class ProtocolSelectionScreen extends VFPScreen {
         this.addDrawableChild(new SlotList(this.client, width, height, 3 + 3 /* start offset */ + (textRenderer.fontHeight + 2) * 3 /* title is 2 */, 30, textRenderer.fontHeight + 4));
         this.addDrawableChild(ButtonWidget.builder(Text.translatable("base.viafabricplus.settings"), button -> SettingsScreen.INSTANCE.open(this)).position(width - 98 - 5, 5).size(98, 20).build());
 
+        // Кнопка «Серверы» оставлена в кодовой базе, но скрыта из отображения (так и должно быть)
+        /*
         final ButtonWidget serverList = this.addDrawableChild(ButtonWidget.builder(ServerListScreen.INSTANCE.getTitle(), button -> ServerListScreen.INSTANCE.open(this))
                 .position(5, height - 25).size(98, 20).build());
         serverList.active = MinecraftClient.getInstance().getNetworkHandler() == null;
-
-        // Interactive Warmup / Hybrid Server Mode button directly on the main ViaFabricPlus screen
-        this.addDrawableChild(ButtonWidget.builder(
-                getWarmupButtonText(),
-                button -> {
-                    final int nextIndex = (Mr712Settings.INSTANCE.serverWarmupMode.getIndex() + 1) % Mr712Settings.INSTANCE.serverWarmupMode.getOptions().length;
-                    Mr712Settings.INSTANCE.serverWarmupMode.setValue(nextIndex);
-                    try {
-                        if (com.viaversion.viafabricplus.save.SaveManager.INSTANCE.getSettingsSave() != null) {
-                            com.viaversion.viafabricplus.save.SaveManager.INSTANCE.getSettingsSave().save();
-                        }
-                    } catch (final Throwable ignored) {
-                    }
-                    button.setMessage(getWarmupButtonText());
-                    button.setTooltip(Tooltip.of(Mr712Settings.INSTANCE.serverWarmupMode.getTooltip()));
-
-                    if (nextIndex == 1) {
-                        com.viaversion.viafabricplus.protocoltranslator.util.ProtocolWarmupManager.onClientOrMultiplayerInit();
-                    } else if (nextIndex == 0) {
-                        com.viaversion.viafabricplus.protocoltranslator.util.ProtocolWarmupManager.warmupAsync(ProtocolTranslator.getTargetVersion());
-                    }
-                }
-        ).position(width / 2 - 100, height - 25).size(200, 20).tooltip(Tooltip.of(Mr712Settings.INSTANCE.serverWarmupMode.getTooltip())).build());
+        */
 
         this.addDrawableChild(ButtonWidget.builder(Text.translatable("report.viafabricplus.button"), button -> ReportIssuesScreen.INSTANCE.open(this))
                 .position(width - 98 - 5, height - 25).size(98, 20).build());
 
         super.init();
-    }
-
-    private static Text getWarmupButtonText() {
-        return Text.translatable("mr712_settings.viafabricplus.server_warmup_mode.short")
-                .append(": ")
-                .append(Mr712Settings.INSTANCE.serverWarmupMode.getValue());
     }
 
     public static class SlotList extends VFPList {

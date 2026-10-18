@@ -8,13 +8,13 @@
 ![ModMenu](https://img.shields.io/badge/ModMenu-Supported-blue.svg)
 ![License](https://img.shields.io/badge/License-GPL_3.0-blue.svg)
 
-An extended fork of **ViaFabricPlus** for **Minecraft 1.21.4 (Fabric)** that restores the ability for older client versions to connect to ALL servers up to the latest releases (**1.21.11** and **26.3**), something upstream does not provide.
+An extended fork of **ViaFabricPlus** for **Minecraft 1.21.4 (Fabric)** that restores the ability for older client versions to connect to ALL servers up to the latest releases.
 
 ---
 
 ## What Does This Mod Do? (Player Friendly)
 
-The original [ViaFabricPlus](https://github.com/ViaVersion/ViaFabricPlus) by FlorianMichael and the ViaVersion team follows a strict policy: development targets **only the very latest Minecraft release**, while support for older client versions is dropped immediately upon a new Minecraft release.
+The original [ViaFabricPlus](https://github.com/ViaVersion/ViaFabricPlus) project by FlorianMichael and the ViaVersion team primarily focuses on supporting the latest Minecraft versions: when new updates arrive, active development naturally transitions to the newest client releases.
 
 This puts players in a frustrating situation:
 - Either remain on a favorite stable version (e.g. 1.21.4) with a custom-tuned modpack, but lose access to modern servers;
@@ -70,7 +70,17 @@ The resulting `.jar` file will be generated in `build/libs/`.
 
 ---
 
-## License
+## License & Attribution
 
-All original work belongs to [ViaVersion](https://github.com/ViaVersion) / [FlorianMichael](https://github.com/FlorianMichael) / [RaphiMC](https://github.com/RaphiMC) and ViaFabricPlus contributors.  
-This project is licensed under the **GPL-3.0 License**.
+- **Original Project:** [ViaFabricPlus](https://github.com/ViaVersion/ViaFabricPlus)  
+  Authors: [FlorianMichael/EnZaXD](https://github.com/FlorianMichael), [RK_01/RaphiMC](https://github.com/RaphiMC), and ViaVersion contributors.  
+  Licensed under the **GNU General Public License v3.0 (GPL-3.0)**.
+- **Fork Maintainer:** [byMr712](https://github.com/byMr712)
+- **Fork Contributions:**
+  - Backporting and adapting modern ViaVersion / ViaBackwards protocol translation libraries for Minecraft 1.21.4 client.
+  - Enabling connections to modern server releases (including 1.21.11 and 26.3).
+  - Dynamic double translation optimization (`fixDoubleTranslation`).
+  - Asynchronous background protocol pre-warming (`ProtocolWarmupManager`).
+  - Safe Netty packet decoding defense against malformed Brigadier command trees (`Safe Netty Decoder`).
+  - Localization and dedicated Mr712 Debug settings group.
+- **License:** In full accordance with GPL-3.0, this fork remains free, open-source software distributed under the terms of the **GPL-3.0 License**. All original copyrights and author attributions are preserved.
