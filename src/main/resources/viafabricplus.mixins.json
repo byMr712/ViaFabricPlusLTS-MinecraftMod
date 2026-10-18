@@ -41,6 +41,8 @@
     "compat.lithium.MixinEntity",
     "compat.minecraftauth.MixinClasses",
     "compat.minecraftauth.MixinDefaultJwtParserBuilder",
+    "fixes.authlib.MixinProperty",
+    "fixes.authlib.MixinYggdrasilServicesKeyInfo",
     "features.april_fools_8bit_sound.MixinStaticSound",
     "features.bedrock.allow_new_line.MixinTextRenderer",
     "features.bedrock.reach_around_raycast.MixinGameRenderer",
