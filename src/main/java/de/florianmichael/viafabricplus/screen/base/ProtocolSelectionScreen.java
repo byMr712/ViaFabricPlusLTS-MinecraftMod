@@ -20,6 +20,7 @@
 package de.florianmichael.viafabricplus.screen.base;
 
 import com.viaversion.viaversion.api.protocol.version.ProtocolVersion;
+import de.florianmichael.viafabricplus.ViaFabricPlus;
 import de.florianmichael.viafabricplus.protocoltranslator.ProtocolTranslator;
 import de.florianmichael.viafabricplus.screen.VFPList;
 import de.florianmichael.viafabricplus.screen.VFPListEntry;
@@ -39,15 +40,41 @@ public class ProtocolSelectionScreen extends VFPScreen {
 
     public static final ProtocolSelectionScreen INSTANCE = new ProtocolSelectionScreen();
 
+    private SlotList slotList;
+    private boolean showFavoritesOnly = false;
+    private ButtonWidget allTabButton;
+    private ButtonWidget favoritesTabButton;
+
     protected ProtocolSelectionScreen() {
         super("ViaFabricPlus", true);
     }
 
     @Override
     protected void init() {
-        // List and Settings
         this.setupDefaultSubtitle();
-        this.addDrawableChild(new SlotList(this.client, width, height, 3 + 3 /* start offset */ + (textRenderer.fontHeight + 2) * 3 /* title is 2 */, 30, textRenderer.fontHeight + 4));
+
+        // Tabs: "All" and "★ Favorites"
+        final int tabY = 5;
+        this.addDrawableChild(this.allTabButton = ButtonWidget.builder(Text.translatable("protocol_selection.viafabricplus.all"), button -> {
+            this.showFavoritesOnly = false;
+            updateTabButtons();
+            if (this.slotList != null) {
+                this.slotList.populate(false);
+            }
+        }).position(5, tabY).size(50, 20).build());
+
+        this.addDrawableChild(this.favoritesTabButton = ButtonWidget.builder(Text.translatable("protocol_selection.viafabricplus.favorites"), button -> {
+            this.showFavoritesOnly = true;
+            updateTabButtons();
+            if (this.slotList != null) {
+                this.slotList.populate(true);
+            }
+        }).position(58, tabY).size(95, 20).build());
+
+        updateTabButtons();
+
+        this.addDrawableChild(this.slotList = new SlotList(this, this.client, width, height, 3 + 3 /* start offset */ + (textRenderer.fontHeight + 2) * 3 /* title is 2 */, 30, textRenderer.fontHeight + 4, this.showFavoritesOnly));
+
         this.addDrawableChild(ButtonWidget.builder(Text.translatable("base.viafabricplus.settings"), button -> SettingsScreen.INSTANCE.open(this)).position(width - 98 - 5, 5).size(98, 20).build());
 
         this.addDrawableChild(ButtonWidget.builder(ServerListScreen.INSTANCE.getTitle(), button -> ServerListScreen.INSTANCE.open(this))
@@ -58,14 +85,46 @@ public class ProtocolSelectionScreen extends VFPScreen {
         super.init();
     }
 
+    private void updateTabButtons() {
+        if (this.allTabButton != null && this.favoritesTabButton != null) {
+            this.allTabButton.active = this.showFavoritesOnly;
+            this.favoritesTabButton.active = !this.showFavoritesOnly;
+        }
+    }
+
+    public void onFavoriteToggled(final ProtocolVersion version) {
+        if (this.showFavoritesOnly && this.slotList != null) {
+            this.slotList.populate(true);
+        }
+    }
+
+    @Override
+    public void render(DrawContext context, int mouseX, int mouseY, float delta) {
+        super.render(context, mouseX, mouseY, delta);
+        if (this.showFavoritesOnly && this.slotList != null && this.slotList.children().isEmpty()) {
+            context.drawCenteredTextWithShadow(this.textRenderer, Text.translatable("protocol_selection.viafabricplus.no_favorites"), width / 2, height / 2, 0xFFAAAAAA);
+        }
+    }
+
     public static class SlotList extends VFPList {
         private static double scrollAmount;
+        private final ProtocolSelectionScreen screen;
 
-        public SlotList(MinecraftClient minecraftClient, int width, int height, int top, int bottom, int entryHeight) {
+        public SlotList(ProtocolSelectionScreen screen, MinecraftClient minecraftClient, int width, int height, int top, int bottom, int entryHeight, boolean favoritesOnly) {
             super(minecraftClient, width, height, top, bottom, entryHeight);
+            this.screen = screen;
 
-            ProtocolVersionList.getProtocolsNewToOld().stream().map(ProtocolSlot::new).forEach(this::addEntry);
+            populate(favoritesOnly);
             initScrollAmount(scrollAmount);
+        }
+
+        public void populate(final boolean favoritesOnly) {
+            this.clearEntries();
+            final var settingsSave = ViaFabricPlus.global().getSaveManager().getSettingsSave();
+            ProtocolVersionList.getProtocolsNewToOld().stream()
+                    .filter(it -> !favoritesOnly || settingsSave.isFavorite(it))
+                    .map(it -> new ProtocolSlot(this.screen, it))
+                    .forEach(this::addEntry);
         }
 
         @Override
@@ -75,10 +134,17 @@ public class ProtocolSelectionScreen extends VFPScreen {
     }
 
     public static class ProtocolSlot extends VFPListEntry {
+        private static final String STAR = "★";
+        private static final int FAVORITE_COLOR = 0xFFFFAA00;
+        private static final int NO_FAVORITE_COLOR = 0xFF555555;
+        private static final int HOVER_STAR_COLOR = 0xFFAAAAAA;
+        private static final int STAR_CLICK_WIDTH = 25;
 
+        private final ProtocolSelectionScreen screen;
         private final ProtocolVersion protocolVersion;
 
-        public ProtocolSlot(final ProtocolVersion protocolVersion) {
+        public ProtocolSlot(final ProtocolSelectionScreen screen, final ProtocolVersion protocolVersion) {
+            this.screen = screen;
             this.protocolVersion = protocolVersion;
         }
 
@@ -88,21 +154,42 @@ public class ProtocolSelectionScreen extends VFPScreen {
         }
 
         @Override
-        public void mappedMouseClicked(double mouseX, double mouseY, int button) {
+        public boolean mouseClicked(double mouseX, double mouseY, int button) {
+            if (mouseX >= this.x + this.entryWidth - STAR_CLICK_WIDTH && mouseX <= this.x + this.entryWidth) {
+                ViaFabricPlus.global().getSaveManager().getSettingsSave().toggleFavorite(this.protocolVersion);
+                VFPScreen.playClickSound();
+                this.screen.onFavoriteToggled(this.protocolVersion);
+                return true;
+            }
+
             ProtocolTranslator.setTargetVersion(this.protocolVersion);
+            VFPScreen.playClickSound();
+            return true;
         }
 
         @Override
         public void render(DrawContext context, int index, int y, int x, int entryWidth, int entryHeight, int mouseX, int mouseY, boolean hovered, float tickDelta) {
+            this.x = x;
+            this.y = y;
+            this.entryWidth = entryWidth;
+            this.entryHeight = entryHeight;
+
             final boolean isSelected = ProtocolTranslator.getTargetVersion().equals(protocolVersion);
+            final boolean isFav = ViaFabricPlus.global().getSaveManager().getSettingsSave().isFavorite(this.protocolVersion);
+            final boolean isStarHovered = hovered && mouseX >= x + entryWidth - STAR_CLICK_WIDTH && mouseX <= x + entryWidth;
 
             final MatrixStack matrices = context.getMatrices();
-
             matrices.push();
             matrices.translate(x, y - 1, 0);
 
             final TextRenderer textRenderer = MinecraftClient.getInstance().textRenderer;
             context.drawCenteredTextWithShadow(textRenderer, this.protocolVersion.getName(), entryWidth / 2, entryHeight / 2 - textRenderer.fontHeight / 2, isSelected ? Color.GREEN.getRGB() : Color.RED.getRGB());
+
+            final int starX = entryWidth - 18;
+            final int starY = entryHeight / 2 - textRenderer.fontHeight / 2;
+            final int starColor = isFav ? FAVORITE_COLOR : (isStarHovered ? HOVER_STAR_COLOR : NO_FAVORITE_COLOR);
+            context.drawTextWithShadow(textRenderer, STAR, starX, starY, starColor);
+
             matrices.pop();
         }
     }
