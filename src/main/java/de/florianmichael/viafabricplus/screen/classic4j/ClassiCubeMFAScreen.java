@@ -67,6 +67,7 @@ public class ClassiCubeMFAScreen extends VFPScreen {
 
                 @Override
                 public void handleException(Throwable throwable) {
+                    ViaFabricPlus.global().getSaveManager().getAccountsSave().setClassicubeAccount(null);
                     setupSubtitle(Text.of(throwable.getMessage()));
                 }
             });

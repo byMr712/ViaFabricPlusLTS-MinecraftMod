@@ -68,7 +68,11 @@ public abstract class MixinConnectScreen_1 {
         }
         if (targetVersion == ProtocolTranslator.AUTO_DETECT_PROTOCOL) {
             this.field_2416.setStatus(Text.translatable("base.viafabricplus.detecting_server_version"));
-            targetVersion = ProtocolVersionDetector.get(address, ProtocolTranslator.NATIVE_VERSION);
+            try {
+                targetVersion = ProtocolVersionDetector.get(address, ProtocolTranslator.NATIVE_VERSION);
+            } catch (final Throwable ignored) {
+                // Don't let this one through as not relevant
+            }
         }
         ProtocolTranslator.setTargetVersion(targetVersion, true);
 
