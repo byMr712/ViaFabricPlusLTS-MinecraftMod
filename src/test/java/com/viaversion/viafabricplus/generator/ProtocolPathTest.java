@@ -238,8 +238,8 @@ public class ProtocolPathTest {
 
     @Test
     public void testFixDoubleTranslationSetting() {
-        org.junit.jupiter.api.Assertions.assertTrue(com.viaversion.viafabricplus.settings.impl.GeneralSettings.INSTANCE.fixDoubleTranslation.getValue(), "fixDoubleTranslation must be enabled by default");
-        org.junit.jupiter.api.Assertions.assertNotNull(com.viaversion.viafabricplus.settings.impl.GeneralSettings.INSTANCE.fixDoubleTranslation.getTooltip());
+        org.junit.jupiter.api.Assertions.assertTrue(com.viaversion.viafabricplus.settings.impl.Mr712Settings.INSTANCE.fixDoubleTranslation.getValue(), "fixDoubleTranslation must be enabled by default");
+        org.junit.jupiter.api.Assertions.assertNotNull(com.viaversion.viafabricplus.settings.impl.Mr712Settings.INSTANCE.fixDoubleTranslation.getTooltip());
     }
 
     private static int readVarInt(java.io.DataInputStream in) throws java.io.IOException {

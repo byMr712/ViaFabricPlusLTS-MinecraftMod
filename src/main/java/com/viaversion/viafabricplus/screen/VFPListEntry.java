@@ -116,7 +116,9 @@ public abstract class VFPListEntry extends AlwaysSelectedEntryListWidget.Entry<V
      */
     public void renderTooltip(final @Nullable Text tooltip, final int mouseX, final int mouseY) {
         if (tooltip != null && mouseX >= x && mouseX <= x + entryWidth && mouseY >= y && mouseY <= y + entryHeight) {
-            context.drawTooltip(MinecraftClient.getInstance().textRenderer, tooltip, mouseX - x, mouseY - y);
+            final MinecraftClient client = MinecraftClient.getInstance();
+            final int maxWidth = Math.min(240, Math.max(160, (client.currentScreen != null ? client.currentScreen.width - 40 : 240)));
+            context.drawOrderedTooltip(client.textRenderer, client.textRenderer.wrapLines(tooltip, maxWidth), mouseX - x, mouseY - y);
         }
     }
 

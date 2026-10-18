@@ -29,9 +29,9 @@ This project changes that philosophy: **it brings modern server connectivity bac
 
 - **Backported Server Compatibility up to 26.3 / 1.21.11:** Bundles modern ViaVersion and ViaBackwards libraries, allowing a 1.21.4 client to join servers of any version — from the first multiplayer Classic c0.0.15 release to modern snapshots and releases.
 - **Async Protocol Warmup:** Eliminates the notorious 30-second login timeout ("ReadTimeoutException") when first connecting to newer versions. Mapping tables and pipelines are pre-warmed in the background upon UI selection or server pinging.
-- **"Fix Double Translation" Option:** Enabled by default in the mod's General Settings. When connecting to servers with ViaVersion / ViaBackwards plugins, dynamically detects if the server supports the client's native protocol and bypasses redundant client-side packet conversion. This significantly reduces CPU overhead, latency, and anticheat desyncs, while keeping the user's manual version settings intact.
+- **"Fix Double Translation" Option:** Enabled by default in the mod's "Mr712 Debug" settings group. When connecting to servers with ViaVersion / ViaBackwards plugins, dynamically detects if the server supports the client's native protocol and bypasses redundant client-side packet conversion. This significantly reduces CPU overhead, latency, and anticheat desyncs, while keeping the user's manual version settings intact.
 - **Safe Netty Packet Decoder:** Gracefully recovers from malformed Brigadier command tree packets (`CommandTreeS2CPacket`) and trailing buffer bytes by substituting safe fallbacks, preventing unnecessary disconnects.
-- **Mr712 Debug Settings Toggle:** Advanced warmup and compatibility options are neatly tucked away behind an optional developer toggle in the mod settings.
+- **Mr712 Debug Settings Section:** Dedicated settings section in the mod settings screen containing advanced compatibility options, pipeline warmup mode toggles, and the double translation fix.
 
 ---
 
@@ -49,7 +49,7 @@ This project changes that philosophy: **it brings modern server connectivity bac
 
 ## Installation
 
-1. Download the latest release `ViaFabricPlusLTS-1.21.4-byMr712.jar` from the [Releases](https://github.com/byMr712/ViaFabricPlusLTS-MinecraftMod/releases) page.
+1. Download the latest release `MrViaFabricPlusLTS-1.21.4-byMr712.jar` from the [Releases](https://github.com/byMr712/ViaFabricPlusLTS-MinecraftMod/releases) page.
 2. Place the `.jar` into your Minecraft instance's `mods` folder.
 3. Ensure you have **Fabric Loader** (>=0.16.10) and **Fabric API** installed for your Minecraft version.
 4. Launch the game — the version selector button will appear on the title and multiplayer screens.

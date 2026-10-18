@@ -2,7 +2,7 @@
   "schemaVersion": 1,
   "id": "viafabricplus",
   "version": "${version}",
-  "name": "ViaFabricPlusLTS",
+  "name": "[MR] ViaFabricPlusLTS",
   "description": "${description}",
   "authors": [
     {
@@ -36,6 +36,7 @@
     }
   ],
   "contact": {
+    "homepage": "https://github.com/byMr712/ViaFabricPlusLTS-MinecraftMod",
     "sources": "https://github.com/byMr712/ViaFabricPlusLTS-MinecraftMod",
     "issues": "https://github.com/byMr712/ViaFabricPlusLTS-MinecraftMod/issues"
   },

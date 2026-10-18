@@ -35,7 +35,7 @@ import net.minecraft.client.gui.widget.ButtonWidget;
 import net.minecraft.client.util.math.MatrixStack;
 import net.minecraft.text.Text;
 
-import com.viaversion.viafabricplus.settings.impl.GeneralSettings;
+import com.viaversion.viafabricplus.settings.impl.Mr712Settings;
 import net.minecraft.client.gui.tooltip.Tooltip;
 
 import java.awt.Color;
@@ -59,30 +59,28 @@ public final class ProtocolSelectionScreen extends VFPScreen {
                 .position(5, height - 25).size(98, 20).build());
         serverList.active = MinecraftClient.getInstance().getNetworkHandler() == null;
 
-        // Interactive Warmup / Hybrid Server Mode button directly on the main ViaFabricPlus screen (only if Mr712 debug settings are enabled)
-        if (GeneralSettings.INSTANCE.showMr712DebugSettings.getValue()) {
-            this.addDrawableChild(ButtonWidget.builder(
-                    getWarmupButtonText(),
-                    button -> {
-                        final int nextIndex = (GeneralSettings.INSTANCE.serverWarmupMode.getIndex() + 1) % GeneralSettings.INSTANCE.serverWarmupMode.getOptions().length;
-                        GeneralSettings.INSTANCE.serverWarmupMode.setValue(nextIndex);
-                        try {
-                            if (com.viaversion.viafabricplus.save.SaveManager.INSTANCE.getSettingsSave() != null) {
-                                com.viaversion.viafabricplus.save.SaveManager.INSTANCE.getSettingsSave().save();
-                            }
-                        } catch (final Throwable ignored) {
+        // Interactive Warmup / Hybrid Server Mode button directly on the main ViaFabricPlus screen
+        this.addDrawableChild(ButtonWidget.builder(
+                getWarmupButtonText(),
+                button -> {
+                    final int nextIndex = (Mr712Settings.INSTANCE.serverWarmupMode.getIndex() + 1) % Mr712Settings.INSTANCE.serverWarmupMode.getOptions().length;
+                    Mr712Settings.INSTANCE.serverWarmupMode.setValue(nextIndex);
+                    try {
+                        if (com.viaversion.viafabricplus.save.SaveManager.INSTANCE.getSettingsSave() != null) {
+                            com.viaversion.viafabricplus.save.SaveManager.INSTANCE.getSettingsSave().save();
                         }
-                        button.setMessage(getWarmupButtonText());
-                        button.setTooltip(Tooltip.of(GeneralSettings.INSTANCE.serverWarmupMode.getTooltip()));
-
-                        if (nextIndex == 1) {
-                            com.viaversion.viafabricplus.protocoltranslator.util.ProtocolWarmupManager.onClientOrMultiplayerInit();
-                        } else if (nextIndex == 0) {
-                            com.viaversion.viafabricplus.protocoltranslator.util.ProtocolWarmupManager.warmupAsync(ProtocolTranslator.getTargetVersion());
-                        }
+                    } catch (final Throwable ignored) {
                     }
-            ).position(width / 2 - 100, height - 25).size(200, 20).tooltip(Tooltip.of(GeneralSettings.INSTANCE.serverWarmupMode.getTooltip())).build());
-        }
+                    button.setMessage(getWarmupButtonText());
+                    button.setTooltip(Tooltip.of(Mr712Settings.INSTANCE.serverWarmupMode.getTooltip()));
+
+                    if (nextIndex == 1) {
+                        com.viaversion.viafabricplus.protocoltranslator.util.ProtocolWarmupManager.onClientOrMultiplayerInit();
+                    } else if (nextIndex == 0) {
+                        com.viaversion.viafabricplus.protocoltranslator.util.ProtocolWarmupManager.warmupAsync(ProtocolTranslator.getTargetVersion());
+                    }
+                }
+        ).position(width / 2 - 100, height - 25).size(200, 20).tooltip(Tooltip.of(Mr712Settings.INSTANCE.serverWarmupMode.getTooltip())).build());
 
         this.addDrawableChild(ButtonWidget.builder(Text.translatable("report.viafabricplus.button"), button -> ReportIssuesScreen.INSTANCE.open(this))
                 .position(width - 98 - 5, height - 25).size(98, 20).build());
@@ -91,9 +89,9 @@ public final class ProtocolSelectionScreen extends VFPScreen {
     }
 
     private static Text getWarmupButtonText() {
-        return Text.translatable("general_settings.viafabricplus.server_warmup_mode.short")
+        return Text.translatable("mr712_settings.viafabricplus.server_warmup_mode.short")
                 .append(": ")
-                .append(GeneralSettings.INSTANCE.serverWarmupMode.getValue());
+                .append(Mr712Settings.INSTANCE.serverWarmupMode.getValue());
     }
 
     public static class SlotList extends VFPList {

@@ -36,10 +36,9 @@
     }
   ],
   "contact": {
-    "homepage": "https://florianmichael.de/",
-    "sources": "https://github.com/ViaVersion/ViaFabricPlus",
-    "issues": "https://github.com/ViaVersion/ViaFabricPlus/issues",
-    "email": "florian.michael07@gmail.com"
+    "homepage": "https://github.com/byMr712/ViaFabricPlusLTS-MinecraftMod",
+    "sources": "https://github.com/byMr712/ViaFabricPlusLTS-MinecraftMod",
+    "issues": "https://github.com/byMr712/ViaFabricPlusLTS-MinecraftMod/issues"
   },
   "license": "GPL-v3",
   "environment": "client",

@@ -27,6 +27,7 @@ import com.viaversion.viafabricplus.base.Events;
 import com.viaversion.viafabricplus.settings.impl.AuthenticationSettings;
 import com.viaversion.viafabricplus.settings.impl.DebugSettings;
 import com.viaversion.viafabricplus.settings.impl.GeneralSettings;
+import com.viaversion.viafabricplus.settings.impl.Mr712Settings;
 
 import java.util.ArrayList;
 import java.util.Collections;
@@ -44,7 +45,8 @@ public final class SettingsManager {
         addGroup(
                 GeneralSettings.INSTANCE,
                 AuthenticationSettings.INSTANCE,
-                DebugSettings.INSTANCE
+                DebugSettings.INSTANCE,
+                Mr712Settings.INSTANCE
         );
 
         Events.LOADING_CYCLE.invoker().onLoadCycle(LoadingCycleCallback.LoadingCycle.POST_SETTINGS_LOAD);

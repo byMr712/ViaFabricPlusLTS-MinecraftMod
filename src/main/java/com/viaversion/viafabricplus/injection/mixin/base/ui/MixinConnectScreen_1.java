@@ -30,6 +30,7 @@ import com.viaversion.viafabricplus.protocoltranslator.util.ProtocolVersionDetec
 import com.viaversion.viafabricplus.save.SaveManager;
 import com.viaversion.viafabricplus.settings.impl.AuthenticationSettings;
 import com.viaversion.viafabricplus.settings.impl.GeneralSettings;
+import com.viaversion.viafabricplus.settings.impl.Mr712Settings;
 import com.viaversion.viaversion.api.protocol.version.ProtocolVersion;
 import de.florianmichael.classic4j.model.classicube.account.CCAccount;
 import io.netty.channel.ChannelFuture;
@@ -75,7 +76,7 @@ public abstract class MixinConnectScreen_1 {
             targetVersion = mixinServerInfo.viaFabricPlus$forcedVersion();
             mixinServerInfo.viaFabricPlus$passDirectConnectScreen(false); // reset state
         }
-        if (GeneralSettings.INSTANCE.fixDoubleTranslation.getValue()) {
+        if (Mr712Settings.INSTANCE.fixDoubleTranslation.getValue()) {
             try {
                 final ProtocolVersion detected = ProtocolVersionDetector.get(field_33737, address, ProtocolTranslator.NATIVE_VERSION);
                 if (detected == ProtocolTranslator.NATIVE_VERSION) {

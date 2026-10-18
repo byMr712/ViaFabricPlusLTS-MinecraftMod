@@ -23,7 +23,7 @@ package com.viaversion.viafabricplus.protocoltranslator.util;
 
 import com.viaversion.viafabricplus.ViaFabricPlusImpl;
 import com.viaversion.viafabricplus.protocoltranslator.ProtocolTranslator;
-import com.viaversion.viafabricplus.settings.impl.GeneralSettings;
+import com.viaversion.viafabricplus.settings.impl.Mr712Settings;
 import com.viaversion.viaversion.api.Via;
 import com.viaversion.viaversion.api.protocol.Protocol;
 import com.viaversion.viaversion.api.protocol.ProtocolPathEntry;
@@ -58,7 +58,7 @@ public final class ProtocolWarmupManager {
             return;
         }
 
-        final int mode = GeneralSettings.INSTANCE.serverWarmupMode.getIndex();
+        final int mode = Mr712Settings.INSTANCE.serverWarmupMode.getIndex();
         if (mode == 3) { // Disabled
             return;
         }
@@ -102,7 +102,7 @@ public final class ProtocolWarmupManager {
      * Triggered during game initialization or opening Multiplayer screen when Startup Preload (Mode 1) is active.
      */
     public static void onClientOrMultiplayerInit() {
-        final int mode = GeneralSettings.INSTANCE.serverWarmupMode.getIndex();
+        final int mode = Mr712Settings.INSTANCE.serverWarmupMode.getIndex();
         if (mode == 1 && !startupPreloadDone) { // Startup Preload
             startupPreloadDone = true;
             EXECUTOR.execute(() -> {

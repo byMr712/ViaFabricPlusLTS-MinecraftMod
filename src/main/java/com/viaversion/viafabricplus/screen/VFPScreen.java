@@ -65,7 +65,7 @@ import java.awt.*;
  */
 public class VFPScreen extends Screen {
 
-    private static final String MOD_URL = "https://github.com/ViaVersion/ViaFabricPlus";
+    private static final String MOD_URL = "https://github.com/byMr712/ViaFabricPlusLTS-MinecraftMod";
 
     private final boolean backButton;
     public Screen prevScreen;
