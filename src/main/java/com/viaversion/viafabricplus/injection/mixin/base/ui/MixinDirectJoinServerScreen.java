@@ -45,8 +45,7 @@ public abstract class MixinDirectJoinServerScreen extends Screen {
         if (buttonPosition == 0) { // Off
             return;
         }
-
-        final Button.Builder builder = Button.builder(Component.nullToEmpty("ViaFabricPlus"), button -> ProtocolSelectionScreen.INSTANCE.open(this)).size(98, 20);
+        final Button.Builder builder = Button.builder(Component.nullToEmpty("ViaFabricPlusLTS"), button -> ProtocolSelectionScreen.INSTANCE.open(this)).size(98, 20);
         GeneralSettings.setOrientation(builder::pos, buttonPosition, width, height);
         this.addRenderableWidget(builder.build());
     }
