@@ -54,10 +54,10 @@ public abstract class VFPListEntry extends AlwaysSelectedEntryListWidget.Entry<V
     public static final int SLOT_MARGIN = 3;
 
     private DrawContext context;
-    private int x;
-    private int y;
-    private int entryWidth;
-    private int entryHeight;
+    protected int x;
+    protected int y;
+    protected int entryWidth;
+    protected int entryHeight;
 
     public void mappedRender(DrawContext context, int index, int y, int x, int entryWidth, int entryHeight, int mouseX, int mouseY, boolean hovered, float tickDelta) {
         // To be overridden
