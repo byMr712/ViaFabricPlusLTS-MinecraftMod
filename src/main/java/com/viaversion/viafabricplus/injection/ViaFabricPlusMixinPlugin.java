@@ -43,6 +43,11 @@ public final class ViaFabricPlusMixinPlugin implements IMixinConfigPlugin {
     @Override
     public void onLoad(String mixinPackage) {
         final FabricLoader loader = FabricLoader.getInstance();
+        loader.getModContainer("viafabricplus").ifPresent(container -> {
+            if (container.getMetadata().getId().equals("viafabricplus")) {
+                throw new RuntimeException("To use ViaFabricPlusLTS, please remove the original ViaFabricPlus mod from your mods folder.");
+            }
+        });
         IPNEXT_PRESENT = loader.isModLoaded("inventoryprofilesnext");
         MORE_CULLING_PRESENT = loader.isModLoaded("moreculling");
         LITHIUM_PRESENT = loader.isModLoaded("lithium");
