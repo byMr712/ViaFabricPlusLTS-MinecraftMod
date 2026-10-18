@@ -8,7 +8,7 @@
 ![ModMenu](https://img.shields.io/badge/ModMenu-Supported-blue.svg)
 ![License](https://img.shields.io/badge/License-GPL_3.0-blue.svg)
 
-An extended fork of **ViaFabricPlus** for **Minecraft (Fabric)** that restores connectivity from older client versions to servers up to the latest releases. The **LTS** (*Long-Term Support*) designation reflects the core purpose of this fork: extending the active lifespan of the original ViaFabricPlus mod across multiple older Minecraft versions, allowing players to keep their favorite modpacks while playing seamlessly on any server.
+An extended fork of [**ViaFabricPlus**](https://github.com/ViaVersion/ViaFabricPlus) for **Minecraft (Fabric)** that restores connectivity from older client versions to servers up to the latest releases. The **LTS** (*Long-Term Support*) designation reflects the core purpose of this fork: extending the active lifespan of the original ViaFabricPlus mod across multiple older Minecraft versions, allowing players to keep their favorite modpacks while playing seamlessly on any server.
 
 ---
 
