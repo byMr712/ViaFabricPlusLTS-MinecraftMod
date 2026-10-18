@@ -1,6 +1,6 @@
 {
   "schemaVersion": 1,
-  "id": "viafabricplus-lts",
+  "id": "viafabricplus",
   "version": "${version}",
   "name": "[MR] ViaFabricPlusLTS",
   "description": "${description}",
@@ -72,7 +72,6 @@
     "vfp:implVersion": "${implVersion}"
   },
   "provides": [
-    "viafabricplus",
     "viaversion",
     "viabackwards"
   ]
