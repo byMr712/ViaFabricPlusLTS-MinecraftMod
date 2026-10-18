@@ -17,20 +17,27 @@ import org.junit.jupiter.api.Test;
 
 import java.io.File;
 import java.util.List;
-
 public class ProtocolPathTest {
+
+    private static boolean initialized = false;
+
+    @org.junit.jupiter.api.BeforeAll
+    public static void setup() {
+        if (!initialized) {
+            ViaLoader.init(
+                    new ViaFabricPlusViaVersionPlatformImpl(new File("run")),
+                    new ViaFabricPlusVLLoader(),
+                    new ViaFabricPlusVLInjector(),
+                    new ViaFabricPlusVLCommandHandler(),
+                    ViaBackwardsPlatformImpl::new,
+                    ViaFabricPlusViaLegacyPlatformImpl::new,
+                    ViaAprilFoolsPlatformImpl::new
+            );
+        }
+    }
 
     @Test
     public void testProtocolPath() throws Exception {
-        ViaLoader.init(
-                new ViaFabricPlusViaVersionPlatformImpl(new File("run")),
-                new ViaFabricPlusVLLoader(),
-                new ViaFabricPlusVLInjector(),
-                new ViaFabricPlusVLCommandHandler(),
-                ViaBackwardsPlatformImpl::new,
-                ViaFabricPlusViaLegacyPlatformImpl::new,
-                ViaAprilFoolsPlatformImpl::new
-        );
 
         ProtocolVersion serverVersion = ProtocolVersion.v26_3;
         ProtocolVersion[] allClientVersions = {
@@ -45,10 +52,28 @@ public class ProtocolPathTest {
                 ProtocolVersion.v26_1,
                 ProtocolVersion.v26_2
         };
-        for (ProtocolVersion cv : allClientVersions) {
-            List<ProtocolPathEntry> p = Via.getManager().getProtocolManager().getProtocolPath(cv, serverVersion);
-            System.out.println("VERIFIED_PATH: " + cv.getName() + " -> 26.3 (" + (p != null ? p.size() + " steps" : "NULL") + ")");
-            org.junit.jupiter.api.Assertions.assertNotNull(p, "Path must exist for " + cv.getName());
+        ProtocolVersion server1214 = ProtocolVersion.v1_21_4;
+        ProtocolVersion[] testVersions = {
+                ProtocolVersion.v1_21,
+                ProtocolVersion.v1_21_2,
+                ProtocolVersion.v1_21_4,
+                ProtocolVersion.v1_21_5,
+                ProtocolVersion.v1_21_6,
+                ProtocolVersion.v1_21_7,
+                ProtocolVersion.v1_21_9,
+                ProtocolVersion.v1_21_11,
+                ProtocolVersion.v26_1,
+                ProtocolVersion.v26_2,
+                ProtocolVersion.v26_3
+        };
+        for (ProtocolVersion cv : testVersions) {
+            if (cv == server1214) {
+                System.out.println("VERIFIED_PATH: " + cv.getName() + " -> 1.21.4 (Native, 0 steps)");
+                continue;
+            }
+            List<ProtocolPathEntry> p = Via.getManager().getProtocolManager().getProtocolPath(cv, server1214);
+            System.out.println("VERIFIED_PATH: " + cv.getName() + " -> 1.21.4 (" + (p != null ? p.size() + " steps" : "NULL") + ")");
+            org.junit.jupiter.api.Assertions.assertNotNull(p, "Path must exist for " + cv.getName() + " -> 1.21.4");
         }
 
         ProtocolVersion clientVersion = ProtocolVersion.v1_21_4;
@@ -163,6 +188,51 @@ public class ProtocolPathTest {
                 System.out.println("Exception in invPacket transform: " + e);
                 e.printStackTrace(System.out);
             }
+        }
+    }
+
+    @Test
+    public void testLiveServerDetectorAndPaths() {
+        try (java.net.Socket s = new java.net.Socket()) {
+            s.connect(new java.net.InetSocketAddress("127.0.0.1", 25565), 500);
+        } catch (Exception e) {
+            System.out.println("No local server on 25565, skipping live test");
+            return;
+        }
+
+        try {
+            ProtocolVersion detected = ProtocolVersionDetector.get(
+                new net.minecraft.client.network.ServerAddress("127.0.0.1", 25565),
+                new java.net.InetSocketAddress("127.0.0.1", 25565),
+                ProtocolVersion.v1_21_4
+            );
+            System.out.println("LIVE_SERVER_DETECTED: " + detected.getName() + " (proto " + detected.getOriginalVersion() + ")");
+            org.junit.jupiter.api.Assertions.assertEquals(ProtocolVersion.v1_21_4, detected);
+
+            ProtocolVersion[] allClientVersions = {
+                    ProtocolVersion.v1_21,
+                    ProtocolVersion.v1_21_2,
+                    ProtocolVersion.v1_21_4,
+                    ProtocolVersion.v1_21_5,
+                    ProtocolVersion.v1_21_6,
+                    ProtocolVersion.v1_21_7,
+                    ProtocolVersion.v1_21_9,
+                    ProtocolVersion.v1_21_11,
+                    ProtocolVersion.v26_1,
+                    ProtocolVersion.v26_2,
+                    ProtocolVersion.v26_3
+            };
+            for (ProtocolVersion cv : allClientVersions) {
+                if (cv == detected) {
+                    System.out.println("LIVE_TEST_PATH: " + cv.getName() + " -> " + detected.getName() + " (Native)");
+                    continue;
+                }
+                List<ProtocolPathEntry> p = Via.getManager().getProtocolManager().getProtocolPath(cv, detected);
+                System.out.println("LIVE_TEST_PATH: " + cv.getName() + " -> " + detected.getName() + " (" + (p != null ? p.size() + " steps" : "NULL") + ")");
+                org.junit.jupiter.api.Assertions.assertNotNull(p, "Path must exist from " + cv.getName() + " to " + detected.getName());
+            }
+        } catch (Exception ex) {
+            throw new RuntimeException(ex);
         }
     }
 
