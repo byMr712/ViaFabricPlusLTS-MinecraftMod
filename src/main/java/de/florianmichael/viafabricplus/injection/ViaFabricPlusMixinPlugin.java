@@ -46,7 +46,7 @@ public class ViaFabricPlusMixinPlugin implements IMixinConfigPlugin {
     public void onLoad(String mixinPackage) {
         final FabricLoader loader = FabricLoader.getInstance();
 
-        final ModMetadata metadata = loader.getModContainer("viafabricplus").get().getMetadata();
+        final ModMetadata metadata = loader.getModContainer("viafabricplus-lts").orElseGet(() -> loader.getModContainer("viafabricplus").get()).getMetadata();
         VFP_VERSION = metadata.getVersion().getFriendlyString();
         VFP_IMPL_VERSION = metadata.getCustomValue("vfp:implVersion").getAsString();
 
