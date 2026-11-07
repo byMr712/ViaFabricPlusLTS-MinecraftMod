@@ -31,7 +31,7 @@ dependencies {
     compileOnly(libs.modmenu)
 }
 tasks.named<Jar>("jar") {
-    archiveFileName.set("MrViaFabricPlusLTS-26.3-byMr712.jar")
+    archiveFileName.set("ViaFabricPlusLTS-26.3-byMr712.jar")
 }
 
 allprojects {
