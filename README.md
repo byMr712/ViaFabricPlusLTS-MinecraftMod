@@ -1,6 +1,6 @@
 > **Language:** Русский · [English](README.en.md)
 
-# [MR] ViaFabricPlusLTS
+# ViaFabricPlusLTS
 
 ![Java 21](https://img.shields.io/badge/Java-21-blue.svg)
 ![Minecraft](https://img.shields.io/badge/Minecraft-1.21.x+-blue.svg)
@@ -39,7 +39,7 @@
 
 ## Установка
 
-1. Скачайте релиз мода под нужную вам версию игры (например, `MrViaFabricPlusLTS-1.21.4-byMr712.jar`) из раздела [Releases](https://github.com/byMr712/ViaFabricPlusLTS-MinecraftMod/releases).
+1. Скачайте релиз мода под нужную вам версию игры (например, `ViaFabricPlusLTS-1.21.4-byMr712.jar`) из раздела [Releases](https://github.com/byMr712/ViaFabricPlusLTS-MinecraftMod/releases).
 2. Поместите `.jar` файл в папку `mods` вашего экземпляра Fabric.
 3. Убедитесь, что установлен **Fabric Loader** (>=0.16.10) и **Fabric API** для вашей версии Minecraft.
 4. Запустите игру — кнопка выбора версии появится на главном экране и в меню сетевой игры.
