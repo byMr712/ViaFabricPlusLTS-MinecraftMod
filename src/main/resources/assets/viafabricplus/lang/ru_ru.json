@@ -18,6 +18,7 @@
   "base.viafabricplus.kick": "Отключаться",
   "base.viafabricplus.cancel_and_notify": "Отменить пакет и уведомить",
   "base.viafabricplus.detecting_server_version": "Проверка версии сервера...",
+  "base.viafabricplus.proxy_version_range": "Не удалось определить версию сервера: сервер или прокси сообщает диапазон версий. Уточните нужную версию у администратора сервера и выберите её вручную в настройках сервера.",
   "base.viafabricplus.none": "Выкл",
   "base.viafabricplus.name": "Имя",
   "base.viafabricplus.password": "Пароль",
