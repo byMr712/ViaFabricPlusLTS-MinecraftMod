@@ -67,7 +67,7 @@ public abstract class MixinConnectScreen_1 {
             targetVersion = mixinServerInfo.viaFabricPlus$forcedVersion();
             mixinServerInfo.viaFabricPlus$passDirectConnectScreen(false); // reset state
         }
-        if (Mr712Settings.global().fixDoubleTranslation.getValue()) {
+        if (targetVersion == ProtocolTranslator.AUTO_DETECT_PROTOCOL && Mr712Settings.global().fixDoubleTranslation.getValue()) {
             try {
                 final ProtocolVersion detected = ProtocolVersionDetector.get(address, ProtocolTranslator.NATIVE_VERSION);
                 if (detected == ProtocolTranslator.NATIVE_VERSION) {
