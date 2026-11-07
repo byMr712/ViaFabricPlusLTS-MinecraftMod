@@ -33,6 +33,18 @@ public class ProtocolVersionDetector {
 
     private static final int TIMEOUT = 3000;
 
+    private static final java.util.regex.Pattern VERSION_RANGE = java.util.regex.Pattern.compile("(?<![0-9.])([0-9]+\\.[0-9]+(?:\\.[0-9]+)?)\\s*-\\s*([0-9]+\\.[0-9]+(?:\\.[0-9]+)?)(?![0-9.])");
+
+    public static boolean isVersionRange(final String name) {
+        return name != null && VERSION_RANGE.matcher(name).find();
+    }
+
+    public static final class ProxyVersionRangeException extends RuntimeException {
+        public ProxyVersionRangeException() {
+            super("Server advertises a version range; cannot determine the backend version");
+        }
+    }
+
     /**
      * Detects the protocol version of a server
      *
@@ -49,6 +61,9 @@ public class ProtocolVersionDetector {
                 .getSync();
 
         if (response.version.protocol == clientVersion.getOriginalVersion()) { // If the server is on the same version as the client, we can just connect
+            if (isVersionRange(response.version.name)) {
+                throw new ProxyVersionRangeException();
+            }
             return clientVersion;
         } else { // Else ping again with protocol id -1 to get the protocol id of the server
             response = MCPing
