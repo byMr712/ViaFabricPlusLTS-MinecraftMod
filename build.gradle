@@ -109,7 +109,7 @@ jar {
 }
 
 remapJar {
-    archiveFileName = "MrViaFabricPlusLTS-${project.minecraft_version}-byMr712.jar"
+    archiveFileName = "ViaFabricPlusLTS-${project.minecraft_version}-byMr712.jar"
 }
 
 def launcherModsDir = file("E:/ATLauncher/instances/FabulouslyOptimizedFPStest1214/mods")
