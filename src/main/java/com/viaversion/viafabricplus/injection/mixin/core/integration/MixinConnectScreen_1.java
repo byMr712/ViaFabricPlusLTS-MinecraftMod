@@ -78,7 +78,7 @@ public abstract class MixinConnectScreen_1 {
             targetVersion = mixinServerInfo.viaFabricPlus$forcedVersion();
             mixinServerInfo.viaFabricPlus$passDirectConnectScreen(false); // reset state
         }
-        if (ViaFabricPlusImpl.impl().settings().mr712().fixDoubleTranslation().isActive()) {
+        if (targetVersion == ProtocolTranslation.AUTO_DETECT_VERSION && ViaFabricPlusImpl.impl().settings().mr712().fixDoubleTranslation().isActive()) {
             try {
                 final ProtocolVersion detected = ProtocolVersionDetector.get(this.val$hostAndPort, address, ProtocolTranslationImpl.NATIVE_VERSION);
                 if (detected == ProtocolTranslationImpl.NATIVE_VERSION) {
