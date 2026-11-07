@@ -85,6 +85,8 @@ public abstract class MixinConnectScreen_1 {
                 } else if (targetVersion == ProtocolTranslator.AUTO_DETECT_PROTOCOL) {
                     targetVersion = detected;
                 }
+            } catch (final ProtocolVersionDetector.ProxyVersionRangeException e) {
+                throw viaFabricPlus$proxyVersionRangeError();
             } catch (final Throwable ignored) {
             }
         }
@@ -92,12 +94,17 @@ public abstract class MixinConnectScreen_1 {
             // If the server got already pinged, try to use that version if it's valid. Otherwise, perform auto-detect
             final boolean serverPinged = this.field_40415.getStatus() == ServerInfo.Status.SUCCESSFUL || this.field_40415.getStatus() == ServerInfo.Status.INCOMPATIBLE;
             if (serverPinged) {
+                if (this.field_40415.version != null && ProtocolVersionDetector.isVersionRange(this.field_40415.version.getString())) {
+                    throw viaFabricPlus$proxyVersionRangeError();
+                }
                 targetVersion = ProtocolVersion.getProtocol(this.field_40415.protocolVersion);
             }
             if (!serverPinged || !targetVersion.isKnown()) {
                 this.field_2416.setStatus(Text.translatable("base.viafabricplus.detecting_server_version"));
                 try {
                     targetVersion = ProtocolVersionDetector.get(this.field_33737, address, ProtocolTranslator.NATIVE_VERSION);
+                } catch (final ProtocolVersionDetector.ProxyVersionRangeException e) {
+                    throw viaFabricPlus$proxyVersionRangeError();
                 } catch (final IOException ignored) {
                     // Don't let this one through as not relevant
                 }
@@ -116,6 +123,10 @@ public abstract class MixinConnectScreen_1 {
         return future;
     }
 
+    @Unique
+    private static RuntimeException viaFabricPlus$proxyVersionRangeError() {
+        return new RuntimeException(Text.translatable("base.viafabricplus.proxy_version_range").getString());
+    }
     @Redirect(method = "run", at = @At(value = "INVOKE", target = "Lnet/minecraft/client/session/Session;getUsername()Ljava/lang/String;"))
     private String useClassiCubeUsername(Session instance) {
         if (this.viaFabricPlus$useClassiCubeAccount) {
