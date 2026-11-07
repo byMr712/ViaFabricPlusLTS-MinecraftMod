@@ -223,7 +223,6 @@
     "features.movement.water.MixinSkeletonHorseEntity",
     "features.networking.config_state.MixinClientConfigurationNetworkHandler",
     "features.networking.config_state.MixinClientPlayNetworkHandler",
-    "features.networking.config_state.MixinConfigurationState",
     "features.networking.config_state.MixinNetworkStateTransitionHandler",
     "features.networking.config_state.MixinNetworkStateTransitions",
     "features.networking.config_state.MixinProtocol1_20To1_20_2",
