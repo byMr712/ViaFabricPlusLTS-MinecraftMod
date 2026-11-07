@@ -22,6 +22,7 @@
   "base.viafabricplus.kick": "Kick",
   "base.viafabricplus.cancel_and_notify": "Cancel and notify",
   "base.viafabricplus.detecting_server_version": "Detecting server version...",
+  "base.viafabricplus.proxy_version_range": "Could not determine the server version: the server or proxy reports a version range. Ask the server administrator which version to use, then select it manually in the server settings.",
   "base.viafabricplus.this_will_require_a_restart": "This will require a restart!",
   "base.viafabricplus.none": "None",
   "base.viafabricplus.name": "Name",

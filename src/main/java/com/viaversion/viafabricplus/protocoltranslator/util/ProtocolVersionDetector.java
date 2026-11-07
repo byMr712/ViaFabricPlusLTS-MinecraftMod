@@ -43,6 +43,18 @@ public final class ProtocolVersionDetector {
 
     private static final int TIMEOUT = 3_000;
 
+    private static final java.util.regex.Pattern VERSION_RANGE = java.util.regex.Pattern.compile("(?<![0-9.])([0-9]+\\.[0-9]+(?:\\.[0-9]+)?)\\s*-\\s*([0-9]+\\.[0-9]+(?:\\.[0-9]+)?)(?![0-9.])");
+
+    public static boolean isVersionRange(final String name) {
+        return name != null && VERSION_RANGE.matcher(name).find();
+    }
+
+    public static final class ProxyVersionRangeException extends RuntimeException {
+        public ProxyVersionRangeException() {
+            super("Server advertises a version range; cannot determine the backend version");
+        }
+    }
+
     /**
      * Detects the protocol version of a server
      *
@@ -118,6 +130,9 @@ public final class ProtocolVersionDetector {
                 if (version.has("protocol")) {
                     final int serverVersion = version.get("protocol").getAsInt();
                     if (clientVersion.getOriginalVersion() == serverVersion) {
+                        if (version.has("name") && isVersionRange(version.get("name").getAsString())) {
+                            throw new ProxyVersionRangeException();
+                        }
                         return clientVersion;
                     }
                 }
