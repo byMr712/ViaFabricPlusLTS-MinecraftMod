@@ -10,7 +10,23 @@ tasks.test {
     enabled = false
 }
 
+configure<net.fabricmc.loom.api.fabricapi.FabricApiExtension> {
+    configureTests {
+        createSourceSet.set(true)
+        modId.set("viafabricplus-test")
+        enableGameTests.set(false)
+        enableClientGameTests.set(true)
+        eula.set(true)
+    }
+}
+
+tasks.matching { it.name == "runClientGameTest" }.configureEach {
+    (this as JavaExec).jvmArgs("-Dfabric.client.gametest.disableNetworkSynchronizer=true")
+}
+
 dependencies {
+    "gametestImplementation"("net.fabricmc.fabric-api:fabric-api:${libs.versions.fabric.api.get()}")
+
     jarInJar(projects.viafabricplusApi) {
         exclude("net.fabricmc", "fabric-loader")
     }
