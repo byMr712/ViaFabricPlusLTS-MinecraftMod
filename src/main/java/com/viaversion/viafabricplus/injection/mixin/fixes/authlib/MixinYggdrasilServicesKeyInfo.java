@@ -8,10 +8,10 @@ import org.spongepowered.asm.mixin.injection.Inject;
 import org.spongepowered.asm.mixin.injection.callback.CallbackInfoReturnable;
 
 @Mixin(value = YggdrasilServicesKeyInfo.class, remap = false)
-public interface MixinYggdrasilServicesKeyInfo {
+public abstract class MixinYggdrasilServicesKeyInfo {
 
     @Inject(method = "validateProperty", at = @At("HEAD"), cancellable = true)
-    default void onValidateProperty(Property property, CallbackInfoReturnable<Boolean> cir) {
+    public void onValidateProperty(Property property, CallbackInfoReturnable<Boolean> cir) {
         if (property.signature() == null || property.signature().isEmpty()) {
             cir.setReturnValue(false);
         }

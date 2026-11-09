@@ -28,9 +28,25 @@ configureTest().also {
 }
 unlockBuildErrors()
 
+fabricApi {
+    configureTests {
+        createSourceSet.set(true)
+        modId.set("viafabricplus-test")
+        enableGameTests.set(false)
+        enableClientGameTests.set(true)
+        eula.set(true)
+    }
+}
+
+tasks.matching { it.name == "runClientGameTest" }.configureEach {
+    (this as JavaExec).jvmArgs("-Dfabric.client.gametest.disableNetworkSynchronizer=true")
+}
+
 val shade = configureJarInJar()
 
 dependencies {
+    "gametestImplementation"("net.fabricmc.fabric-api:fabric-api:$fabricApiVersion")
+
     shade(project(":viafabricplus-api")) {
         exclude("net.fabricmc", "fabric-loader")
     }
@@ -63,4 +79,3 @@ allprojects {
         }
     }
 }
-
