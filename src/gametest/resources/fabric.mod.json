@@ -1,0 +1,15 @@
+{
+  "schemaVersion": 1,
+  "id": "viafabricplus-test",
+  "version": "1.0.0",
+  "name": "ViaFabricPlus client game tests",
+  "environment": "client",
+  "entrypoints": {
+    "fabric-client-gametest": [
+      "com.viaversion.viafabricplus.test.ViaFabricPlusClientGameTest"
+    ]
+  },
+  "depends": {
+    "viafabricplus": "*"
+  }
+}

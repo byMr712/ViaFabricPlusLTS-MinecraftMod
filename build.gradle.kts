@@ -40,11 +40,27 @@ project.property("updating_minecraft").toString().toBoolean().let {
     }
 }
 
+fabricApi {
+    configureTests {
+        createSourceSet.set(true)
+        modId.set("viafabricplus-test")
+        enableGameTests.set(false)
+        enableClientGameTests.set(true)
+        eula.set(true)
+    }
+}
+
+tasks.matching { it.name == "runClientGameTest" }.configureEach {
+    (this as JavaExec).jvmArgs("-Dfabric.client.gametest.disableNetworkSynchronizer=true")
+}
+
 val jij = configureApiJij()
 
 configureVVDependencies("jij")
 
 dependencies {
+    "gametestImplementation"("net.fabricmc.fabric-api:fabric-api:$fabricApiVersion")
+
     jij(project(":viafabricplus-api")) {
         exclude("net.fabricmc", "fabric-loader")
     }
@@ -113,4 +129,3 @@ allprojects {
         }
     }
 }
-
