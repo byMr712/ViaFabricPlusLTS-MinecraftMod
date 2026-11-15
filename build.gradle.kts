@@ -45,6 +45,20 @@ project.property("updating_minecraft").toString().toBoolean().apply {
     }
 }
 
+fabricApi {
+    configureTests {
+        createSourceSet.set(true)
+        modId.set("viafabricplus-test")
+        enableGameTests.set(false)
+        enableClientGameTests.set(true)
+        eula.set(true)
+    }
+}
+
+tasks.matching { it.name == "runClientGameTest" }.configureEach {
+    (this as JavaExec).jvmArgs("-Dfabric.client.gametest.disableNetworkSynchronizer=true")
+}
+
 val jij = configureJij()
 configureVVDependencies("jij")
 
@@ -53,6 +67,8 @@ includeFabricSubmodule("viafabricplus-api")
 includeFabricSubmodule("viafabricplus-visuals")
 
 dependencies {
+    "modGametestImplementation"("net.fabricmc.fabric-api:fabric-api:${property("fabric_api_version")}")
+
     testImplementation("net.fabricmc:fabric-loader-junit:${property("fabric_loader_version")}")
     modCompileOnly("com.terraformersmc:modmenu:15.0.0")
 
