@@ -11,6 +11,20 @@ loom {
     accessWidenerPath = file("src/main/resources/viafabricplus.accesswidener")
 }
 
+fabricApi {
+    configureTests {
+        createSourceSet = true
+        modId = "viafabricplus-test"
+        enableGameTests = false
+        enableClientGameTests = true
+        eula = true
+    }
+}
+
+tasks.matching { it.name == 'runClientGameTest' }.configureEach {
+    jvmArgs '-Dfabric.client.gametest.disableNetworkSynchronizer=true'
+}
+
 configurations {
     jij // jar in jar configuration
     modJij // jar in jar configuration for mods
@@ -23,9 +37,9 @@ configurations {
     jij.extendsFrom vvDependencies
 }
 
-
-
 dependencies {
+    modGametestImplementation "net.fabricmc.fabric-api:fabric-api:${project.fabric_api_version}"
+
     // Fabric API
     modJij fabricApi.module("fabric-api-base", project.fabric_api_version)
     modJij fabricApi.module("fabric-resource-loader-v0", project.fabric_api_version)
@@ -129,7 +143,6 @@ tasks.register('copyToLauncher', Copy) {
 if (launcherModsDir.exists()) {
     build.finalizedBy(copyToLauncher)
 }
-
 
 subprojects {
     tasks.matching { it.name == "runClient" || it.name == "runServer" }.configureEach {
