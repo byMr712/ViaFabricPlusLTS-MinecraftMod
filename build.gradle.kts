@@ -40,6 +40,20 @@ project.property("updating_minecraft").toString().toBoolean().let {
     }
 }
 
+fabricApi {
+    configureTests {
+        createSourceSet.set(true)
+        modId.set("viafabricplus-test")
+        enableGameTests.set(false)
+        enableClientGameTests.set(true)
+        eula.set(true)
+    }
+}
+
+tasks.matching { it.name == "runClientGameTest" }.configureEach {
+    (this as JavaExec).jvmArgs("-Dfabric.client.gametest.disableNetworkSynchronizer=true")
+}
+
 val jij = configureJij()
 configureVVDependencies("jij")
 
@@ -48,6 +62,8 @@ includeFabricSubmodule("viafabricplus-api")
 includeFabricSubmodule("viafabricplus-visuals")
 
 dependencies {
+    "modGametestImplementation"("net.fabricmc.fabric-api:fabric-api:${property("fabric_api_version")}")
+
     jij("net.lenni0451:Reflect:1.6.2")
     jij("de.florianreuth:classic4j:2.3.0")
     configureBedrockDependencies()
